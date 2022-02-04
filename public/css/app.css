@@ -563,6 +563,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-80 {
   width: 20rem;
 }
+.w-6\/12 {
+  width: 50%;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -574,6 +577,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .items-center {
   align-items: center;
+}
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-center {
   justify-content: center;
@@ -590,8 +596,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-2 {
   border-width: 2px;
 }
+.border-4 {
+  border-width: 4px;
+}
 .border-t {
   border-top-width: 1px;
+}
+.border-r-4 {
+  border-right-width: 4px;
 }
 .border-gray-200 {
   --tw-border-opacity: 1;
@@ -612,6 +624,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-purple-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
+}
+.bg-cyan-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(8 145 178 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;
