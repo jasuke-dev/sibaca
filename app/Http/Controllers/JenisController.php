@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Datatables;
 use App\Models\Jenis;
 use App\Http\Requests\StorejenisRequest;
 use App\Http\Requests\UpdatejenisRequest;
+use Illuminate\Http\Request;
 
 class JenisController extends Controller
 {
@@ -13,8 +15,21 @@ class JenisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) 
+        {
+            $data = Jenis::get();
+            // echo($data);
+            // return Datatables::of($data)
+            //         ->addIndexColumn()
+            //         ->make(true);
+            return datatables()
+            ->of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
         return view('admin.pages.jenis.index',[
             'jenis' => Jenis::all(),
         ]);

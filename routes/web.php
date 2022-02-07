@@ -46,5 +46,5 @@ Route::get('/pengarang', function () {
     return view('admin.pages.pengarang.index');
 });
 
-Route::get('/jenis', [JenisController::class, 'index']);
+Route::get('/jenis', [JenisController::class, 'index'])->name('jenis.index');;
 

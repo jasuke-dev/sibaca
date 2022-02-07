@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.main')
 
 @section('container')
@@ -10,12 +11,12 @@
                 </h2>
     
                 {{-- Searh bar --}}
-                <input type="search" class=" w-3/12 bg-purple-white shadow rounded border-0 p-3 justify-start" placeholder="Search by name...">
+                {{-- <input type="search" class=" w-3/12 bg-purple-white shadow rounded border-0 p-3 justify-start" placeholder="Search by name...">
                 <div class="ml-3 bg-purple-600 rounded border-0 p-3">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                </div>
+                </div> --}}
 
                 {{-- add button --}}
                 <a class="w-2/12 flex items-end justify-between p-4 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="#">
@@ -30,14 +31,53 @@
             </div>
             
 
-            <div class="flex">
-                
+            <div class="flex w-full">
             </div>
+            <table class="table data-table">
+                <thead>
+                <tr class="bg-purple-600 text-white">
+                    <th>ID</th>
+                    <th>jenis</th>            
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
 
             
         </div>
     </main>
-    @foreach ($jenis as $jen)
-        <h1>{{ $jen->jenis }}</h1>
-    @endforeach
 @endsection
+{{-- <!DOCTYPE html>
+<html>
+   <head>
+      <title>Laravel Datatables Tutorial | ScratchCode.io</title>
+      <meta name="csrf-token" content="{{ csrf_token() }}"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+      <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <div class="container">
+         <h1 class="mb-5 mt-5">Laravel Datatables Tutorial | ScratchCode.io</h1>
+         
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+      <script type="text/javascript">
+         $(function () {
+           var table = $('.data-table').DataTable({
+               processing: true,
+               serverSide: true,
+               ajax: "{{ route('jenis.index') }}",
+               columns: [
+                   {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                   {data: 'jenis', name: 'jenis'},
+               ]
+           });
+         });
+          
+      </script>
+   </body>
+</html> --}}

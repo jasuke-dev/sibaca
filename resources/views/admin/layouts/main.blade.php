@@ -18,6 +18,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
     />
+    {{-- data table --}}
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    {{-- end data table --}}
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
@@ -151,6 +155,25 @@
               }
           }
       }
+    </script>
+    {{-- data table --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+       $(function () {
+         var table = $('.data-table').DataTable({
+             processing: true,
+             serverSide: true,
+             ajax: "{{ route('jenis.index') }}",
+             columns: [
+                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                 {data: 'jenis', name: 'jenis'},
+             ]
+         });
+       });
+        
     </script>
 </body>
 </html>
