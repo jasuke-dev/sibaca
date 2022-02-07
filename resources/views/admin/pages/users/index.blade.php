@@ -8,7 +8,7 @@
             searchable="name, email"
             exportable
          />         --}}
-         <livewire:datatable model="App\Models\User" exclude="planet_id, bio, latitude, longitude, updated_at" />
+         <livewire:datatable model="App\Models\User" exclude="created_at, updated_at" />
     </div>
 </main>
 

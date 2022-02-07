@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Jenis;
 use Illuminate\Database\Seeder;
 
-class JenisSeeder extends Seeder
+class TypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class JenisSeeder extends Seeder
      */
     public function run()
     {
-        // Jenis::factory(10)->create();
+        //
     }
 }

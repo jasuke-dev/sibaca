@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class JenisFactory extends Factory
+class TypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class JenisFactory extends Factory
     public function definition()
     {
         return [
-            'jenis' => $this->faker->word(),
+            'type' => $this->faker->word(),
         ];
     }
 }

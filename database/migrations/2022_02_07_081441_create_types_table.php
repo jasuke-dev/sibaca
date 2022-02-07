@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJenisTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateJenisTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateJenisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis');
+        Schema::dropIfExists('types');
     }
 }

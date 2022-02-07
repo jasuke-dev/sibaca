@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,5 +47,5 @@ Route::get('/pengarang', function () {
     return view('admin.pages.pengarang.index');
 });
 
-Route::get('/jenis', [JenisController::class, 'index'])->name('jenis.index');;
+Route::get('/type', [TypeController::class, 'index'])->name('jenis.index');;
 
