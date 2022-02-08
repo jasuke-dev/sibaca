@@ -93,14 +93,14 @@
             <li class="relative px-6 py-3">
                 {{-- active menu --}}
                 <span
-                class="{{ Request::is('subject*') || Request::is('bahasa*') || Request::is('jenis*') || Request::is('pengarang*')  ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg
+                class="{{ Request::is('subject*') || Request::is('bahasa*') || Request::is('type*') || Request::is('pengarang*')  ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg
                 ' : '' }}"
                 aria-hidden="true"
                 ></span>
                 <button
                   @click="togglePagesMenu"
-                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 {{ Request::is('subject*') || Request::is('bahasa*') || Request::is('jenis*') || Request::is('pengarang*')  ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                  {{-- x-data="{ isPagesMenuOpen : {{ Request::is('subject*') || Request::is('bahasa*') || Request::is('jenis*') || Request::is('pengarang*')  ? 'false' : 'false' }} }" --}}
+                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 {{ Request::is('subject*') || Request::is('bahasa*') || Request::is('type*') || Request::is('pengarang*')  ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                  {{-- x-data="{ isPagesMenuOpen : {{ Request::is('subject*') || Request::is('bahasa*') || Request::is('type*') || Request::is('pengarang*')  ? 'false' : 'false' }} }" --}}
                   aria-haspopup="true"
                 >
                   <span class="inline-flex items-center">
@@ -157,10 +157,10 @@
                       </a>
                     </li>
                     <li
-                      class="px-2 py-1 transition-colors duration-150 {{ Request::is('jenis*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
+                      class="px-2 py-1 transition-colors duration-150 {{ Request::is('type*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
-                      <a class="w-full" href="/jenis">
-                        Jenis
+                      <a class="w-full" href="/type">
+                        Type
                       </a>
                     </li>
                     <li
@@ -341,8 +341,8 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="/jenis">
-                        Jenis
+                      <a class="w-full" href="/type">
+                        type
                       </a>
                     </li>
                     <li

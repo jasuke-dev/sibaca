@@ -14,7 +14,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.jenis.index');//
+        return view('admin.pages.type.index');//
     }
 
     /**
