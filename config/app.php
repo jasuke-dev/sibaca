@@ -178,6 +178,10 @@ return [
         //data table
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+        //sweetAlert
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+
     ],
 
     /*
@@ -234,6 +238,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //data tables
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+        //SweetAlert
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 

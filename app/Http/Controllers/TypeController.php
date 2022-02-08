@@ -14,9 +14,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.type.index');//
+        return view('admin.pages.type.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.type.create');
     }
 
     /**
@@ -35,7 +35,13 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'type' => 'required|max:255',
+        ]);
+
+        Type::create($validatedData);
+
+        return redirect('/admin/type')->with('success',"New post has been aded!");
     }
 
     /**
@@ -57,7 +63,9 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.pages.type.edit',[
+            'type' => $type,
+        ]);
     }
 
     /**
@@ -69,7 +77,23 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $rules = [
+            'type' => 'required',
+        ];
+
+        $validatedData = $request->validate(($rules));
+
+
+        try{
+            Type::where('id' , $type->id)
+                ->update($validatedData);
+            
+            return redirect('/admin/type')
+                ->with('success',"Type has been updated");
+        } catch(\Exception $e){
+            return redirect('/admin/type')
+                ->with('errors', $e->getMessage());
+        }
     }
 
     /**

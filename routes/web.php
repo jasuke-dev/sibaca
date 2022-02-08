@@ -23,29 +23,30 @@ Route::get('/explore', function () {
     return view('explore.index');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/admin/dashboard', function () {
     return view('admin.pages.dashboard.index');
 });
 
-Route::get('/collections', function () {
+Route::get('/admin/collections', function () {
     return view('admin.pages.collections.index');
 });
 
-Route::get('/users', function () {
+Route::get('/admin/users', function () {
     return view('admin.pages.users.index');
 });
 
-Route::get('/subject', function () {
+Route::get('/admin/subject', function () {
     return view('admin.pages.subject.index');
 });
 
-Route::get('/bahasa', function () {
+Route::get('/admin/bahasa', function () {
     return view('admin.pages.bahasa.index');
 });
 
-Route::get('/pengarang', function () {
+Route::get('/admin/pengarang', function () {
     return view('admin.pages.pengarang.index');
 });
 
-Route::get('/type', [TypeController::class, 'index'])->name('jenis.index');;
+
+Route::resource('/admin/type', TypeController::class)->middleware('alert');;
 

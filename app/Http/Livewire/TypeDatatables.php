@@ -17,16 +17,28 @@ class TypeDatatables extends LivewireDatatable
     public function columns()
     {
         return [
-            NumberColumn::name('id')->filterable(),
-            Column::name('type')->filterable()->searchable(),
-            Column::name('created_at')->filterable()->searchable(),
-            Column::name('updated_at')->filterable()->searchable(),
+            NumberColumn::name('id')
+                ->filterable()
+                ->alignCenter(),
+            Column::name('type')
+                ->filterable()
+                ->searchable()
+                ->alignCenter(),
+            Column::name('created_at')
+                ->filterable()
+                ->searchable()
+                ->alignCenter(),
+            Column::name('updated_at')
+                ->filterable()
+                ->searchable()
+                ->alignCenter(),
             Column::callback(['id','type'], function($id, $type){
                 return view('livewire.type-datatables', [
                     'id' => $id,
                     'type' => $type
                 ]);
             })->unsortable()
+            ->alignCenter()
         ];  
     }
 }

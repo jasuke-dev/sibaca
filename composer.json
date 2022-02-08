@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "mediconesystems/livewire-datatables": "^0.6.8",
+        "realrashid/sweet-alert": "^5.0",
         "yajra/laravel-datatables-oracle": "^9.19"
     },
     "require-dev": {

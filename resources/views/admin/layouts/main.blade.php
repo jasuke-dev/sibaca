@@ -13,27 +13,33 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script> --}}
     <script src={{ asset("js/template/init-alpine.js") }}></script>
-    <link
+    
+    {{-- livewire --}}
+    @livewireStyles
+    {{-- livewire --}}
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    defer
+    ></script>
+
+    {{-- chart.js --}}
+    {{-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
     />
-    
-    {{-- livewire --}}
-      @livewireStyles
-    {{-- livewire --}}
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-      defer
-    ></script>
     <script src={{ asset("js/template/charts-lines.js") }} defer></script>
-    <script src={{ asset("js/template/charts-pie.js") }} defer></script>
+    <script src={{ asset("js/template/charts-pie.js") }} defer></script> --}}
+
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
     {{-- multiple select --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
+    @include('sweetalert::alert')
+
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
     {{-- @include('sweetalert::alert') --}}
     @include('admin.layouts.partials.sidebar')
