@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,14 +40,12 @@ Route::get('/admin/subject', function () {
     return view('admin.pages.subject.index');
 });
 
-Route::get('/admin/bahasa', function () {
-    return view('admin.pages.bahasa.index');
-});
-
 Route::get('/admin/pengarang', function () {
     return view('admin.pages.pengarang.index');
 });
 
 
-Route::resource('/admin/type', TypeController::class)->middleware('alert');;
+Route::resource('/admin/type', TypeController::class)->middleware('alert');
+
+Route::resource('/admin/bahasa', LanguageController::class)->middleware('alert');
 

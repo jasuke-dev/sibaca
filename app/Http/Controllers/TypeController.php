@@ -41,7 +41,7 @@ class TypeController extends Controller
 
         Type::create($validatedData);
 
-        return redirect('/admin/type')->with('success',"New post has been aded!");
+        return redirect('/admin/type')->with('success',"New Type has been aded!");
     }
 
     /**
