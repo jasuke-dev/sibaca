@@ -23,16 +23,13 @@ class TypeDatatables extends LivewireDatatable
                 ->alignCenter(),
             Column::name('type')
                 ->filterable()
-                ->searchable()
                 ->alignCenter()
                 ->editable(),
             DateColumn::name('created_at')
                 ->filterable()
-                ->searchable()
                 ->alignCenter(),
             DateColumn::name('updated_at')
                 ->filterable()
-                ->searchable()
                 ->alignCenter(),
             Column::callback(['id','type'], function($id, $type){
                 return view('livewire.type-datatables', [

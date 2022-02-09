@@ -159,12 +159,12 @@
         </div>
 
         @unless($this->hidePagination)
-            <div class="max-w-screen bg-white @unless($complex) rounded-b-lg @endunless border-4 border-t-0 border-b-0 @if($this->activeFilters) border-blue-500 @else border-transparent @endif">
+            <div class="max-w-screen bg-white dark:bg-gray-700 @unless($complex) rounded-b-lg @endunless border-4 border-t-0 border-b-0 @if($this->activeFilters) border-blue-500 @else border-transparent @endif">
                 <div class="p-2 sm:flex items-center justify-between">
                     {{-- check if there is any data --}}
                     @if(count($this->results))
                         <div class="my-2 sm:my-0 flex items-center">
-                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model="perPage">
+                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 dark:bg-gray-800 dark:text-gray-100" wire:model="perPage">
                                 @foreach(config('livewire-datatables.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
                                     <option value="{{ $per_page_option }}">{{ $per_page_option }}</option>
                                 @endforeach
@@ -182,7 +182,7 @@
                             </div>
                         </div>
 
-                        <div class="flex justify-end text-gray-600">
+                        <div class="flex justify-end text-gray-600 dark:text-gray-100">
                             {{__('Results')}} {{ $this->results->firstItem() }} - {{ $this->results->lastItem() }} {{__('of')}}
                             {{ $this->results->total() }}
                         </div>
