@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Type;
+use App\Models\Jenis;
 use Livewire\Component;
 use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
+use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
-use App\Models\Jenis;
-use App\Models\Type;
+use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class TypeDatatables extends LivewireDatatable
 {
@@ -23,12 +24,13 @@ class TypeDatatables extends LivewireDatatable
             Column::name('type')
                 ->filterable()
                 ->searchable()
-                ->alignCenter(),
-            Column::name('created_at')
+                ->alignCenter()
+                ->editable(),
+            DateColumn::name('created_at')
                 ->filterable()
                 ->searchable()
                 ->alignCenter(),
-            Column::name('updated_at')
+            DateColumn::name('updated_at')
                 ->filterable()
                 ->searchable()
                 ->alignCenter(),
