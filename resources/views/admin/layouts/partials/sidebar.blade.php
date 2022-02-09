@@ -18,7 +18,7 @@
                 {{-- active menu --}}
                 <a
                 class="inline-flex items-center w-full text-sm {{ Request::is('/admin//admin/dashboard*') ? 'text-gray-800' : '' }} font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="/admindashboard"
+                href="/admin/dashboard"
                 >
                 <svg
                     class="w-5 h-5"
@@ -49,7 +49,7 @@
                 {{-- active menu --}}
                 <a
                 class="inline-flex items-center w-full text-sm {{ Request::is('/admin/collections*') ? 'text-gray-800' : '' }} font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="/admincollections"
+                href="/admin/collections"
                 >
                 <svg
                     class="w-5 h-5"
@@ -80,7 +80,7 @@
                 {{-- active menu --}}
                 <a
                 class="inline-flex items-center w-full text-sm {{ Request::is('/admin/users*') ? 'text-gray-800' : '' }} font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="/adminusers"
+                href="/admin/users"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -147,26 +147,26 @@
                     <li
                       class="px-2 py-1 transition-colors duration-150 {{ Request::is('/admin/subject*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
-                      <a class="w-full" href="/adminsubject">Subject</a>
+                      <a class="w-full" href="/admin/subject">Subject</a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 {{ Request::is('/admin/bahasa*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
-                      <a class="w-full" href="/adminbahasa">
+                      <a class="w-full" href="/admin/bahasa">
                         Bahasa
                       </a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 {{ Request::is('/admin/type*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
-                      <a class="w-full" href="/admintype">
+                      <a class="w-full" href="/admin/type">
                         Type
                       </a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 {{ Request::is('/admin/pengarang*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
-                      <a class="w-full" href="/adminpengarang">Pengarang</a>
+                      <a class="w-full" href="/admin/pengarang">Pengarang</a>
                     </li>
                   </ul>
                 </template>
@@ -194,7 +194,7 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
     <div class="py-4 text-gray-500 dark:text-gray-400">
         <a
         class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-        href="/admin"
+        href="/admin/dashboard"
         >
         SIBACA
         </a>
@@ -207,7 +207,7 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                 ></span>
                 <a
                 class="inline-flex items-center w-full text-sm font-semibold {{ Request::is('/admin/dashboard*') ? 'text-gray-800' : '' }}  transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="/admindashboard"
+                href="/admin/dashboard"
                 >
                 <svg
                     class="w-5 h-5"
@@ -236,7 +236,7 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                 ></span>
                 <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors {{ Request::is('/admin/books*') ? 'text-gray-800' : '' }} duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/collections"
+                href="admin/collections"
                 >
                 <svg
                     class="w-5 h-5"
@@ -265,7 +265,7 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                 ></span>
                 <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors {{ Request::is('/admin/users*') ? 'text-gray-800' : '' }} duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/users"
+                href="admin/users"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -329,26 +329,26 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="/subjects">Subject</a>
+                      <a class="w-full" href="admin/subjects">Subject</a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="/bahasa">
+                      <a class="w-full" href="admin/bahasa">
                         Bahasa
                       </a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="/type">
+                      <a class="w-full" href="admin/type">
                         type
                       </a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="/pengarang">Pengarang</a>
+                      <a class="w-full" href="admin/author">Pengarang</a>
                     </li>
                   </ul>
                 </template>

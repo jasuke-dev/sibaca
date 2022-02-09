@@ -20,8 +20,6 @@
     },
     "dependencies": {
         "datatables.net-bs4": "^1.11.4",
-        "datatables.net-buttons-bs4": "^2.2.2",
-        "tailwindcss": "^1.4.6",
-        "tailwindcss-multi-theme": "^1.0.4"
+        "datatables.net-buttons-bs4": "^2.2.2"
     }
 }

@@ -11,10 +11,10 @@
 
     <link rel="stylesheet" href= {{ asset("css/alphine.css") }} />
     <link rel="stylesheet" href= {{ asset("css/tailwind.output.css") }} />
-    <script
+    {{-- <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
-    ></script>
+    ></script> --}}
     <script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
     
@@ -34,10 +34,10 @@
     <script src={{ asset("js/template/charts-lines.js") }} defer></script>
     <script src={{ asset("js/template/charts-pie.js") }} defer></script> --}}
 
-    {{-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> --}}
-    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    {{-- <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script> --}}
     {{-- multiple select --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
   </head>
   <body>
     @include('sweetalert::alert')
