@@ -15,7 +15,7 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.bahasa.index');
     }
 
     /**
