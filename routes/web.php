@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SubjectController;
@@ -47,4 +48,6 @@ Route::resource('/admin/type', TypeController::class)->middleware('alert');
 Route::resource('/admin/language', LanguageController::class)->middleware('alert');
 
 Route::resource('/admin/subject', SubjectController::class)->middleware('alert');
+
+Route::resource('/admin/author', AuthorController::class)->middleware('alert');
 
