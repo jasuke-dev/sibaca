@@ -16,7 +16,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.subject.index');
+        return view('admin.pages.lists.index',[
+            'title' => 'Subject',
+            'page' => 'subject',
+        ]);
     }
     
     /**
@@ -26,7 +29,10 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.subject.create');
+        return view('admin.pages.lists.create',[
+            'title' => 'Subject',
+            'page' => 'subject',
+        ]);
     }
 
     /**

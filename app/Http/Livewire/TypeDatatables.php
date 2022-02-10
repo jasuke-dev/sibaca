@@ -30,7 +30,7 @@ class TypeDatatables extends LivewireDatatable
                 ->filterable()
                 ->alignCenter(),
             Column::callback(['id','type'], function($id, $type){
-                return view('livewire.type-datatables', [
+                return view('livewire.lists-datatables', [
                     'id' => $id,
                     'type' => $type
                 ]);

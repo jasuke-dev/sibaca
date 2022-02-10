@@ -30,7 +30,7 @@ class SubjectDatatables extends LivewireDatatable
                 ->filterable()
                 ->alignCenter(),
             Column::callback(['id','subject'], function($id, $subject){
-                return view('livewire.subject-datatables', [
+                return view('livewire.lists-datatables', [
                     'id' => $id,
                     'subject' => $subject
                 ]);

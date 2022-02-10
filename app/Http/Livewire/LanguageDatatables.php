@@ -31,7 +31,7 @@ class LanguageDatatables extends LivewireDatatable
                 ->filterable()
                 ->alignCenter(),
             Column::callback(['id','language'], function($id, $language){
-                return view('livewire.language-datatables', [
+                return view('livewire.lists-datatables', [
                     'id' => $id,
                     'language' => $language
                 ]);

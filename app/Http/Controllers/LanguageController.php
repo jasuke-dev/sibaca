@@ -15,7 +15,10 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.language.index');
+        return view('admin.pages.lists.index',[
+            'title' => 'Language',
+            'page' => 'language',
+        ]);
     }
     
     /**
@@ -25,7 +28,10 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.language.create');
+        return view('admin.pages.lists.create',[
+            'title' => 'Language',
+            'page' => 'language',
+        ]);
     }
 
     /**

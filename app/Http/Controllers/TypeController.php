@@ -14,7 +14,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.type.index');
+        return view('admin.pages.lists.index',[
+            'title' => 'Type',
+            'page' => 'type',
+        ]);
     }
     
     /**
@@ -24,7 +27,10 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.type.create');
+        return view('admin.pages.lists.create',[
+            'title' => 'Type',
+            'page' => 'type',
+        ]);
     }
 
     /**

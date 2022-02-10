@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
+use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
@@ -28,7 +29,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.lists.create',[
+            'title' => 'Author',
+            'page' => 'author',
+        ]);
     }
 
     /**
@@ -37,9 +41,15 @@ class AuthorController extends Controller
      * @param  \App\Http\Requests\StoreAuthorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAuthorRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'author' => 'required|max:255',
+        ]);
+
+        Author::create($validatedData);
+
+        return redirect('/admin/author')->with('success',"New Author has been aded!");
     }
 
     /**
