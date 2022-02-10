@@ -40,12 +40,12 @@ Route::get('/admin/subject', function () {
     return view('admin.pages.subject.index');
 });
 
-Route::get('/admin/pengarang', function () {
-    return view('admin.pages.pengarang.index');
+Route::get('/admin/author', function () {
+    return view('admin.pages.author.index');
 });
 
 
 Route::resource('/admin/type', TypeController::class)->middleware('alert');
 
-Route::resource('/admin/bahasa', LanguageController::class)->middleware('alert');
+Route::resource('/admin/language', LanguageController::class)->middleware('alert');
 

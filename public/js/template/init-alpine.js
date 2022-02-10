@@ -21,7 +21,7 @@ function data() {
   let route = location.split('/')[3]
   let open;
 
-  if (route == 'subject' || route == 'bahasa' || route == 'pengarang' || route == 'jenis') {
+  if (route == 'admin') {
     open = true;
   }else{
     open = false;

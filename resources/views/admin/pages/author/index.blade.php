@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
 @section('container')
-    <h1>Pengarang</h1>
+    <h1>author</h1>
 
 @endsection

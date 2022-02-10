@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\language;
-use App\Http\Requests\StorelanguageRequest;
+use App\Models\Language;
 use App\Http\Requests\UpdatelanguageRequest;
+use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
@@ -15,9 +15,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.bahasa.index');
+        return view('admin.pages.language.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +25,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.language.create');
     }
 
     /**
@@ -34,9 +34,15 @@ class LanguageController extends Controller
      * @param  \App\Http\Requests\StorelanguageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorelanguageRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'language' => 'required|max:255',
+        ]);
+
+        Language::create($validatedData);
+
+        return redirect('/admin/language')->with('success',"New Language has been aded!");
     }
 
     /**
