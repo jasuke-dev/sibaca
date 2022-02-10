@@ -2,16 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Language;
+use App\Models\Subject;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-
-class LanguageDatatables extends LivewireDatatable
+class SubjectDatatables extends LivewireDatatable
 {
-    public $model = Language::class;
+    public $model = Subject::class;
     public $exportable = true;
 
     public function columns()
@@ -20,7 +19,7 @@ class LanguageDatatables extends LivewireDatatable
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
-            Column::name('language')
+            Column::name('subject')
                 ->filterable()
                 ->alignCenter()
                 ->editable(),
@@ -30,10 +29,10 @@ class LanguageDatatables extends LivewireDatatable
             DateColumn::name('updated_at')
                 ->filterable()
                 ->alignCenter(),
-            Column::callback(['id','language'], function($id, $language){
-                return view('livewire.language-datatables', [
+            Column::callback(['id','subject'], function($id, $subject){
+                return view('livewire.subject-datatables', [
                     'id' => $id,
-                    'language' => $language
+                    'subject' => $subject
                 ]);
             })->unsortable()
             ->alignCenter()
