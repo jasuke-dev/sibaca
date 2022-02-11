@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html :class="{ 'dark': dark }" x-data="data()" lang="en">
+<html :class="!dark ? '': 'dark' " x-data="data()" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,117 +30,7 @@
 
     @stack('script')
     <script src="http://127.0.0.1:8000/js/bundle.js"></script>
-    <script>
-
-
-        function confirm(event, id){
-          event.preventDefault();
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            // confirmButtonColor: '#7C3AED',
-            cancelButtonColor: '#FF5A26',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if(result.isConfirmed){
-              document.getElementsByClassName(id)[0].submit()
-            }
-          })
-        }
-        function confirmUser(event, id){
-          event.preventDefault();
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            // confirmButtonColor: '#7C3AED',
-            cancelButtonColor: '#FF5A26',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if(result.isConfirmed){
-              document.getElementsByClassName(id)[0].submit()
-            }
-          })
-        }
-        function confirmReturn(event, id){
-          event.preventDefault();
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            // confirmButtonColor: '#7C3AED',
-            cancelButtonColor: '#FF5A26',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if(result.isConfirmed){
-              document.getElementsByClassName(id)[0].submit()
-            }
-          })
-        }
-        function showImage() {
-            return {
-                showPreview(event) {
-                    if (event.target.files.length > 0) {
-                        var src = URL.createObjectURL(event.target.files[0]);
-                        var preview = document.getElementById("preview");
-                        preview.src = src;
-                        preview.style.display = "block";
-                    }
-                }
-            }
-        }
-
-        function dropdown() {
-          return {
-              options: [],
-              selected: [],
-              show: false,
-              open() { this.show = true },
-              close() { this.show = false },
-              isOpen() { return this.show === true },
-              select(index, event) {
-
-                  if (!this.options[index].selected) {
-
-                      this.options[index].selected = true;
-                      this.options[index].element = event.target;
-                      this.selected.push(index);
-
-                  } else {
-                      this.selected.splice(this.selected.lastIndexOf(index), 1);
-                      this.options[index].selected = false
-                  }
-              },
-              remove(index, option) {
-                  this.options[option].selected = false;
-                  this.selected.splice(index, 1);
-
-
-              },
-              loadOptions() {
-                  const options = document.getElementById('select').options;
-                  for (let i = 0; i < options.length; i++) {
-                      this.options.push({
-                          value: options[i].value,
-                          text: options[i].innerText,
-                          selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
-                      });
-                  }
-
-
-              },
-              selectedValues(){
-                  return this.selected.map((option)=>{
-                      return this.options[option].value;
-                  })
-              }
-          }
-      }
-    </script>
+    
     {{-- livewire --}}
     @livewireScripts
     {{-- livewire --}}

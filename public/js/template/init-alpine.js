@@ -18,10 +18,10 @@ function data() {
 
   //mengecek lokasi untuk menentukan dropdown
   let location = window.location.href;
-  let route = location.split('/')[3]
+  let route = location.split('/')[3] + '/' + location.split('/')[4]
   let open;
 
-  if (route == 'admin') {
+  if (route == 'admin/type' || route == 'admin/subject' || route == 'admin/language' || route == 'admin/author') {
     open = true;
   }else{
     open = false;

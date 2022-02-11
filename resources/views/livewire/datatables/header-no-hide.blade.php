@@ -1,7 +1,7 @@
 @unless($column['hidden'])
 <div class="relative table-cell h-12 overflow-hidden align-top  border-none" @if (isset($column['width']))style="width:{{ $column['width'] }}"@endif>
     @if($column['unsortable'])
-        <div class="w-full h-full px-6 py-3 border-b border-gray-200 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex items-center focus:outline-none @if($column['align'] === 'right') justify-end @elseif($column['align'] === 'center') justify-center @endif">
+        <div class="w-full h-full px-6 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex items-center focus:outline-none @if($column['align'] === 'right') justify-end @elseif($column['align'] === 'center') justify-center @endif">
             <span class="inline ">{{ str_replace('_', ' ', $column['label']) }}</span>
         </div>
     @else

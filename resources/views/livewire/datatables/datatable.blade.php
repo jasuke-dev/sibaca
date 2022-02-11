@@ -103,7 +103,7 @@
                                     <div class="table-cell w-5 overflow-hidden align-top bg-blue-100"></div>
                                 @endif
                             @elseif($column['type'] === 'checkbox')
-                                <div class="overflow-hidden align-top bg-blue-100 px-6 py-5 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex h-full flex-col items-center space-y-2 focus:outline-none">
+                                <div class="overflow-hidden align-top bg-red-100 px-6 py-5 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider flex h-full flex-col items-center space-y-2 focus:outline-none">
                                     <div>SELECT ALL</div>
                                     <div>
                                         <input type="checkbox" wire:click="toggleSelectAll" @if(count($selected) === $this->results->total()) checked @endif class="form-checkbox mt-1 h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
@@ -114,7 +114,7 @@
                                     {{ $column['label'] ?? '' }}
                                 </div>
                             @else
-                                <div class="table-cell overflow-hidden align-top">
+                                <div class="table-cell overflow-hidden align-top border-none">
                                     @isset($column['filterable'])
                                         @if( is_iterable($column['filterable']) )
                                             <div wire:key="{{ $index }}">
@@ -164,7 +164,7 @@
                     {{-- check if there is any data --}}
                     @if(count($this->results))
                         <div class="my-2 sm:my-0 flex items-center">
-                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 dark:bg-gray-800 dark:text-gray-100" wire:model="perPage">
+                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 focus:outline-none focus:shadow-outline-blue border rounded-md border-gray-300 focus:border-blue-300 sm:text-sm sm:leading-5 outline -none dark:outline-gray-800 bg-gray-50 dark:text-gray-100 dark:bg-gray-800" wire:model="perPage">
                                 @foreach(config('livewire-datatables.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
                                     <option value="{{ $per_page_option }}">{{ $per_page_option }}</option>
                                 @endforeach

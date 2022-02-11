@@ -5,6 +5,7 @@ use App\Http\Controllers\JenisController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,10 +35,6 @@ Route::get('/admin/collections', function () {
     return view('admin.pages.collections.index');
 });
 
-Route::get('/admin/users', function () {
-    return view('admin.pages.users.index');
-});
-
 Route::get('/admin/author', function () {
     return view('admin.pages.author.index');
 });
@@ -50,4 +47,6 @@ Route::resource('/admin/language', LanguageController::class)->middleware('alert
 Route::resource('/admin/subject', SubjectController::class)->middleware('alert');
 
 Route::resource('/admin/author', AuthorController::class)->middleware('alert');
+
+Route::resource('/admin/users', UserController::class)->middleware('alert');
 
