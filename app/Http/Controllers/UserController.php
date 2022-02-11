@@ -15,8 +15,8 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.pages.lists.index',[
-            'title' => 'Author',
-            'page' => 'author'
+            'title' => 'User',
+            'page' => 'users'
         ]);
     }
 
@@ -27,7 +27,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.lists.create',[
+            'title' => 'Users',
+            'page' => 'users',
+        ]);
     }
 
     /**
@@ -38,7 +41,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'username' => 'required|max:255',
+            'password' => 'required|max:255',
+            'accountType' => 'required|max:255',
+        ]);
+
+        User::create($validatedData);
+
+        return redirect('/admin/users')->with('success',"New User has been aded!");
     }
 
     /**

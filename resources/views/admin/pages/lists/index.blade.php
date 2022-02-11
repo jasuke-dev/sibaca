@@ -30,6 +30,8 @@
                 @livewire('subject-datatables')
             @elseif($page == 'type')
                 @livewire('type-datatables')
+            @elseif($page == 'users')
+                @livewire('user-datatables')
             @endif
             
         </div>
