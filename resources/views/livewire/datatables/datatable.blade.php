@@ -43,7 +43,7 @@
                 <div x-data="{ init() {
                     window.livewire.on('startDownload', link => window.open(link, '_blank'))
                 } }" x-init="init">
-                    <button wire:click="export" class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-200 focus:outline-none"><span>{{ __('Export') }}</span>
+                    <button wire:click="export" class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-400 hover:text-white focus:outline-none dark:bg-green-600 dark:text-white dark:hover:bg-green-800 dark:border-0"><span>{{ __('Export') }}</span>
                         <x-icons.excel class="m-2" /></button>
                 </div>
                 @endif
@@ -164,7 +164,7 @@
                     {{-- check if there is any data --}}
                     @if(count($this->results))
                         <div class="my-2 sm:my-0 flex items-center">
-                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 focus:outline-none focus:shadow-outline-blue border rounded-md border-gray-300 focus:border-blue-300 sm:text-sm sm:leading-5 outline -none dark:outline-gray-800 bg-gray-50 dark:text-gray-100 dark:bg-gray-800" wire:model="perPage">
+                            <select name="perPage" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 focus:outline-none focus:shadow-outline-blue border rounded-md border-gray-300 focus:border-blue-300 sm:text-sm sm:leading-5 outline-none bg-gray-50 dark:text-gray-100 dark:bg-gray-800" wire:model="perPage">
                                 @foreach(config('livewire-datatables.per_page_options', [ 10, 25, 50, 100 ]) as $per_page_option)
                                     <option value="{{ $per_page_option }}">{{ $per_page_option }}</option>
                                 @endforeach

@@ -8,7 +8,7 @@
             </button>
         </div>
     </div>
-    <div class="w-full relative flex items-center dark:bg-gray-300">
+    <div class="w-full relative flex items-center">
         <input x-ref="end" class="text-gray-400 w-full py-2 pl-1 pr-8 m-1 text-sm leading-4 block rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:text-gray-100 dark:bg-gray-700" type="date"
             wire:change="doDateFilterEnd('{{ $index }}', $event.target.value)" style="padding-bottom: 5px" />
         <div class="absolute inset-y-0 right-0 pr-2 flex items-center">
