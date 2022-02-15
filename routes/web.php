@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\JenisController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\SubjectController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EbookController;
+use App\Http\Controllers\JenisController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,6 @@ Route::get('/admin/dashboard', function () {
     return view('admin.pages.dashboard.index');
 });
 
-Route::get('/admin/collections', function () {
-    return view('admin.pages.collections.index');
-});
-
 Route::get('/admin/author', function () {
     return view('admin.pages.author.index');
 });
@@ -49,4 +46,6 @@ Route::resource('/admin/subject', SubjectController::class)->middleware('alert')
 Route::resource('/admin/author', AuthorController::class)->middleware('alert');
 
 Route::resource('/admin/users', UserController::class)->middleware('alert');
+
+Route::resource('/admin/collections', EbookController::class)->middleware('alert');
 

@@ -15,7 +15,10 @@ class EbookController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.lists.index',[
+            'title' => 'Collections',
+            'page' => 'collections',
+        ]);
     }
 
     /**

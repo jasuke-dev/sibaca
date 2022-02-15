@@ -32,6 +32,8 @@
                 @livewire('type-datatables')
             @elseif($page == 'users')
                 @livewire('user-datatables')
+            @elseif($page == 'collections')
+                @livewire('collection-datatables')            
             @endif
             
         </div>
