@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
 use App\Models\Language;
 use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,6 +25,7 @@ class EbookFactory extends Factory
             'path_file' => $this->faker->sentence(),
             'type_id' => Type::factory(),
             'language_id' => Language::factory(),
+            'author_id' => Author::factory(),
         ];
     }
 }
