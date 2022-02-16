@@ -12,6 +12,8 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CollectionDatatables extends LivewireDatatable
 {
+    public $model = Ebook::class;
+    public $exportable = true;
     public function builder()
     {
         return Ebook::query()
@@ -24,27 +26,22 @@ class CollectionDatatables extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-                ->label('ID')
                 ->filterable(),
             Column::name('isbn_issn_doi')
                 ->label('ISBN/ISSN/DOI')
                 ->filterable(),
             Column::name('title')
                 ->filterable()
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter(),
             Column::name('abstract')
                 ->filterable()
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter(),
             Column::name('authors.author')
                 ->filterable($this->authors->pluck('author'))
-                ->alignCenter()
-                ->editable(),
-            Column::name('publish_year')
-                ->filterable($this->ebooks->pluck('publish_year'))
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter(),
+            NumberColumn::name('publish_year')
+                ->filterable()
+                ->alignCenter(),
             Column::name('languages.language')
                 ->filterable($this->languages->pluck('language'))
                 ->label('Language'),
@@ -54,7 +51,8 @@ class CollectionDatatables extends LivewireDatatable
             Column::callback(['id','title'], function($id, $title){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'title' => $title
+                    'title' => $title,
+                    'pages' => 'collections'
                 ]);
             })->unsortable()
             ->alignCenter()

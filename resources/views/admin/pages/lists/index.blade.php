@@ -22,17 +22,17 @@
             </div>
             
 
-            @if ($page == 'author')
+            @if (Route::current()->uri == 'admin/author')
                 @livewire('author-datatables')
-            @elseif($page == 'language')
+            @elseif(Route::current()->uri == 'admin/language')
                 @livewire('language-datatables')
-            @elseif($page == 'subject')
+            @elseif(Route::current()->uri == 'admin/subject')
                 @livewire('subject-datatables')
-            @elseif($page == 'type')
+            @elseif(Route::current()->uri == 'admin/type')
                 @livewire('type-datatables')
-            @elseif($page == 'users')
+            @elseif(Route::current()->uri == 'admin/users')
                 @livewire('user-datatables')
-            @elseif($page == 'collections')
+            @elseif(Route::current()->uri == 'admin/collections')
                 @livewire('collection-datatables')            
             @endif
             
