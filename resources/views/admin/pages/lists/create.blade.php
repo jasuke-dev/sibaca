@@ -48,7 +48,7 @@
                             <input
                               type="radio"
                               class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                              name="accountType"
+                              name="role"
                               value="admin"
                             />
                             <span class="ml-2">Admin</span>
@@ -59,7 +59,7 @@
                             <input
                               type="radio"
                               class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                              name="accountType"
+                              name="role"
                               value="user"
                             />
                             <span class="ml-2">User</span>

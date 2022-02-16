@@ -21,12 +21,18 @@ class CreateEbooksTable extends Migration
             $table->text('abstract');
             $table->string('path_cover');
             $table->string('path_file');
-            $table->unsignedBigInteger('type_id');
-            $table->unsignedBigInteger('language_id');
-            $table->unsignedBigInteger('author_id');
-            $table->foreign('type_id')->references('id')->on('types');
-            $table->foreign('language_id')->references('id')->on('languages');
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreignId('type_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
+            $table->foreignId('language_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
+            $table->foreignId('author_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
             $table->timestamps();
         });
     }

@@ -17,9 +17,9 @@ class CollectionDatatables extends LivewireDatatable
     public function builder()
     {
         return Ebook::query()
-                    ->Join('languages', 'languages.id', 'ebooks.language_id')
-                    ->Join('types', 'types.id', 'ebooks.type_id')
-                    ->Join('authors', 'authors.id', 'ebooks.author_id');
+                    ->leftJoin('languages', 'languages.id', 'ebooks.language_id')
+                    ->leftJoin('types', 'types.id', 'ebooks.type_id')
+                    ->leftJoin('authors', 'authors.id', 'ebooks.author_id');
     }
 
     public function columns()
