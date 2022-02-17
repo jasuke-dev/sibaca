@@ -13,6 +13,6 @@ class EbookSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Ebook::factory(5)->create();
     }
 }

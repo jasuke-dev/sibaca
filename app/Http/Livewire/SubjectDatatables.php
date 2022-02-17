@@ -19,6 +19,9 @@ class SubjectDatatables extends LivewireDatatable
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
+            Column::name('code')
+                ->filterable()
+                ->alignCenter(),
             Column::name('subject')
                 ->filterable()
                 ->alignCenter()

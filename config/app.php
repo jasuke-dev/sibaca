@@ -181,6 +181,9 @@ return [
         //sweetAlert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+        //exel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -240,6 +243,8 @@ return [
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
         //SweetAlert
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        //exel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

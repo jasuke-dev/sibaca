@@ -22,7 +22,7 @@ class Sweet
         }
 
         if (session('error')) {
-            Alert::error(session('errors'));
+            Alert::error(session('error'));
         }
 
         return $next($request);

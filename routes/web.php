@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EbookController;
-use App\Http\Controllers\JenisController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\SubjectsImport;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,13 @@ Route::resource('/admin/author', AuthorController::class)->middleware('alert');
 Route::resource('/admin/users', UserController::class)->middleware('alert');
 
 Route::resource('/admin/collections', EbookController::class)->middleware('alert');
+
+Route::post('/import', function () {
+    try {
+        Excel::import(new SubjectsImport, request()->file('file'));
+        return redirect()->back()->with('success','Data Imported Successfully');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error',$e->getMessage());
+    }
+});
 
