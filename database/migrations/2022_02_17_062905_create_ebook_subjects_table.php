@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguagesTable extends Migration
+class CreateEbookSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('ebook_subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('language');
+            $table->foreignId('ebook_id')
+                  ->nullable()
+                  ->constrained();
+            $table->foreignId('subject_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('ebook_subjects');
     }
 }

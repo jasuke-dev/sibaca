@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Ebook;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SubjectFactory extends Factory
+class EbookSubjectFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +16,8 @@ class SubjectFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->uuid(),
-            'subject' => $this->faker->word(),
+            'ebook_id' => Ebook::factory(),
+            'subject_id' => Subject::factory(),
         ];
     }
 }
