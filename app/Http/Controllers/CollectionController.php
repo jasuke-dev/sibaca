@@ -92,7 +92,7 @@ class CollectionController extends Controller
      */
     public function show(Collection $collection)
     {
-        
+        return $collection->subject()->get();
     }
 
     /**

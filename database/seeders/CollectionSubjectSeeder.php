@@ -13,6 +13,6 @@ class CollectionSubjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\CollectionSubject::factory(5)->create();
     }
 }

@@ -15,7 +15,7 @@ class CreateCollectionSubjectsTable extends Migration
     {
         Schema::create('collection_subjects', function (Blueprint $table) {
             $table  ->id();
-            $table  ->foreignId('ebook_id')
+            $table  ->foreignId('collection_id')
                     ->nullable()
                     ->constrained();
             $table  ->foreignId('subject_id')
@@ -33,6 +33,6 @@ class CreateCollectionSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collection_subjects');
+        Schema::dropIfExists('collection_subject');
     }
 }

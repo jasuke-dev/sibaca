@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Collection;
 use App\Models\Ebook;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,7 +17,7 @@ class CollectionSubjectFactory extends Factory
     public function definition()
     {
         return [
-            'ebook_id' => Ebook::factory(),
+            'collection_id' => Collection::factory(),
             'subject_id' => Subject::factory(),
         ];
     }
