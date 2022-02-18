@@ -102,7 +102,12 @@ class EbookController extends Controller
      */
     public function edit(Ebook $ebook)
     {
-        //
+        return view('admin.pages.lists.edit',[
+            'ebook' => $ebook,
+            'types' => Type::all(),
+            'languages' => Language::all(),
+            'authors' => Author::all(),
+        ]);
     }
 
     /**
