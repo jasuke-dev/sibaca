@@ -1,7 +1,6 @@
 @extends('admin.layouts.main')
 
 @section('container')
-    {{ dd($ebook) }}
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container grid px-6 mx-auto">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -15,7 +14,7 @@
             <div class="w-8/12 mx-8 px-8 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <label for="title" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Title</span>
-                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New title collection" name="title" value="{{ old('slug' , $ebook->title) }}" required autofocus disabled>
+                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New title collection" name="title" value="{{ old('slug' , $collection->title) }}" required autofocus disabled>
                     @error("title")
                         <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                             {{ $message }}
@@ -24,7 +23,7 @@
                 </label>  
                 <label for="isbn_issn_doi" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">ISBN/ISSN/DOI</span>
-                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="ISBN/ISSN/DOI" value="{{ old('isbn_issn_doi') }}" name="isbn_issn_doi" required disabled>
+                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="ISBN/ISSN/DOI" value="{{ old('isbn_issn_doi', $collection->isbn_issn_doi) }}" name="isbn_issn_doi" required disabled>
                     @error('isbn_issn_doi')
                         <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                             {{ $message }}
@@ -33,7 +32,7 @@
                 </label>
                 <label for="abstract" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Abstract</span>
-                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Abstract" value="{{ old('abstract') }}" name="abstract" required disabled>
+                    <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Abstract" value="{{ old('abstract', $collection->abstract) }}" name="abstract" required disabled>
                     @error('abstract')
                         <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                             {{ $message }}
@@ -42,7 +41,7 @@
                 </label>
                 <label for="publish_year" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Publication year</span>
-                    <input type="text" id="publish_year" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_year') }}" name="publish_year" required disabled>
+                    <input type="text" id="publish_year" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_year', $collection->publish_year) }}" name="publish_year" required disabled>
                     @error('publish_year')
                         <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                             {{ $message }}
@@ -53,7 +52,7 @@
                     <span class="text-gray-700 dark:text-gray-400">Type Collection</span>
                     <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="type" required disabled>
                       @foreach ($types as $type)
-                        @if (old('type') == $type->id)
+                        @if (old('type', $collection->type) == $type->id)
                           <option value="{{ $type->id }}" selected>{{ $type->type }}</option>
                         @else
                           <option value="{{ $type->id }}">{{ $type->type }}</option>
@@ -68,9 +67,9 @@
                 </label>
                 <label for="language" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Language</span>
-                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('language') }}" name="language" required disabled>
+                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="language" required disabled>
                       @foreach ($languages as $language)
-                        @if (old('type') == $language->id)
+                        @if (old('type', $collection->language) == $language->id)
                           <option value="{{ $language->id }}" selected>{{ $language->language }}</option>
                         @else
                           <option value="{{ $language->id }}">{{ $language->language }}</option>
@@ -85,9 +84,9 @@
                 </label>
                 <label for="author" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Author</span>
-                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('author') }}" name="author" required disabled>
+                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="author" required disabled>
                       @foreach ($authors as $author)
-                        @if (old('type') == $author->id)
+                        @if (old('author', $collection->author) == $author->id)
                           <option value="{{ $author->id }}" selected>{{ $author->author }}</option>
                         @else
                           <option value="{{ $author->id }}">{{ $author->author }}</option>

@@ -5,6 +5,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
 use Maatwebsite\Excel\Facades\Excel;
@@ -48,7 +49,7 @@ Route::resource('/admin/author', AuthorController::class)->middleware('alert');
 
 Route::resource('/admin/users', UserController::class)->middleware('alert');
 
-Route::resource('/admin/collections', EbookController::class)->middleware('alert');
+Route::resource('/admin/collections', CollectionController::class)->middleware('alert');
 
 Route::post('/import', function () {
     try {

@@ -2,24 +2,24 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Ebook;
 use App\Models\Language;
 use App\Models\Type;
 use App\Models\Author;
+use App\Models\Collection;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CollectionDatatables extends LivewireDatatable
 {
-    public $model = Ebook::class;
+    public $model = Collection::class;
     public $exportable = true;
     public function builder()
     {
-        return Ebook::query()
-                    ->leftJoin('languages', 'languages.id', 'ebooks.language_id')
-                    ->leftJoin('types', 'types.id', 'ebooks.type_id')
-                    ->leftJoin('authors', 'authors.id', 'ebooks.author_id');
+        return Collection::query()
+                    ->leftJoin('languages', 'languages.id', 'collections.language_id')
+                    ->leftJoin('types', 'types.id', 'collections.type_id')
+                    ->leftJoin('authors', 'authors.id', 'collections.author_id');
     }
 
     public function columns()
@@ -65,7 +65,7 @@ class CollectionDatatables extends LivewireDatatable
     }
     public function getEbooksProperty()
     {
-        return Ebook::all();
+        return Collection::all();
     }
     public function getTypesProperty()
     {

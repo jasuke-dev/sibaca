@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Language extends Model
+class CollectionSubject extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'language',
+        'ebook_id',
+        'subject_id',
     ];
-
-    public function collection(){
-        return $this->hasMany(Collection::class);
-    }
 }
