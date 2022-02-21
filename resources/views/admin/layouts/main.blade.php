@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIBACA</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -29,7 +31,7 @@
     </div>
 
     @stack('script')
-    <script src="http://127.0.0.1:8000/js/bundle.js"></script>
+    {{-- <script src="http://127.0.0.1:8000/js/bundle.js"></script> --}}
     
     {{-- livewire --}}
     @livewireScripts
