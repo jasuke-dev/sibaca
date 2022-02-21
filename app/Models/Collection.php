@@ -21,6 +21,10 @@ class Collection extends Model
         return $this->belongsToMany(Subject::class, 'collection_subjects'); //meng custom tabel ketiga aslinya collection_subject
     }
 
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
+
     // public function collection_subject(){
     //     return $this->
     // }

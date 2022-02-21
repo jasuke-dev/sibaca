@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
 use Maatwebsite\Excel\Facades\Excel;
@@ -30,14 +31,13 @@ Route::get('/explore', function () {
     return view('explore.index');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.pages.dashboard.index');
-});
 
-Route::get('/admin/author', function () {
-    return view('admin.pages.author.index');
-});
 
+// Route::get('/admin/author', function () {
+//     return view('admin.pages.author.index');
+// });
+
+Route::get('/admin/dashboard', [DashboardController::class , 'index']);
 
 Route::resource('/admin/type', TypeController::class)->middleware('alert');
 

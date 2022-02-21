@@ -50,9 +50,9 @@
                 </label>
                 <label for="type" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Type Collection</span>
-                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="type" required disabled>
+                    <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="type" required>
                       @foreach ($types as $type)
-                        @if (old('type', $collection->type) == $type->id)
+                        @if (old('type', $collection->type_id) == $type->id)
                           <option value="{{ $type->id }}" selected>{{ $type->type }}</option>
                         @else
                           <option value="{{ $type->id }}">{{ $type->type }}</option>
@@ -69,7 +69,7 @@
                     <span class="text-gray-700 dark:text-gray-400">Language</span>
                     <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="language" required disabled>
                       @foreach ($languages as $language)
-                        @if (old('type', $collection->language) == $language->id)
+                        @if (old('type', $collection->language_id) == $language->id)
                           <option value="{{ $language->id }}" selected>{{ $language->language }}</option>
                         @else
                           <option value="{{ $language->id }}">{{ $language->language }}</option>
