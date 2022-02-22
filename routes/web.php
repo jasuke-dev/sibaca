@@ -38,6 +38,7 @@ Route::get('/explore', function () {
 // });
 
 Route::get('/admin/dashboard', [DashboardController::class , 'index']);
+Route::get('/admin/dashboard/ajax', [DashboardController::class , 'ajax']);
 
 Route::resource('/admin/type', TypeController::class)->middleware('alert');
 
