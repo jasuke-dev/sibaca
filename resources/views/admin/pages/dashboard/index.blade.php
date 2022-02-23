@@ -36,6 +36,13 @@
         examples.
       </p>
 
+      <!-- Lines chart -->
+      <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 my-10">
+        <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+          Lines
+        </h4>
+        <canvas id="line"></canvas>
+      </div>
       <div class="grid gap-6 mb-8 md:grid-cols-2">
         <!-- Doughnut/Pie chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -43,13 +50,6 @@
             Doughnut/Pie
           </h4>
           <canvas id="pie" style="height:40vh; width:40vw"></canvas>
-        </div>
-        <!-- Lines chart -->
-        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-          <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Lines
-          </h4>
-          <canvas id="line"></canvas>
         </div>
         <!-- Bars chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -65,39 +65,42 @@
 
 
     <script>
-        fetch('/admin/dashboard/ajax')
+      BarChart()
+        //Fetching data
+        fetch('/admin/dashboard/ajax?data=types')
           .then(response => response.json())
           .then( data => 
-            chart(data.types)
-          )
-        
-        function chart(types){
-          window.addEventListener('beforeprint', () => {
-            myPie.resize(600, 600);
-          });
-          window.addEventListener('afterprint', () => {
-            myPie.resize();
-          });
+            PieChart(data.types)
+        )
+        fetch('/admin/dashboard/ajax?data=timeseries')
+          .then(response => response.json())
+          .then( data => {
+              console.log(data.timeseries)
+              LineChart(data.timeseries)
+          }
+        )
+
+        //Pie Chart Function
+        function PieChart(types){
+          //merubah penyusunan data agar bisa dikonsumsi dan dimasukkan config
           let type_data = {
             label : [],
             data  : []
           }
-          let newArr = types.map(function(val, index){
+          types.map(function(val, index){
               type_data.label.push(val.type)
               type_data.data.push(val.count)
           })
-          console.log(type_data)
+
+          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", type_data.label.length);
+          //config dari pie Chart
           const pieConfig = {
             type: 'doughnut',
             data: {
               datasets: [
                 {
                   data: type_data.data,
-                  /**
-                  * These colors come from Tailwind CSS palette
-                  * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
-                  */
-                  backgroundColor: ['#0694a2', '#1c64f2', '#7e3af2', '#8585d8', '#4a9ff2','#50b2b6'],
+                  backgroundColor: colorArray,
                   label: 'Type Of Collection',
                 },
               ],
@@ -107,46 +110,65 @@
               maintainAspectRatio: false,
               responsive: false,
               cutoutPercentage: 50,
-              /**
-              * Default legends are ugly and impossible to style.
-              * See examples in charts.html to add your own legends
-              *  */
               legend: {
                 display: true,
               },
             },
           }
+          // membuat Chart berdasarkan config yang telah ditentukan
           const pieCtx = document.getElementById('pie')
           window.myPie = new Chart(pieCtx, pieConfig)
+        }
 
+        //Line Chart Function
+        function LineChart(data){
+          //menyiapkan variabel untuk transformasi
+          let config = {};
+          // variabel set untuk menyimpan nilai-nilai unik
+          const labels = new Set();
+          let label_username = new Set();
+          const datasets = [];
+
+          data.map(function(val, index){
+              labels.add(val.Month)
+              label_username.add(val.username)
+          })
+
+          // merubah set menjadi array agar bisa memanfaatkan index
+          label_username = [...label_username]
+
+          // membuat array warna berdasarkan banyaknya label username
+          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+
+          //melakukan nested looping untuk mengumpulkan data berdasarkan label username sejenis untuk digunakan di config
+          label_username.forEach ((value, index) => {
+              let temp = value;
+              let data_label = [];
+              for(let j=0; j<data.length; j++){
+                if(data[j].username === temp){
+                  //mengumpulkan data berdasarkan label user sejenis
+                  console.log('index :',index)
+                  console.log('j :',j)
+                  data_label.push(data[j].Count)
+                }
+              }
+              // membuat object berdasarkan label user sejenis
+              const obj = {
+                label: temp,
+                backgroundColor: colorArray[index],
+                borderColor: colorArray[index],
+                data: data_label,
+                fill: false,
+              };
+              datasets.push(obj);
+          })
+          console.log('datasets')
+          console.log(datasets)
           const lineConfig = {
             type: 'line',
             data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [
-                {
-                  label: 'Organic',
-                  /**
-                  * These colors come from Tailwind CSS palette
-                  * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
-                  */
-                  backgroundColor: '#0694a2',
-                  borderColor: '#0694a2',
-                  data: [43, 48, 40, 54, 67, 73, 70],
-                  fill: false,
-                },
-                {
-                  label: 'Paid',
-                  fill: false,
-                  /**
-                  * These colors come from Tailwind CSS palette
-                  * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
-                  */
-                  backgroundColor: '#7e3af2',
-                  borderColor: '#7e3af2',
-                  data: [24, 50, 64, 74, 52, 51, 65],
-                },
-              ],
+              labels: [...labels],
+              datasets: datasets
             },
             options: {
               responsive: true,
@@ -155,7 +177,7 @@
               * See examples in charts.html to add your own legends
               *  */
               legend: {
-                display: false,
+                display: true,
               },
               tooltips: {
                 mode: 'index',
@@ -171,21 +193,24 @@
                   scaleLabel: {
                     display: true,
                     labelString: 'Month',
-                  },
+                  },                  
                 },
                 y: {
                   display: true,
                   scaleLabel: {
                     display: true,
                     labelString: 'Value',
-                  },
+                  },                  
                 },
               },
             },
           }
           const lineCtx = document.getElementById('line')
           window.myLine = new Chart(lineCtx, lineConfig)
+        }
 
+        //Bar Chart Function
+        function BarChart(){
           const barConfig = {
             type: 'bar',
             data: {
@@ -218,5 +243,42 @@
           window.myBar = new Chart(barsCtx, barConfig)
         }
 
+
+
+
+        //Random Color beetwen 2 color
+        function HexColor(rgb) {
+            let [r,g,b] = rgb;
+        
+            let hr = r.toString(16).padStart(2, '0');
+            let hg = g.toString(16).padStart(2, '0');
+            let hb = b.toString(16).padStart(2, '0');
+        
+            return "#" + hr + hg + hb;
+        }
+
+        function interpolateColor(color1, color2, factor) {
+            if (arguments.length < 3) { 
+                factor = 0.5; 
+            }
+            var result = color1.slice();
+            for (var i = 0; i < 3; i++) {
+                result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+            }
+            return result;
+        };
+        function interpolateColors(color1, color2, steps) {
+            var stepFactor = 1 / (steps - 1),
+                interpolatedColorArray = [];
+
+            color1 = color1.match(/\d+/g).map(Number);
+            color2 = color2.match(/\d+/g).map(Number);
+
+            for(var i = 0; i < steps; i++) {
+                interpolatedColorArray.push(HexColor(interpolateColor(color1, color2, stepFactor * i)));
+            }
+
+            return interpolatedColorArray;
+        }
     </script>
 @endsection
