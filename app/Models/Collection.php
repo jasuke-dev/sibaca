@@ -18,11 +18,15 @@ class Collection extends Model
     }
 
     public function subjects(){
-        return $this->belongsToMany(Subject::class, 'collection_subjects')->withPivot('subject')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
+        return $this->belongsToMany(Subject::class, 'collection_subjects')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
     }
 
     public function authors(){
-        return $this->belongsToMany(Author::class, 'author_collections')->withPivot('author')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
+        return $this->belongsToMany(Author::class, 'author_collections')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'user_collections')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
     }
 
     public function type(){

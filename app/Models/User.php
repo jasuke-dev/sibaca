@@ -41,4 +41,9 @@ class User extends Authenticatable
      */
     protected $casts = [
     ];
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
 }

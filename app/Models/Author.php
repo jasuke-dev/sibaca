@@ -15,6 +15,6 @@ class Author extends Model
 
     public function collections()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Collection::class);
     }
 }
