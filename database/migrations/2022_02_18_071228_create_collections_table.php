@@ -15,12 +15,22 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
+            $table->string('inventory_code')->unique();
             $table->string('isbn_issn_doi')->unique();
             $table->string('title');
-            $table->string('publish_year');
-            $table->text('abstract');
-            $table->string('path_cover');
-            $table->string('path_file');
+            $table->string('subtitle')->nullable();
+            $table->text('abstract')->nullable();
+            $table->string('classification')->nullable();
+            $table->string('title_code')->nullable();
+            $table->string('volume')->nullable();
+            $table->string('edition')->nullable();
+            $table->string('kolasi')->nullable();
+            $table->string('year_of_procurement')->nullable();
+            $table->string('publish_year')->nullable();
+            $table->string('publish_city')->nullable();
+            $table->string('price')->nullable();
+            $table->string('path_cover')->nullable();
+            $table->string('path_file')->nullable();
             $table->foreignId('type_id')
                   ->nullable()
                   ->constrained()
@@ -30,6 +40,14 @@ class CreateCollectionsTable extends Migration
                   ->constrained()
                   ->nullOnDelete();
             $table->foreignId('author_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
+            $table->foreignId('publisher_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
+            $table->foreignId('procurement_id')
                   ->nullable()
                   ->constrained()
                   ->nullOnDelete();

@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ebook extends Model
+class AuthorCollection extends Model
 {
     use HasFactory;
-
-    protected $guarded = [
-        'id',
-    ];
 }

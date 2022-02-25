@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class EbookSubjectSeeder extends Seeder
+class AuthorCollectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class EbookSubjectSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\EbookSubject::factory(5)->create();
+        \App\Models\AuthorCollection::factory(5)->create();
     }
 }
