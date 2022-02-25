@@ -21,7 +21,7 @@ function data() {
   let route = location.split('/')[3] + '/' + location.split('/')[4]
   let open;
 
-  if (route == 'admin/type' || route == 'admin/subject' || route == 'admin/language' || route == 'admin/author') {
+  if (route == 'admin/type' || route == 'admin/subject' || route == 'admin/language' || route == 'admin/author' || route == 'admin/publisher' || route == 'admin/procurement') {
     open = true;
   }else{
     open = false;

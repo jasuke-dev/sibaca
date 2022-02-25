@@ -93,13 +93,13 @@
             <li class="relative px-6 py-3">
                 {{-- active menu --}}
                 <span
-                class="{{ Request::is('admin/subject*') || Request::is('admin/language*') || Request::is('admin/type*') || Request::is('admin/author*')  ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg
+                class="{{ Request::is('admin/subject*') || Request::is('admin/language*') || Request::is('admin/type*') || Request::is('admin/author*') || Request::is('admin/publisher*') || Request::is('admin/procurement*')    ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg
                 ' : '' }}"
                 aria-hidden="true"
                 ></span>
                 <button
                   @click="togglePagesMenu"
-                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 {{ Request::is('admin/subject*') || Request::is('admin/language*') || Request::is('admin/type*') || Request::is('admin/author*')  ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                  class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 {{ Request::is('admin/subject*') || Request::is('admin/language*') || Request::is('admin/type*') || Request::is('admin/author*') || Request::is('admin/publisher*') || Request::is('admin/procurement*')   ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
                   {{-- x-data="{ isPagesMenuOpen : {{ Request::is('admin/subject*') || Request::is('admin/language*') || Request::is('admin/type*') || Request::is('admin/author*')  ? 'false' : 'false' }} }" --}}
                   aria-haspopup="true"
                 >
@@ -167,6 +167,16 @@
                       class="px-2 py-1 transition-colors duration-150 {{ Request::is('admin/author*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
                     >
                       <a class="w-full" href="/admin/author">Author</a>
+                    </li>
+                    <li
+                      class="px-2 py-1 transition-colors duration-150 {{ Request::is('admin/publisher*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
+                    >
+                      <a class="w-full" href="/admin/publisher">Publisher</a>
+                    </li>
+                    <li
+                      class="px-2 py-1 transition-colors duration-150 {{ Request::is('admin/procurement*') ? 'text-gray-800 dark:text-purple-600' : '' }} hover:text-gray-800 dark:hover:text-purple-600"
+                    >
+                      <a class="w-full" href="/admin/procurement">Procurement</a>
                     </li>
                   </ul>
                 </template>
@@ -349,6 +359,16 @@ x-transition:leave-end="opacity-0 transform -translate-x-20"
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
                       <a class="w-full" href="/admin/author">Author</a>
+                    </li>
+                    <li
+                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    >
+                      <a class="w-full" href="/admin/publisher">Publisher</a>
+                    </li>
+                    <li
+                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    >
+                      <a class="w-full" href="/admin/procurement">Procurement</a>
                     </li>
                   </ul>
                 </template>

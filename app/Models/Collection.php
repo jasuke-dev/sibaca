@@ -33,6 +33,14 @@ class Collection extends Model
         return $this->belongsTo(Type::class);
     }
 
+    public function publisher(){
+        return $this->belongsTo(publisher::class);
+    }
+
+    public function procurement(){
+        return $this->belongsTo(procurement::class);
+    }
+
     // public function collection_subject(){
     //     return $this->
     // }

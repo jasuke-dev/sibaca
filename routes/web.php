@@ -9,8 +9,12 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ProcurementController;
+use App\Http\Controllers\PublisherController;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\SubjectsImport;
+use App\Models\Procurement;
+use App\Models\Publisher;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +55,10 @@ Route::resource('/admin/author', AuthorController::class)->middleware('alert');
 Route::resource('/admin/users', UserController::class)->middleware('alert');
 
 Route::resource('/admin/collections', CollectionController::class)->middleware('alert');
+
+Route::resource('/admin/publisher', PublisherController::class)->middleware('alert');
+
+Route::resource('/admin/procurement', ProcurementController::class)->middleware('alert');
 
 Route::post('/import', function () {
     try {

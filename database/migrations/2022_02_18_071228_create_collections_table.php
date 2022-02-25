@@ -24,7 +24,7 @@ class CreateCollectionsTable extends Migration
             $table->string('title_code')->nullable();
             $table->string('volume')->nullable();
             $table->string('edition')->nullable();
-            $table->string('kolasi')->nullable();
+            $table->string('collation')->nullable();
             $table->string('year_of_procurement')->nullable();
             $table->string('publish_year')->nullable();
             $table->string('publish_city')->nullable();

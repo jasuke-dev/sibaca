@@ -44,6 +44,10 @@
                 @livewire('user-datatables')
             @elseif(Route::current()->uri == 'admin/collections')
                 @livewire('collection-datatables')            
+            @elseif(Route::current()->uri == 'admin/publisher')
+                @livewire('publisher-datatables')            
+            @elseif(Route::current()->uri == 'admin/procurement')
+                @livewire('procurement-datatables')            
             @endif
             
         </div>
