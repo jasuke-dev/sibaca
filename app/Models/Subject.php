@@ -13,4 +13,9 @@ class Subject extends Model
         'code',
         'subject',
     ];
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
 }

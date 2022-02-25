@@ -17,8 +17,12 @@ class Collection extends Model
         return $this->belongsTo(Language::class);
     }
 
-    public function subject(){
-        return $this->belongsToMany(Subject::class, 'collection_subjects'); //meng custom tabel ketiga aslinya collection_subject
+    public function subjects(){
+        return $this->belongsToMany(Subject::class, 'collection_subjects')->withPivot('subject')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
+    }
+
+    public function authors(){
+        return $this->belongsToMany(Author::class, 'author_collections')->withPivot('author')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
     }
 
     public function type(){

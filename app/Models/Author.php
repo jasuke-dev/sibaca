@@ -12,4 +12,9 @@ class Author extends Model
     protected $fillable = [
         'author',
     ];
+
+    public function collections()
+    {
+        return $this->belongsToMany(Author::class);
+    }
 }
