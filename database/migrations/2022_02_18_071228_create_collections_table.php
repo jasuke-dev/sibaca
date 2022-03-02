@@ -15,13 +15,14 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->string('inventory_code')->unique();
-            $table->string('isbn_issn_doi')->unique();
-            $table->string('title');
+            $table->string('inventory_code')->nullable();
+            $table->string('isbn_issn_doi')->unique()->nullable();
+            $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
             $table->text('abstract')->nullable();
             $table->string('classification')->nullable();
             $table->string('title_code')->nullable();
+            $table->string('author_code')->nullable();
             $table->string('volume')->nullable();
             $table->string('edition')->nullable();
             $table->string('collation')->nullable();

@@ -8,16 +8,15 @@
                 <h2 class="my-6 text-4xl font-semibold text-gray-700 dark:text-gray-200">
                     {{ $title }}
                 </h2>
-
                 {{-- add button --}}
                 <div class="flex gap-2">
-                    @if (Route::current()->uri == 'admin/subject')    
-                    <form method="POST" action="/import" enctype="multipart/form-data">
+                    {{-- @if (Route::current()->uri == 'admin/subject')     --}}
+                    <form method="POST" action="/import/{{ $page }}" enctype="multipart/form-data">
                         @csrf
                         <input type='file' name="file"/>
                         <button class="bg-purple-600 rounded-md" type="submit">Import CSV</button>
                     </form>            
-                    @endif
+                    {{-- @endif --}}
 
                     <a class="flex items-end justify-between p-4 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/admin/{{ $page }}/create">
                         <div class="flex items-center">

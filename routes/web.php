@@ -7,14 +7,14 @@ use App\Http\Controllers\EbookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\PublisherController;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\SubjectsImport;
 use App\Models\Procurement;
 use App\Models\Publisher;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,12 +60,5 @@ Route::resource('/admin/publisher', PublisherController::class)->middleware('ale
 
 Route::resource('/admin/procurement', ProcurementController::class)->middleware('alert');
 
-Route::post('/import', function () {
-    try {
-        Excel::import(new SubjectsImport, request()->file('file'));
-        return redirect()->back()->with('success','Data Imported Successfully');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error',$e->getMessage());
-    }
-});
+Route::post('/import/{import}', [ImportController::class, 'import']);
 
