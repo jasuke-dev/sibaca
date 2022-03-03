@@ -18,8 +18,7 @@ class CollectionDatatables extends LivewireDatatable
     {
         return Collection::query()
                     ->leftJoin('languages', 'languages.id', 'collections.language_id')
-                    ->leftJoin('types', 'types.id', 'collections.type_id')
-                    ->leftJoin('authors', 'authors.id', 'collections.author_id');
+                    ->leftJoin('types', 'types.id', 'collections.type_id');
     }
 
     public function columns()
@@ -36,9 +35,9 @@ class CollectionDatatables extends LivewireDatatable
             Column::name('abstract')
                 ->filterable()
                 ->alignCenter(),
-            Column::name('authors.author')
-                ->filterable($this->authors->pluck('author'))
-                ->alignCenter(),
+            // Column::name('authors.author')
+            //     ->filterable($this->authors->pluck('author'))
+            //     ->alignCenter(),
             NumberColumn::name('publish_year')
                 ->filterable()
                 ->alignCenter(),
@@ -71,8 +70,8 @@ class CollectionDatatables extends LivewireDatatable
     {
         return Type::all();
     }
-    public function getAuthorsProperty()
-    {
-        return Author::all();
-    }
+    // public function getAuthorsProperty()
+    // {
+    //     return Author::all();
+    // }
 }

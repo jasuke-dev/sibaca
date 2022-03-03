@@ -9,6 +9,10 @@ use App\Models\Collection;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
+use App\Models\AuthorCollection;
+use App\Models\Procurement;
+use App\Models\Publisher;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class CollectionController extends Controller
@@ -39,6 +43,9 @@ class CollectionController extends Controller
             'types' => Type::all(),
             'languages' => Language::all(),
             'authors' => Author::all(),
+            'publishers' => Publisher::all(),
+            'procurements' => Procurement::all(),
+            'subjects' => Subject::all(),
         ]);
     }
 
@@ -50,34 +57,54 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'isbn_issn_doi' => 'required|max:255',
-            'abstract' => 'required|max:255',
-            'publish_year' => 'required|max:255',
-            'type' => 'required|max:255',
-            'language' => 'required|max:255',
-            'author' => 'required|max:255',
-            'file' => 'required|mimes:pdf|max:5048',
-            'cover' => ['required','mimes:png,jpg,jpeg','max:5048'],
-        ]);
+        // $request->validate([
+        //     'title' => 'required|max:255',
+        //     'isbn_issn_doi' => 'required|max:255',
+        //     'abstract' => 'required|max:255',
+        //     'publish_year' => 'required|max:255',
+        //     'type' => 'required|max:255',
+        //     'language' => 'required|max:255',
+        //     'author' => 'required|max:255',
+        //     'file' => 'required|mimes:pdf|max:5048',
+        //     'cover' => ['required','mimes:png,jpg,jpeg','max:5048'],
+        // ]);
 
-        $path = $request->file('file')->store('public/files/ebooks');
-        $path_cover = $request->file('cover')->store('public/files/covers');
+        // $path = $request->file('file')->store('public/files/ebooks');
+        // $path_cover = $request->file('cover')->store('public/files/covers');
 
+        $path = 'f';
+        $path_cover = 'f';
+        
         $validated = [
-          'title' => $request['title'],
-          'isbn_issn_doi' => $request['isbn_issn_doi'],
-          'abstract' => $request['abstract'],
-          'publish_year' => $request['publish_year'],
-          'type_id' => $request['type'],
-          'language_id' => $request['language'],
-          'author_id' => $request['author'],
-          'path_file' => $path,
-          'path_cover' => $path_cover,
+            'inventory_code' => $request['inventory_code'],
+            'isbn_issn_doi' => $request['isbn_issn_doi'],
+            'title' => $request['title'],
+            'title_code' => $request['title_code'],
+            'subtitle' => $request['subtitle'],
+            'abstract' => $request['abstract'],
+            'type_id' => $request['type'],
+            'author_code' => $request['author_code'],
+            'language_id' => $request['language'],
+            'publish_year' => $request['publish_year'],
+            'classification' => $request['classification'],
+            'volume' => $request['volume'],
+            'edition' => $request['edition'],
+            'collation' => $request['collation'],
+            'publisher_id' => $request['publisher'],
+            'publish_city' => $request['publish_city'],
+            'publish_year' => $request['publish_year'],
+            'procurement_id' => $request['procurement'],
+            'year_of_procurement' => $request['year_of_procurement'],
+            'price' => $request['price'],
+            'path_file' => $path,
+            'path_cover' => $path_cover,
         ];      
+
         try {
-            Collection::create($validated);
+            $Collection = Collection::create($validated);
+            $Collection->authors()->attach($request['author']);
+            $Collection->subjects()->attach($request['subject']);
+            
             return redirect('/admin/collections')->with('success',"New Collections has been aded!");
         } catch (\Exception $e) {
             return redirect('/admin/collections')->with('error',$e->getMessage());

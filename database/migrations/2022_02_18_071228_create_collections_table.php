@@ -40,10 +40,6 @@ class CreateCollectionsTable extends Migration
                   ->nullable()
                   ->constrained()
                   ->nullOnDelete();
-            $table->foreignId('author_id')
-                  ->nullable()
-                  ->constrained()
-                  ->nullOnDelete();
             $table->foreignId('publisher_id')
                   ->nullable()
                   ->constrained()
