@@ -5,6 +5,14 @@ window._ = require('lodash');
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
+ try {
+     window.$ = window.jQuery = require('jquery');
+     require('select2');
+     $('select').select2();
+
+} catch (error) {
+    console.log(error);
+}
 
 window.axios = require('axios');
 

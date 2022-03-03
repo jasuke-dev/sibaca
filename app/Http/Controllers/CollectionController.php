@@ -72,6 +72,7 @@ class CollectionController extends Controller
         // $path = $request->file('file')->store('public/files/ebooks');
         // $path_cover = $request->file('cover')->store('public/files/covers');
 
+        
         $path = 'f';
         $path_cover = 'f';
         
@@ -99,7 +100,7 @@ class CollectionController extends Controller
             'path_file' => $path,
             'path_cover' => $path_cover,
         ];      
-
+        dd($request);
         try {
             $Collection = Collection::create($validated);
             $Collection->authors()->attach($request['author']);

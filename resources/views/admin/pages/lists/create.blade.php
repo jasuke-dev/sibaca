@@ -1,12 +1,12 @@
 @extends('admin.layouts.main')
 
 @section('container')
-<select x-cloak id="select" class="hidden">
+{{-- <select x-cloak id="select" class="hidden">
     <option value="1">Scifi</option>
     <option value="2">Horor</option>
     <option value="3">Romance</option>
     <option value="4">Comedy</option>
-</select>
+</select> --}}
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container grid px-6 mx-auto">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -141,7 +141,7 @@
                     </label>
                     <label for="subject" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">subject Collection</span>
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="subject">
+                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="subject[]" multiple>
                         @foreach ($subjects as $subject)
                           @if (old('subject') == $subject->id)
                             <option value="{{ $subject->id }}" selected>{{ $subject->subject }}</option>
@@ -158,7 +158,7 @@
                     </label>
                     <label for="author" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Author</span>
-                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('author') }}" name="author">
+                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" value="{{ old('author') }}" name="author[]" multiple="multiple">
                           @foreach ($authors as $author)
                             @if (old('author') == $author->id)
                               <option value="{{ $author->id }}" selected>{{ $author->author }}</option>
@@ -353,4 +353,16 @@
             </div>
         </form>
     </main>
+    <script>
+      $(document).ready(function() {
+        console.log("masuk pak eko");
+          // Select2 Multiple
+          // $('.select2-multiple').select2({
+          //     placeholder: "Select",
+          //     allowClear: true
+          // });
+          // $('.multiple-select').select2();
+
+      });
+    </script>
 @endsection

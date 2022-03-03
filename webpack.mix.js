@@ -14,9 +14,12 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
-    ]);
+    ])
+    .postCss('node_modules/select2/dist/css/select2.min.css', 'public/css')
 
 mix.js('resources/js/chart.js', 'public/js').sourceMaps();
+
+mix.js('resources/js/bootstrap.js', 'public/js').sourceMaps();
 
 mix.browserSync('127.0.0.1:8000');
 
