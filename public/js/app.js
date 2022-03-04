@@ -27,7 +27,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/alpinejs/dist/module.esm.js\");\n// require('./bootstrap');\n\nwindow.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; // import Select2 from 'select2'\n// window.Select2 = Select2\n// require('select2');\n\nwindow.TomSelect = __webpack_require__(/*! tom-select */ \"./node_modules/tom-select/dist/js/tom-select.complete.js\");\nalpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].start();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiI7O0FBQUE7QUFDQTtBQUNBQyxNQUFNLENBQUNELE1BQVAsR0FBZ0JBLGdEQUFoQixFQUVBO0FBQ0E7QUFDQTs7QUFDQUMsTUFBTSxDQUFDQyxTQUFQLEdBQW1CQyxtQkFBTyxDQUFDLDRFQUFELENBQTFCO0FBRUFILHNEQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2pzL2FwcC5qcz9jZWQ2Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIHJlcXVpcmUoJy4vYm9vdHN0cmFwJyk7XHJcbmltcG9ydCBBbHBpbmUgZnJvbSAnYWxwaW5lanMnXHJcbndpbmRvdy5BbHBpbmUgPSBBbHBpbmVcclxuXHJcbi8vIGltcG9ydCBTZWxlY3QyIGZyb20gJ3NlbGVjdDInXHJcbi8vIHdpbmRvdy5TZWxlY3QyID0gU2VsZWN0MlxyXG4vLyByZXF1aXJlKCdzZWxlY3QyJyk7XHJcbndpbmRvdy5Ub21TZWxlY3QgPSByZXF1aXJlKCd0b20tc2VsZWN0Jyk7XHJcblxyXG5BbHBpbmUuc3RhcnQoKVxyXG4iXSwibmFtZXMiOlsiQWxwaW5lIiwid2luZG93IiwiVG9tU2VsZWN0IiwicmVxdWlyZSIsInN0YXJ0Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/alpinejs/dist/module.esm.js\");\n// require('./bootstrap');\n\nwindow.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nwindow.TomSelect = __webpack_require__(/*! tom-select */ \"./node_modules/tom-select/dist/js/tom-select.complete.js\");\nalpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].start();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiI7O0FBQUE7QUFDQTtBQUNBQyxNQUFNLENBQUNELE1BQVAsR0FBZ0JBLGdEQUFoQjtBQUVBQyxNQUFNLENBQUNDLFNBQVAsR0FBbUJDLG1CQUFPLENBQUMsNEVBQUQsQ0FBMUI7QUFFQUgsc0RBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzP2NlZDYiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVxdWlyZSgnLi9ib290c3RyYXAnKTtcclxuaW1wb3J0IEFscGluZSBmcm9tICdhbHBpbmVqcydcclxud2luZG93LkFscGluZSA9IEFscGluZVxyXG5cclxud2luZG93LlRvbVNlbGVjdCA9IHJlcXVpcmUoJ3RvbS1zZWxlY3QnKTtcclxuXHJcbkFscGluZS5zdGFydCgpXHJcbiJdLCJuYW1lcyI6WyJBbHBpbmUiLCJ3aW5kb3ciLCJUb21TZWxlY3QiLCJyZXF1aXJlIiwic3RhcnQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 
@@ -39,17 +39,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpi
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2FwcC5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2Nzcy9hcHAuY3NzP2E1ZTciXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/app.css\n");
-
-/***/ }),
-
-/***/ "./node_modules/select2/dist/css/select2.min.css":
-/*!*******************************************************!*\
-  !*** ./node_modules/select2/dist/css/select2.min.css ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvc2VsZWN0Mi9kaXN0L2Nzcy9zZWxlY3QyLm1pbi5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vbm9kZV9tb2R1bGVzL3NlbGVjdDIvZGlzdC9jc3Mvc2VsZWN0Mi5taW4uY3NzP2NmNGMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/select2/dist/css/select2.min.css\n");
 
 /***/ }),
 
@@ -174,8 +163,7 @@ eval("/**\n* Tom Select v2.0.1\n* Licensed under the Apache License, Version 2.0
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/app": 0,
-/******/ 			"css/select2.min": 0
+/******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -225,9 +213,8 @@ eval("/**\n* Tom Select v2.0.1\n* Licensed under the Apache License, Version 2.0
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/select2.min"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/select2.min"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/select2.min"], () => (__webpack_require__("./node_modules/select2/dist/css/select2.min.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

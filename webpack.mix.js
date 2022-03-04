@@ -15,7 +15,6 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ])
-    .postCss('node_modules/select2/dist/css/select2.min.css', 'public/css')
 
 mix.js('resources/js/chart.js', 'public/js').sourceMaps();
 

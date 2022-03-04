@@ -5177,11 +5177,6 @@
   "resolved" "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"
   "version" "2.0.0"
 
-"select2@^4.1.0-rc.0":
-  "integrity" "sha512-Hr9TdhyHCZUtwznEH2CBf7967mEM0idtJ5nMtjvk3Up5tPukOLXbHUNmh10oRfeNIhj+3GD3niu+g6sVK+gK0A=="
-  "resolved" "https://registry.npmjs.org/select2/-/select2-4.1.0-rc.0.tgz"
-  "version" "4.1.0-rc.0"
-
 "selfsigned@^2.0.0":
   "integrity" "sha512-cUdFiCbKoa1mZ6osuJs2uDHrs0k0oprsKveFiiaBKCNq3SYyb5gs2HxhQyDNLCmL51ZZThqi4YNDpCK6GOP1iQ=="
   "resolved" "https://registry.npmjs.org/selfsigned/-/selfsigned-2.0.0.tgz"

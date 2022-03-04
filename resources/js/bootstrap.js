@@ -6,9 +6,6 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
  try {
-     window.$ = window.jQuery = require('jquery');
-     require('select2');
-     $('select').select2();
 
 } catch (error) {
     console.log(error);
