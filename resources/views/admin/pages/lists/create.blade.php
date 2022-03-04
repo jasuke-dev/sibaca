@@ -158,7 +158,8 @@
                     </label> --}}
                     <label for="subject" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">subject Collection Trial</span>
-                      <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" />
+                      {{-- <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" /> --}}
+                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-junk" placeholder="Start Typing..."></select>
                     </label>
                     <label for="author" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Author</span>
@@ -379,92 +380,120 @@
     </main>
     <script>
 
+      // Function to fetch the demo data for the dropdown menu
+      listdata = [];
+      function get_random_word(str) {
+            return str
+                    .split('').sort(function () {
+                return 0.5 - Math.random();
+            }).join('');
+        }
+      // For the testing purpose we are making a huge array of demo data (20 000 items)
+      function dropdownData() {
+          return _.map(_.range(1, 8000), function (i) {
+              listdata.push({
+                  id: i,
+                  text: get_random_word('The quick b') + ' ' + i,
+              });
+          });
+      }
+      dropdownData()
+      new TomSelect('#select-junk',{
+        maxItems: null,
+        maxOptions: 100,
+        valueField: 'id',
+        labelField: 'subject',
+        searchField: 'subject',
+        sortField: 'subject',
+        options: @js($subjects),
+        create: false
+      });
       // fetch('/admin/dashboard/ajax?data=types')
       //   .then(response => response.json())
       //   .then( data => 
       //     PieChart(data.types)
       // )
-      $(document).ready(function() {
-        console.log("masuk pak eko");
-          // Select2 Multiple
-          // $('.select2-multiple').select2({
-          //     placeholder: "Select",
-          //     allowClear: true
-          // });
-          // $('.multiple-select').select2();
+      // $(document).ready(function() {
+      //   console.log("masuk pak eko");
+      //     // Select2 Multiple
+      //     // $('.select2-multiple').select2({
+      //     //     placeholder: "Select",
+      //     //     allowClear: true
+      //     // });
+      //     // $('.multiple-select').select2();
 
-          dataset = [
-            {
-              'id' : '1',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '2',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '3',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '4',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '5',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '6',
-              'text' : 'Makan'
-            },
-            {
-              'id' : '7',
-              'text' : 'Makan'
-            },
-          ]
-          $('#test').select2({
-              data: dropdownData(),
-              placeholder: 'search',
-              multiple: true,
-              // creating query with pagination functionality.
-              query: function (data) {
-                  var pageSize,
-                          dataset,
-                          that = this;
-                  pageSize = 20; // Number of the option loads at a time
-                  results = [];
-                  if (data.term && data.term !== '') {
-                      // HEADS UP; for the _.filter function I use underscore (actually lo-dash) here
-                      results = _.filter(that.data, function (e) {
-                          return e.text.toUpperCase().indexOf(data.term.toUpperCase()) >= 0;
-                      });
-                  } else if (data.term === '') {
-                      results = that.data;
-                  }
-                  data.callback({
-                      results: results.slice((data.page - 1) * pageSize, data.page * pageSize),
-                      more: results.length >= data.page * pageSize,
-                  });
-              },
-          });
-          // Function to fetch the demo data for the dropdown menu
-          function get_random_word(str) {
-                return str
-                        .split('').sort(function () {
-                    return 0.5 - Math.random();
-                }).join('');
-            }
-            // For the testing purpose we are making a huge array of demo data (20 000 items)
-            function dropdownData() {
-                return _.map(_.range(1, 20000), function (i) {
-                    return {
-                        id: i,
-                        text: get_random_word('The quick brown fox jumps over a lazy dog') + ' ' + i,
-                    };
-                });
-            }
+      //     dataset = [
+      //       {
+      //         'id' : '1',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '2',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '3',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '4',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '5',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '6',
+      //         'text' : 'Makan'
+      //       },
+      //       {
+      //         'id' : '7',
+      //         'text' : 'Makan'
+      //       },
+      //     ]
+      //     $('#test').select2({
+      //         data: dropdownData(),
+      //         placeholder: 'search',
+      //         multiple: true,
+      //         // creating query with pagination functionality.
+      //         query: function (data) {
+      //             var pageSize,
+      //                     dataset,
+      //                     that = this;
+      //             pageSize = 20; // Number of the option loads at a time
+      //             results = [];
+      //             if (data.term && data.term !== '') {
+      //                 // HEADS UP; for the _.filter function I use underscore (actually lo-dash) here
+      //                 results = _.filter(that.data, function (e) {
+      //                     return e.text.toUpperCase().indexOf(data.term.toUpperCase()) >= 0;
+      //                 });
+      //             } else if (data.term === '') {
+      //                 results = that.data;
+      //             }
+      //             data.callback({
+      //                 results: results.slice((data.page - 1) * pageSize, data.page * pageSize),
+      //                 more: results.length >= data.page * pageSize,
+      //             });
+      //         },
+      //     });
+      //     // Function to fetch the demo data for the dropdown menu
+      //     function get_random_word(str) {
+      //           return str
+      //                   .split('').sort(function () {
+      //               return 0.5 - Math.random();
+      //           }).join('');
+      //       }
+      //       // For the testing purpose we are making a huge array of demo data (20 000 items)
+      //       function dropdownData() {
+      //           return _.map(_.range(1, 20000), function (i) {
+      //               return {
+      //                   id: i,
+      //                   text: get_random_word('The quick brown fox jumps over a lazy dog') + ' ' + i,
+      //               };
+      //           });
+      //       }
 
-      });
+      // });
     </script>
 @endsection

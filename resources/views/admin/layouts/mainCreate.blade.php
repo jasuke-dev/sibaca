@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIBACA</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">    
     <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    {{-- <script src="{{ asset('js/bootstrap.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
+    <script src="{{ asset('js/tomSelect.js') }}"></script>
+    {{-- <script src="{{ asset('js/bootstrap.js') }}" defer></script> --}}
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
 
     <link

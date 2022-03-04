@@ -25,6 +25,7 @@
         "chart.js": "^3.7.1",
         "datatables.net-bs4": "^1.11.4",
         "datatables.net-buttons-bs4": "^2.2.2",
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "tom-select": "^2.0.1"
     }
 }
