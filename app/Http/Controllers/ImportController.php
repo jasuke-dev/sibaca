@@ -37,30 +37,36 @@ class ImportController extends Controller
                     $b64_pdf = utf8_decode($row->base64file);
 
                     $inventory_code = addslashes($row->inventory_code);
-                    $pathName = Str::random(10).'.'.'pdf';
-                    $path = Storage::disk('collections')->put($pathName, base64_decode($b64_pdf, true));
+                    $RandName = Str::random(10).'.'.'pdf';
+                    try {
+                        $path = Storage::disk('collections')->put($RandName, base64_decode($b64_pdf, true));
+                        // $path = Storage::putFile('collections', base64_decode($b64_pdf, true));
+                        $pathName = 'collections/'.$RandName;
+                    }catch(\Exception $e){
+                        return redirect()->back()->with('error',"erro masukin file");
+                    }
         
                     Collection::create([
-                        'inventory_code' => $row->inventory_code, //v
-                        'title'    => empty($row->title) ? NULL : $row->title, //v
-                        'subtitle'    => empty($row->subtitle) ? NULL : $row->subtitle, //v
-                        'languange_id'    => empty($row->languange_id) ? NULL : $row->languange_id, //v
-                        'classification'    => empty($row->classification) ? NULL : $row->classification, //v
-                        'author_code'    => empty($row->author_code) ? NULL : $row->author_code, //v
-                        'title_code'    => empty($row->title_code) ? NULL : $row->title_code, //v
-                        'volume'    => empty($row->volume) ? NULL : $row->volume, //v
-                        'edition'    => empty($row->edition) ? NULL : $row->edition, //v
-                        'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, //v
-                        'publish_year'    => empty($row->publish_year) ? NULL : $row->publish_year, //v
-                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id, //v
-                        'year_of_procurement'    => empty($row->year_of_procurement) ? NULL : $row->year_of_procurement, //v
-                        'price'    => empty($row->price) ? NULL : $row->price, //v
-                        'collation'    => empty($row->collation) ? NULL : $row->collation, //v
-                        'isbn_issn_doi'    => empty($row->isbn_issn_doi) ? NULL : $row->isbn_issn_doi, //v
+                        'inventory_code' => $row->inventory_code, 
+                        'title'    => empty($row->title) ? NULL : $row->title, 
+                        'subtitle'    => empty($row->subtitle) ? NULL : $row->subtitle, 
+                        'languange_id'    => empty($row->languange_id) ? NULL : $row->languange_id, 
+                        'classification'    => empty($row->classification) ? NULL : $row->classification, 
+                        'author_code'    => empty($row->author_code) ? NULL : $row->author_code, 
+                        'title_code'    => empty($row->title_code) ? NULL : $row->title_code, 
+                        'volume'    => empty($row->volume) ? NULL : $row->volume, 
+                        'edition'    => empty($row->edition) ? NULL : $row->edition, 
+                        'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, 
+                        'publish_year'    => empty($row->publish_year) ? NULL : $row->publish_year, 
+                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id, 
+                        'year_of_procurement'    => empty($row->year_of_procurement) ? NULL : $row->year_of_procurement, 
+                        'price'    => empty($row->price) ? NULL : $row->price, 
+                        'collation'    => empty($row->collation) ? NULL : $row->collation, 
+                        'isbn_issn_doi'    => empty($row->isbn_issn_doi) ? NULL : $row->isbn_issn_doi, 
                         'abstract'    => empty($row->abstract) ? NULL : $row->abstract,
-                        'publish_city'    => null, //v
+                        'publish_city'    => null, 
                         'path_cover'    => null,
-                        'path_file'    => null,
+                        'path_file'    => $pathName,
                         'type_id'    => null, 
                         'author_id'    => null, 
                     ]);

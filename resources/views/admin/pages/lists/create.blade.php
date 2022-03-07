@@ -378,16 +378,18 @@
             </div>
         </form>
     </main>
-    <script>
-      new TomSelect('#select-junk',{
-        maxItems: null,
-        maxOptions: 100,
-        valueField: 'id',
-        labelField: 'subject',
-        searchField: 'subject',
-        sortField: 'subject',
-        options: @js($subjects),
-        create: false
-      });
-    </script>
+    @if ($page == 'subject')    
+      <script>
+        new TomSelect('#select-junk',{
+          maxItems: null,
+          maxOptions: 100,
+          valueField: 'id',
+          labelField: 'subject',
+          searchField: 'subject',
+          sortField: 'subject',
+          options: @js($subjects),
+          create: false
+        });
+      </script>
+    @endif
 @endsection
