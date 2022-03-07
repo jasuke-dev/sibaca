@@ -12,6 +12,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\SearchController;
 use App\Models\Procurement;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -61,4 +62,6 @@ Route::resource('/admin/publisher', PublisherController::class)->middleware('ale
 Route::resource('/admin/procurement', ProcurementController::class)->middleware('alert');
 
 Route::post('/import/{import}', [ImportController::class, 'import']);
+
+Route::get('/search', [SearchController::class, 'index']);
 
