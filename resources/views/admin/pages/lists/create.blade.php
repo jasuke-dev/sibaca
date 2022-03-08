@@ -378,7 +378,7 @@
             </div>
         </form>
     </main>
-    @if ($page == 'subject')    
+    @if ($page == 'collections')    
       <script>
         new TomSelect('#select-junk',{
           maxItems: null,

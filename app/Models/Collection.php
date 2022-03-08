@@ -4,10 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Collection extends Model
 {
-    use HasFactory;
+    use HasFactory,Searchable;
+
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'inventory_code' => $this->inventory_code,
+            'abstract' => $this->abstract,
+            'publish_year' => $this->publish_year,
+            'language_id' => $this->language_id,
+        ];
+    }
 
     protected $guarded = [
         'id',

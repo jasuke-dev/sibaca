@@ -17,7 +17,19 @@
             </form>
         </div>
     </div>
-    <div id="result">
     
+    <div id="result" class="px-32">
+      <div>Found {{ $results->total() }} results</div>
+      @foreach ($results as $result)
+          <a href="/details/{{ $result->id }}" class="text-xl font-bold"> {{ $result->title }} </a>
+          <div>
+            @foreach ($result->authors as $author)
+                <a href="">{{ $author->author }}</a>
+            @endforeach
+          </div>
+          <p>{{ $result->abstract }}</p>
+      @endforeach
+
+      {{ $results->links() }}
     </div>                
 @endsection

@@ -63,5 +63,5 @@ Route::resource('/admin/procurement', ProcurementController::class)->middleware(
 
 Route::post('/import/{import}', [ImportController::class, 'import']);
 
-Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search', [SearchController::class, 'search']);
 
