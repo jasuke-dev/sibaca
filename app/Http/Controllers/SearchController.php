@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 class SearchController extends Controller
 {
     public function index(){
-        dd(Collection::search('/P/XI/20')->get());
         return view('search.index');
     }
     public function search(Request $request){

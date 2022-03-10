@@ -17,7 +17,11 @@
             </form>
         </div>
     </div> --}}
-    <div class="bg-gray-50 min-h-screen">
+
+    {{-- @livewire('search-page') --}}
+    <livewire:search-page />
+
+    {{-- <div class="bg-gray-50 min-h-screen">
       <div class="flex flex-col w-screen">
         <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-slate-900">
           <div class="grid grid-cols-10 basis-10/12 justify-between">
@@ -59,5 +63,5 @@
             </div>
         </div>
       </div>    
-    </div>
+    </div> --}}
 @endsection
