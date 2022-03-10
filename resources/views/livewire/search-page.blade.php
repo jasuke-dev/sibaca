@@ -19,7 +19,51 @@
             </div>
           </div>
           <div class="grid grid-cols-10 basis-10/12 justify-between py-8">
-            <div class="col-span-2 justify-self-center">Sibaca</div>
+            <div class="col-span-2 justify-self-center space-y-4">
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+                <div>Type</div>
+                <div>
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="type">
+                    <option value="0">Any</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->type }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+                <div>Author</div>
+                <div>
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="author">
+                    <option value="0">Any</option>
+                    @foreach ($authors as $author)
+                        <option value="{{ $author->id }}">{{ $author->author }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+                <div>Language</div>
+                <div>
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="language">
+                    <option value="0">Any</option>
+                    @foreach ($languages as $language)
+                        <option value="{{ $language->id }}">{{ $language->language }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+                <div>subjects</div>
+                <div>
+                  <select wire:model="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subjects" placeholder="Start Typing..." name="subject[]">
+                    @foreach ($subjects as $subject)
+                        <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
             <div id="results" class="col-span-8">
               @foreach ($results as $result)
                 <div class="mb-4">
@@ -40,3 +84,20 @@
       </div>
     </div>    
   </div>
+
+  <script>
+    new TomSelect("#select-subjects",{
+      create: true,
+      sortField: {field: "text"}
+    });
+    // new TomSelect('#select-subjects',{
+    //   maxItems: null,
+    //   maxOptions: 100,
+    //   valueField: 'id',
+    //   labelField: 'subject',
+    //   searchField: 'subject',
+    //   sortField: 'subject',
+    //   options: @js($subjects),
+    //   create: false
+    // });
+  </script>
