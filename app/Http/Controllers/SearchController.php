@@ -35,7 +35,7 @@ class SearchController extends Controller
         $collection = Collection::OrderBy('id','desc')->with('authors');
         $result = $collection->where('title', 'LIKE' ,'%a%')
                             ->orWhereHas('authors', function($query){
-                                $query->where('author_id',2);
+                                $query->where('author_id',null);
                             })->paginate(2); 
         // return $result[0]->authors[0]->author;       
         return view('search.index',[
