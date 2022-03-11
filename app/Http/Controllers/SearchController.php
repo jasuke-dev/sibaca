@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 use App\Models\AuthorCollection;
+use App\Models\Subject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -40,5 +41,16 @@ class SearchController extends Controller
         return view('search.index',[
             'results' => $result,
         ]);
+    }
+    public function ajax(Request $request){
+        $subjects = null;
+        if(isset($request->data)){
+            if($request->data = 'subjects'){
+                if(isset($request->query)){
+                    $subjects = Subject::where('subject','LIKE','%a')->get();
+                }
+            }
+        }
+        return response()->json(['subjects' => $subjects]);
     }
 }

@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Models\Language;
 use App\Models\Collection;
 use Livewire\WithPagination;
+use SebastianBergmann\Environment\Console;
 
 class SearchPage extends Component
 {
@@ -18,20 +19,38 @@ class SearchPage extends Component
     public $author;
     public $language;
     public $subject = [];
+    public $counter = 0;
     protected $queryString = ['search','type','author','language','subject'];
 
-    protected $listeners = ['contentChanged' => 'setEvent'];
+    // protected $listeners = ['contentChanged' => 'setEvent'];
 
-    public function setEvent()
-    {
-        $this->dispatchBrowserEvent('contentChanged');
+    // public function setEvent()
+    // {
+    //     $this->dispatchBrowserEvent('contentChanged');
+    // }
+    protected $listeners = ['subjectChanged','rere'=>'$refresh'];
+
+    public function subjectChanged($value){        
+        $this->dispatchBrowserEvent('subject-updated',[
+            'type' => 'success',
+            'newSubject' => $value
+        ]);
     }
-    
+
+    public function reRenderSubject($value){
+        $this->dispatchBrowserEvent('subject-updated',[
+            'type' => 'success',
+            'newSubject' => $value
+        ]);
+    }
+
     public function render()
     {
-        $this->dispatchBrowserEvent('contentChanged');
+        $this->counter++;
+        $this->dispatchBrowserEvent('changed-tracker');
+        $this->reRenderSubject($this->subject);
         return view('livewire.search-page',[
-            'results' => Collection::with('authors')
+            'results' => Collection::with('authors','subjects')
                                     ->where('title', 'LIKE', "%$this->search%" ?? '%')
                                     ->when($this->type, function($query, $type){
                                         return $query->where('type_id','LIKE',$type);
@@ -44,11 +63,15 @@ class SearchPage extends Component
                                     ->when($this->language, function($query, $language){
                                         return $query->where('language_id','LIKE',$language);
                                     })
+                                    ->when($this->subject, function($query, $subject){
+                                        return $query->WhereHas('subjects', function($query){
+                                            $query->WhereIn('subject_id', $this->subject);
+                                        });
+                                    })
                                     ->paginate(2),
             'types' => Type::all(),
             'authors' => Author::all(),
             'languages' => Language::all(),
-            'subjects' => Subject::all(),
             'randID' => rand(0,10),
             
         ]);
