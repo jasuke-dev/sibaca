@@ -53,15 +53,16 @@
                   </select>
                 </div>
               </div>
-              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+              <div class="border-2 p-2 rounded-md">
                 <div>subjects</div>
                 <div>
-                  <select wire:model="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subjects" placeholder="Start Typing..." name="subject[]">
-                    @foreach ($subjects as $subject)
-                        <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
-                    @endforeach
+                  <select wire:model.defer="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
+                        @foreach ($subject as $id)
+                          <option value="{{ $id }}"></option>
+                        @endforeach
                   </select>
                 </div>
+                <button wire:click="$emit('contentChanged')">click</button>
               </div>
             </div>
             <div id="results" class="col-span-8">
@@ -83,21 +84,79 @@
           </div>
       </div>
     </div>    
-  </div>
-
+  </div>  
   <script>
-    new TomSelect("#select-subjects",{
-      create: true,
-      sortField: {field: "text"}
-    });
-    // new TomSelect('#select-subjects',{
-    //   maxItems: null,
-    //   maxOptions: 100,
-    //   valueField: 'id',
-    //   labelField: 'subject',
-    //   searchField: 'subject',
-    //   sortField: 'subject',
-    //   options: @js($subjects),
-    //   create: false
+    // new TomSelect("#select-subjects",{
+    //   create: true,
+    //   sortField: {field: "text"}
     // });
+    let id = @js($randID);
+    let check = true;
+    console.log(id)
+    window.addEventListener('contentChanged', event => {
+        let id = @js($randID);
+        console.log(id)
+        console.log("ada event masuk");
+        check = false
+        TOM.destroy();
+        let TOM = new TomSelect(`#id`,{
+          maxItems: null,
+          maxOptions: 100,
+          valueField: 'id',
+          labelField: 'subject',
+          searchField: 'subject',
+          sortField: 'subject',
+          options: [
+            {
+              "id" :1,
+              "subject" : "natural"
+            },
+            {
+              "id" :2,
+              "subject" : "plant based"
+            },
+            {
+              "id" :3,
+              "subject" : "medic"
+            },
+            {
+              "id" :4,
+              "subject" : "militer"
+            },
+          ],
+          create: false
+        });
+    });
+
+  
+    if(check){
+      let TOM = new TomSelect(`#id`,{
+        maxItems: null,
+        maxOptions: 100,
+        valueField: 'id',
+        labelField: 'subject',
+        searchField: 'subject',
+        sortField: 'subject',
+        options: [
+          {
+            "id" :1,
+            "subject" : "natural"
+          },
+          {
+            "id" :2,
+            "subject" : "plant based"
+          },
+          {
+            "id" :3,
+            "subject" : "medic"
+          },
+          {
+            "id" :4,
+            "subject" : "militer"
+          },
+        ],
+        create: true
+      });
+    }
+
   </script>

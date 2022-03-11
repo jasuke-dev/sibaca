@@ -17,10 +17,19 @@ class SearchPage extends Component
     public $type;
     public $author;
     public $language;
-    public $subject;
+    public $subject = [];
     protected $queryString = ['search','type','author','language','subject'];
+
+    protected $listeners = ['contentChanged' => 'setEvent'];
+
+    public function setEvent()
+    {
+        $this->dispatchBrowserEvent('contentChanged');
+    }
+    
     public function render()
     {
+        $this->dispatchBrowserEvent('contentChanged');
         return view('livewire.search-page',[
             'results' => Collection::with('authors')
                                     ->where('title', 'LIKE', "%$this->search%" ?? '%')
@@ -40,6 +49,7 @@ class SearchPage extends Component
             'authors' => Author::all(),
             'languages' => Language::all(),
             'subjects' => Subject::all(),
+            'randID' => rand(0,10),
             
         ]);
     }
