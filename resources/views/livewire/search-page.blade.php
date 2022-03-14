@@ -60,7 +60,8 @@
                   <select wire:model.defer="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
                         {{-- @foreach ($subject as $id)
                           <option value="{{ $id }}"></option>
-                        @endforeach --}}
+                          @endforeach --}}
+                          <option value="9000">COBA COBA</option>
                   </select>
                 </div>
                 <button wire:click="$emit('rere')">click</button>
@@ -93,11 +94,11 @@
   </div>  
   <script>
 
-    fetch('/search/ajax?data=subjects&query=a')
-      .then(response => response.json())
-      .then( data => 
-        console.log(data)
-    )
+    // fetch('/search/ajax?data=subjects&query=a')
+    //   .then(response => response.json())
+    //   .then( data => 
+    //     console.log(data)
+    // )
     let selectSubject = new TomSelect('#id',{
           maxItems: null,
           maxOptions: 100,
@@ -106,31 +107,39 @@
           searchField: 'subject',
           sortField: 'subject',
           load: function(query, callback) {
+            console.log(`ini query 1 : ${query}`)
             var url = '/search/ajax?data=subjects&query='+encodeURIComponent(query);
             fetch(url)
               .then(response => response.json())
               .then(data => {
                 callback(data);
+                console.log(`first load : ${data}`);
               }).catch(()=>{
                 callback();
               });
           },
-          create: false
+          create: true
     });
     
-    window.addEventListener('changed-tracker', event => {
+    // window.addEventListener('changed-tracker', event => {
           
-          selectSubject.on('change', (value, e) =>{
+    //       selectSubject.on('change', (value, e) =>{
                 
-                console.log("emmit");
-                Livewire.emit('subjectChanged',value);
-                Livewire.emit('rere');
-              });
-    });
+    //             console.log("emmit");
+    //             Livewire.emit('subjectChanged',value);
+    //             Livewire.emit('rere');
+    //           });
+    // });
+
+    // selectSubject.on('change', function(value){
+    //     let prev = value;
+    //       Livewire.emit('subjectChanged', value);
+    //   });
+
 
     window.addEventListener('subject-updated', event => {
           selectSubject.destroy();
-
+          console.log("destroy tom select");
           selectSubject = new TomSelect('#id',{
                 maxItems: null,
                 maxOptions: 100,
@@ -139,19 +148,33 @@
                 searchField: 'subject',
                 sortField: 'subject',
                 load: function(query, callback) {
-                  var url = '/admin/search/ajax?data=subjects&query='+encodeURIComponent(query);
+                  console.log(`ini query 2 : ${query}`)
+                  var url = '/search/ajax?data=subjects&query='+encodeURIComponent(query);
                   fetch(url)
                     .then(response => response.json())
-                    .then(json => {
-                      callback(json.items);
+                    .then(data => {
+                      console.log(`second load : ${data}`);
+                      callback(data);
                     }).catch(()=>{
                       callback();
                     });
                 },
-                create: false
+                create: true
           });
-          
-          selectSubject.setValue(event.detail.newSubject);
+          try {
+            console.log("masuk bos")
+            if(selectSubject.setValue(9000)){
+                console.log(`prev subject = ${event.detail.newSubject}`);
+            }else{
+                console.log("gagal bos")
+            }
+          } catch (error) {
+
+            
+            console.log("gagal bos")
+          }
+              console.log(`prev subject = ${event.detail.newSubject}`);
+
 
     })
 

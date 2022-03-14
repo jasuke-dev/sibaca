@@ -47,7 +47,7 @@ class SearchPage extends Component
     public function render()
     {
         $this->counter++;
-        $this->dispatchBrowserEvent('changed-tracker');
+        // $this->dispatchBrowserEvent('changed-tracker');
         $this->reRenderSubject($this->subject);
         return view('livewire.search-page',[
             'results' => Collection::with('authors','subjects')
@@ -68,7 +68,7 @@ class SearchPage extends Component
                                             $query->WhereIn('subject_id', $this->subject);
                                         });
                                     })
-                                    ->paginate(2),
+                                    ->paginate(10),
             'types' => Type::all(),
             'authors' => Author::all(),
             'languages' => Language::all(),

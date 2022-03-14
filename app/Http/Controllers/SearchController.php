@@ -17,7 +17,7 @@ class SearchController extends Controller
     public function search(Request $request){
         $result = NULL;
         if ($query = $request->get('query')){
-            $result = Collection::search($query)->paginate(2);
+            $result = Collection::search($query)->paginate(10);
         }else if($query = $request->get('filter')){
             // $result = AuthorCollection::search()
             // ->whereIn('author_id',$query)
@@ -36,7 +36,7 @@ class SearchController extends Controller
         $result = $collection->where('title', 'LIKE' ,'%a%')
                             ->orWhereHas('authors', function($query){
                                 $query->where('author_id',null);
-                            })->paginate(2); 
+                            })->paginate(10); 
         // return $result[0]->authors[0]->author;       
         return view('search.index',[
             'results' => $result,

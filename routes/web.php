@@ -7,6 +7,7 @@ use App\Http\Controllers\EbookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
@@ -65,4 +66,6 @@ Route::resource('/admin/procurement', ProcurementController::class)->middleware(
 Route::post('/import/{import}', [ImportController::class, 'import']);
 
 Route::get('/search', [SearchController::class, 'index']);
+
+Route::get('/details/{id}', [DetailsController::class, 'index']);
 
