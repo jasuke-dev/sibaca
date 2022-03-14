@@ -159,7 +159,7 @@
                     <label for="subject" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">subject Collection Trial</span>
                       {{-- <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" /> --}}
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-junk" placeholder="Start Typing..."></select>
+                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subject" placeholder="Start Typing..."></select>
                     </label>
                     <label for="author" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Author</span>
@@ -380,15 +380,26 @@
     </main>
     @if ($page == 'collections')    
       <script>
-        new TomSelect('#select-junk',{
-          maxItems: null,
-          maxOptions: 100,
-          valueField: 'id',
-          labelField: 'subject',
-          searchField: 'subject',
-          sortField: 'subject',
-          options: @js($subjects),
-          create: false
+        let selectSubject = new TomSelect('#select-subject',{
+              maxItems: null,
+              maxOptions: 100,
+              valueField: 'id',
+              labelField: 'subject',
+              searchField: 'subject',
+              sortField: 'subject',
+              load: function(query, callback) {
+                console.log(`ini query 1 : ${query}`)
+                var url = '/search/ajax?data=subjects&query='+encodeURIComponent(query);
+                fetch(url)
+                  .then(response => response.json())
+                  .then(data => {
+                    callback(data);
+                    console.log(`first load : ${data}`);
+                  }).catch(()=>{
+                    callback();
+                  });
+              },
+              create: true
         });
       </script>
     @endif

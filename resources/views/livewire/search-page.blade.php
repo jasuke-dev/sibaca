@@ -61,7 +61,6 @@
                         {{-- @foreach ($subject as $id)
                           <option value="{{ $id }}"></option>
                           @endforeach --}}
-                          <option value="9000">COBA COBA</option>
                   </select>
                 </div>
                 <button wire:click="$emit('rere')">click</button>
@@ -99,6 +98,8 @@
     //   .then( data => 
     //     console.log(data)
     // )
+    let selected_subject = [];
+
     let selectSubject = new TomSelect('#id',{
           maxItems: null,
           maxOptions: 100,
@@ -137,6 +138,84 @@
     //   });
 
 
+    //mutation observer
+    // Select the node that will be observed for mutations
+    const targetNode = document.querySelector('.ts-control');
+
+    // Options for the observer (which mutations to observe)
+    const config = { attributes: false, childList: true, subtree: false };
+
+    // Callback function to execute when mutations are observed
+    const callback = function(mutationsList, observer) {
+        // Use traditional 'for loops' for IE 11
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                console.log('A child node has been added or removed.');
+
+                selected_subject = [];
+                let options = document.querySelectorAll(".item");
+                for (let i = 0; i < options.length; i++) {
+                  // selected_subject.push(options[i].dataset.value);
+                  // selected_subject.push(options[i].textContent);
+                  let obj = {
+                    id : parseInt(options[i].dataset.value),
+                    subject : options[i].textContent
+                  }
+                  selected_subject.push(obj);
+                  console.log(selected_subject);
+                }
+            }
+            else if (mutation.type === 'attributes') {
+                console.log('The ' + mutation.attributeName + ' attribute was modified.');
+            }
+        }
+    };
+
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
+
+    // Start observing the target node for configured mutations
+    observer.observe(targetNode, config);
+
+
+    // document.addEventListener("DOMContentLoaded", function(event) { 
+    //   const tsControl = document.querySelector(".ts-control");
+    //   if(tsControl){
+    //     tsControl.addEventListener('change', event=>{
+    //       console.log("berubah");
+    //     });
+    //     // tsControl.on('change', value=>{
+    //     //   console.log("berubah");
+    //     //   let selected_subject = [];
+    //     //   let options = document.getElementById('id').options;
+    //     //   for (let i = 0; i < options.length; i++) {
+    //     //     selected_subject.push(options[i].value);
+    //     //     selected_subject.push(options[i].text);
+    //     //   }
+    //     //   console.log(selected_subject);
+    //     // });
+    //   }
+    // });
+
+    // melacak perubahan list subject untuk di inisialisaikan ulang ketika re render component livewire
+    // selectSubject.on('change', value=>{
+    //     selected_subject = [];
+    //     let options = document.querySelectorAll(".item");
+    //     for (let i = 0; i < options.length; i++) {
+    //       // selected_subject.push(options[i].dataset.value);
+    //       // selected_subject.push(options[i].textContent);
+    //       let obj = {
+    //         id : parseInt(options[i].dataset.value),
+    //         subject : options[i].textContent
+    //       }
+    //       selected_subject.push(obj);
+    //       console.log(selected_subject);
+    //     }
+    // });
+
+    //elemnt select
+    let mod_select = document.getElementById('id');    
+
     window.addEventListener('subject-updated', event => {
           selectSubject.destroy();
           console.log("destroy tom select");
@@ -147,6 +226,7 @@
                 labelField: 'subject',
                 searchField: 'subject',
                 sortField: 'subject',
+                options : selected_subject,
                 load: function(query, callback) {
                   console.log(`ini query 2 : ${query}`)
                   var url = '/search/ajax?data=subjects&query='+encodeURIComponent(query);
@@ -161,19 +241,36 @@
                 },
                 create: true
           });
+          // for (var i = 0; i<selected_subject.length; i = i+2){
+          //     var opt = document.createElement('option');
+          //     opt.value = selected_subject[i];
+          //     opt.innerHTML = selected_subject[i+1];
+          //     mod_select.appendChild(opt);
+          // }    
+          console.log(selected_subject);
           try {
             console.log("masuk bos")
-            if(selectSubject.setValue(9000)){
-                console.log(`prev subject = ${event.detail.newSubject}`);
-            }else{
-                console.log("gagal bos")
-            }
+            selectSubject.setValue(event.detail.newSubject)
           } catch (error) {
-
-            
-            console.log("gagal bos")
+            console.log("gagal bos2")
           }
-              console.log(`prev subject = ${event.detail.newSubject}`);
+          console.log(`prev subject = ${event.detail.newSubject}`);
+
+          // melacak perubahan list subject untuk di inisialisaikan ulang ketika re render component livewire
+          selectSubject.on('change', value=>{
+              selected_subject = [];
+              let options = document.querySelectorAll(".item");
+              for (let i = 0; i < options.length; i++) {
+                // selected_subject.push(options[i].dataset.value);
+                // selected_subject.push(options[i].textContent);
+                let obj = {
+                  id : parseInt(options[i].dataset.value),
+                  subject : options[i].textContent
+                }
+                selected_subject.push(obj);
+                console.log(selected_subject);
+              }
+          });
 
 
     })

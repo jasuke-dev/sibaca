@@ -45,7 +45,6 @@ class CollectionController extends Controller
             'authors' => Author::all(),
             'publishers' => Publisher::all(),
             'procurements' => Procurement::all(),
-            'subjects' => Subject::all(),
         ]);
     }
 
