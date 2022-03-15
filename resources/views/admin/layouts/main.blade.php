@@ -7,9 +7,10 @@
     <title>SIBACA</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ asset('js/chart.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/tomSelect.js') }}"></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
+
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"

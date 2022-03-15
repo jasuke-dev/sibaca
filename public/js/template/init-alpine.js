@@ -48,11 +48,12 @@ function data() {
       this.isNotificationsMenuOpen = false
     },
     isProfileMenuOpen: false,
+
     toggleProfileMenu() {
       this.isProfileMenuOpen = !this.isProfileMenuOpen
     },
     closeProfileMenu() {
-      this.isProfileMenuOpen = false
+      // this.isProfileMenuOpen = false
     },
     isPagesMenuOpen: open,
     togglePagesMenu() {

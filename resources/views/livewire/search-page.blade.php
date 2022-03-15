@@ -66,9 +66,9 @@
                 <button wire:click="$emit('rere')">click</button>
               </div>
             </div>
-            <div id="results" class="col-span-8">
+            <div id="results" class="col-span-8 space-y-6">
               @foreach ($results as $result)
-                <div class="mb-4">
+                <div class="mb-4 space-y-1">
                   <a href="/details/{{ $result->id }}" class="text-xl font-bold text-blue-700 hover:text-purple-700"> {{ $result->title }} </a>
                   <div>
                     @foreach ($result->authors as $author)
@@ -77,7 +77,7 @@
                   </div>
                   <div>
                     @foreach ($result->subjects as $subject)
-                        <a href="" class="font-medium hover:text-green-900 text-lime-700">{{ $subject->subject }}</a>
+                        <a href="" class="bg-slate-200 hover:bg-slate-300 font-normal py-1 px-3 rounded text-sm">{{ $subject->subject }}</a>
                     @endforeach
                   </div>
                   <p class="line-clamp-3 md:line-clamp-2">{{ $result->abstract }}</p>
