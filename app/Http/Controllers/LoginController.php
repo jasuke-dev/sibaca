@@ -21,15 +21,17 @@ class LoginController extends Controller
             $request->session()->regenerate(); //menghindari sesssion fixation
 
             switch(Auth::user()->role){
+                case 'super':
+                    return redirect()->intended('/admin/dashboard');
+                    break;
                 case 'admin':
-                return redirect()->intended('/admin/type');
+                    return redirect()->intended('/admin/type');
                     break;
                 case 'user':
                     return redirect()->intended('/search');
                     break;
                 default:
-                    $this->redirectTo = '/';
-                    return $this->redirectTo;
+                    return redirect()->intended('/');
             }
         }else{
             return back()->with('loginError', 'Something Wrong');

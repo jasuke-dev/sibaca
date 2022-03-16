@@ -1072,6 +1072,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mb-0 {
   margin-bottom: -0px;
 }
+.mb-12 {
+  margin-bottom: 3rem;
+}
 .block {
   display: block;
 }

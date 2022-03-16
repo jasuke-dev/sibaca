@@ -21,7 +21,7 @@ class Admin
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 'admin'){
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'super'){
             return $next($request);
         }
 

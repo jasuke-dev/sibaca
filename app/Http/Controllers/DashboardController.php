@@ -18,10 +18,17 @@ class DashboardController extends Controller
         $posts = Collection::withCount('type')->get();
     }
     public function index(){
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
         return view('admin.pages.dashboard.index');
     }
 
     public function ajax(Request $request){
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
+        
         if(isset($request->data)){
             if($request->data == 'types'){
                 $types = DB::table('collections')

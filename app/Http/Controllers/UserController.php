@@ -15,6 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
         return view('admin.pages.lists.index',[
             'title' => 'User',
             'page' => 'users'
@@ -28,6 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
         return view('admin.pages.lists.create',[
             'title' => 'Users',
             'page' => 'users',
@@ -42,6 +48,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
         $validatedData = $request->validate([
             'username' => 'required|max:255',
             'password' => 'required|min:5|max:255',
