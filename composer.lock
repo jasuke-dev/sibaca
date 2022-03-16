@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "403b3e9486cebb79694ff7d5812ffb7a",
+    "content-hash": "073fa954acf55feacbd686217d54470d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2113,28 +2113,28 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.6.8",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "ce518201227e41533bb6ae44491a41a7be5e3192"
+                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/ce518201227e41533bb6ae44491a41a7be5e3192",
-                "reference": "ce518201227e41533bb6ae44491a41a7be5e3192",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/cb527079f2c184d279c194b1a12b53a380e396d1",
+                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0|^9.0",
                 "livewire/livewire": "^2.4.4",
                 "maatwebsite/excel": "^3.1",
                 "php": "^7.2.5|^8.0"
             },
             "require-dev": {
                 "laravel/legacy-factories": "^1.0.4",
-                "orchestra/testbench": "^4.0|5.0|6.0",
-                "phpunit/phpunit": "^8.0|9.0"
+                "orchestra/testbench": "^4.0|5.0|6.0|^7.0",
+                "phpunit/phpunit": "^8.0|9.0|^9.5.10"
             },
             "type": "library",
             "extra": {
@@ -2170,9 +2170,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
-                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.6.8"
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.7.0"
             },
-            "time": "2021-09-22T12:54:06+00:00"
+            "time": "2022-02-22T11:02:59+00:00"
         },
         {
             "name": "monolog/monolog",
