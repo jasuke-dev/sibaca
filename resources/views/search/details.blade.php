@@ -50,7 +50,6 @@
                     <div class="col-span-3 font-medium">: {{ $data[0]->language->language }}</div>
                 </div>
                 <a class="font-bold text-blue-600" href="/pdf/{{ $data[0]->path_file }}">View PDF</a>
-                <a href="{{ asset('storage/files/collections/' . $data[0]->path_file) }}" alt="">to pdf</a>
                 <div class="font-semibold">
                     Abstract
                 </div>

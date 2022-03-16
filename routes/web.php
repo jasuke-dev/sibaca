@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EbookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
@@ -15,8 +14,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\SearchController;
-use App\Models\Procurement;
-use App\Models\Publisher;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 
@@ -37,35 +34,35 @@ use Illuminate\Http\Request;
 //     return view('admin.pages.author.index');
 // });
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/admin/dashboard', [DashboardController::class , 'index'])->middleware('auth');
-Route::get('/admin/dashboard/ajax', [DashboardController::class , 'ajax'])->middleware('auth');
+Route::get('/admin/dashboard', [DashboardController::class , 'index'])->name('admin')->middleware('admin');
+Route::get('/admin/dashboard/ajax', [DashboardController::class , 'ajax'])->middleware('admin');
 Route::get('/search/ajax', [SearchController::class , 'ajax'])->middleware('auth');
 
-Route::resource('/admin/type', TypeController::class)->middleware(['alert','auth']);
+Route::resource('/admin/type', TypeController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/language', LanguageController::class)->middleware(['alert','auth']);
+Route::resource('/admin/language', LanguageController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/subject', SubjectController::class)->middleware(['alert','auth']);
+Route::resource('/admin/subject', SubjectController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/author', AuthorController::class)->middleware(['alert','auth']);
+Route::resource('/admin/author', AuthorController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/users', UserController::class)->middleware(['alert','auth']);
+Route::resource('/admin/users', UserController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/collections', CollectionController::class)->middleware(['alert','auth']);
+Route::resource('/admin/collections', CollectionController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/publisher', PublisherController::class)->middleware(['alert','auth']);
+Route::resource('/admin/publisher', PublisherController::class)->middleware(['alert','admin']);
 
-Route::resource('/admin/procurement', ProcurementController::class)->middleware(['alert','auth']);
+Route::resource('/admin/procurement', ProcurementController::class)->middleware(['alert','admin']);
 
-Route::post('/import/{import}', [ImportController::class, 'import'])->middleware('auth');
+Route::post('/import/{import}', [ImportController::class, 'import'])->middleware('admin');
 
-Route::get('/search', [SearchController::class, 'index'])->middleware('auth');
+Route::get('/search', [SearchController::class, 'index'])->name('user')->middleware('user');
 
-Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('auth');
+Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('user');
 
 
 Route::get('/pdf/{file}', function ($file) {

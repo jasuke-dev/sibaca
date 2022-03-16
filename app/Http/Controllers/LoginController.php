@@ -20,10 +20,21 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate(); //menghindari sesssion fixation
 
-            return redirect()->intended('/admin/dashboard'); //intended supaya melewati middleware
+            switch(Auth::user()->role){
+                case 'admin':
+                return redirect()->intended('/admin/type');
+                    break;
+                case 'user':
+                    return redirect()->intended('/search');
+                    break;
+                default:
+                    $this->redirectTo = '/';
+                    return $this->redirectTo;
+            }
+        }else{
+            return back()->with('loginError', 'Something Wrong');
         }
 
-        return back()->with('loginError', 'Something Wrong');
     }
 
     public function logout(Request $request){
