@@ -36,6 +36,7 @@ class PublisherDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];  
     }
 }

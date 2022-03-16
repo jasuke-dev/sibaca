@@ -17,6 +17,8 @@ class UserDatatables extends LivewireDatatable
     public function columns()
     {
         return [
+            Column::checkbox(),
+
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
@@ -41,6 +43,8 @@ class UserDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];  
     }
+
 }

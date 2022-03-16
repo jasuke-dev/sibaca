@@ -37,6 +37,7 @@ class LanguageDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];  
     }
 }

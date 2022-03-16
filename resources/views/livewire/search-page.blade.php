@@ -145,9 +145,7 @@
                 <div>subjects</div>
                 <div>
                   <select wire:model.defer="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
-                        {{-- @foreach ($subject as $id)
-                          <option value="{{ $id }}"></option>
-                          @endforeach --}}
+
                   </select>
                 </div>
                 <button wire:click="$emit('rere')">click</button>
@@ -193,7 +191,8 @@
             fetch(url)
               .then(response => response.json())
               .then(data => {
-                callback(data);
+                console.log(data);
+                callback(data.subjects);
               }).catch(()=>{
                 callback();
               });
@@ -252,7 +251,7 @@
                   fetch(url)
                     .then(response => response.json())
                     .then(data => {
-                      callback(data);
+                      callback(data.subjects);
                     }).catch(()=>{
                       callback();
                     });

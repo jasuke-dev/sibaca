@@ -39,6 +39,7 @@ class SubjectDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];  
     }
 }

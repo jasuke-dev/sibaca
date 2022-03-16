@@ -24,6 +24,8 @@ class CollectionDatatables extends LivewireDatatable
     public function columns()
     {
         return [
+            Column::checkbox(),
+            
             NumberColumn::name('id')
                 ->filterable(),
             Column::name('isbn_issn_doi')
@@ -32,12 +34,12 @@ class CollectionDatatables extends LivewireDatatable
             Column::name('title')
                 ->filterable()
                 ->alignCenter(),
-            Column::name('abstract')
-                ->filterable()
-                ->alignCenter(),
-            // Column::name('authors.author')
-            //     ->filterable($this->authors->pluck('author'))
+            // Column::name('abstract')
+            //     ->filterable()
             //     ->alignCenter(),
+            Column::name('authors.author')
+                ->filterable($this->authors->pluck('author'))
+                ->alignCenter(),
             NumberColumn::name('publish_year')
                 ->filterable()
                 ->alignCenter(),
@@ -55,6 +57,7 @@ class CollectionDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];
     }
 
@@ -70,8 +73,8 @@ class CollectionDatatables extends LivewireDatatable
     {
         return Type::all();
     }
-    // public function getAuthorsProperty()
-    // {
-    //     return Author::all();
-    // }
+    public function getAuthorsProperty()
+    {
+        return Author::all();
+    }
 }

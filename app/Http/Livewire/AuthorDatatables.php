@@ -37,6 +37,7 @@ class AuthorDatatables extends LivewireDatatable
                 ]);
             })->unsortable()
             ->alignCenter()
+            ->excludeFromExport()
         ];  
     }
 }

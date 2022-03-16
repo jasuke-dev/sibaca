@@ -44,13 +44,17 @@ class SearchController extends Controller
     }
     public function ajax(Request $request){
         $subjects = null;
-        if(isset($request->data)){
-            if($request->data = 'subjects'){
-                if(isset($request->query)){
-                    $subjects = Subject::where('subject','LIKE','%a')->get();
+        if(isset($request['data'])){
+            if($request['data'] == 'subjects'){
+                if(isset($request['query'])){
+                    $subjects = Subject::where('subject','LIKE','%'.$request['query'].'%')->take(100)->get();
+
+                    return response()->json([
+                        'subjects' => $subjects,
+                        'query' => $request['query']
+                    ]);
                 }
             }
         }
-        return response()->json(['subjects' => $subjects]);
     }
 }
