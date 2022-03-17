@@ -1204,6 +1204,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-2\/12 {
   width: 16.666667%;
 }
+.w-10\/12 {
+  width: 83.333333%;
+}
 .min-w-full {
   min-width: 100%;
 }
@@ -1222,11 +1225,32 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex-shrink-0 {
   flex-shrink: 0;
 }
+.shrink {
+  flex-shrink: 1;
+}
 .flex-grow {
+  flex-grow: 1;
+}
+.grow {
   flex-grow: 1;
 }
 .basis-10\/12 {
   flex-basis: 83.333333%;
+}
+.basis-3\/4 {
+  flex-basis: 75%;
+}
+.basis-1\/4 {
+  flex-basis: 25%;
+}
+.basis-1\/5 {
+  flex-basis: 20%;
+}
+.basis-1\/6 {
+  flex-basis: 16.666667%;
+}
+.basis-1\/12 {
+  flex-basis: 8.333333%;
 }
 .translate-y-4 {
   --tw-translate-y: 1rem;
@@ -1317,6 +1341,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .justify-around {
   justify-content: space-around;
+}
+.justify-evenly {
+  justify-content: space-evenly;
 }
 .gap-6 {
   gap: 1.5rem;
@@ -1689,6 +1716,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 .pt-8 {
   padding-top: 2rem;

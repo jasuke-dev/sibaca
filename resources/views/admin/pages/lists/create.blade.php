@@ -7,21 +7,18 @@
     <option value="3">Romance</option>
     <option value="4">Comedy</option>
 </select> --}}
-    <main class="h-full pb-16 overflow-y-auto">
-        <div class="container grid px-6 mx-auto">
-            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Add {{ $title }}
-            </h2>
-        </div>
-
+    <main class="h-full py-16 overflow-y-auto">
         {{-- form --}}
         <form action="/admin/{{ $page }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="w-8/12 mx-8 px-8 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div class="w-10/12 px-8 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 mx-auto">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Add {{ $title }}
+                </h2>
                 @if ($page == 'users')
                     <label for="username" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="username" required autofocus>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="username" required>
                         @error("username")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -68,54 +65,72 @@
                       </div>
 
                 @elseif ($page == 'collections')    
-                    <label for="inventory_code" class="block mt-4 text-sm">
+                    <div>
+                      <label for="inventory_code" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Inventory Code</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New inventory_code collection" name="inventory_code" value="{{ old('inventory_code') }}" autofocus>
-                        @error("inventory_code")
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>  
-                    <label for="isbn_issn_doi" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">ISBN/ISSN/DOI</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="ISBN/ISSN/DOI" value="{{ old('isbn_issn_doi') }}" name="isbn_issn_doi">
-                        @error('isbn_issn_doi')
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>
-                    <label for="title" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Title</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New title collection" name="title" value="{{ old('title') }}" autofocus>
-                        @error("title")
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>  
-                    <label for="title_code" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">title_code</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New title_code collection" name="title_code" value="{{ old('title_code') }}" autofocus>
-                        @error("title_code")
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>  
-                    <label for="subtitle" class="block mt-4 text-sm">
+                      </label>  
+                      <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Inventory Code" name="inventory_code" id="inventory_code" value="{{ old('inventory_code') }}" autofocus>
+                      @error("inventory_code")
+                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                    </div>
+                    <div>
+                      <label for="isbn_issn_doi" class="block mt-4 text-sm">
+                          <span class="text-gray-700 dark:text-gray-400">ISBN/ISSN/DOI</span>
+                          <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="ISBN/ISSN/DOI" value="{{ old('isbn_issn_doi') }}" name="isbn_issn_doi" id="isbn_issn_doi">
+                          @error('isbn_issn_doi')
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>
+                    </div>
+                    <div class="flex space-x-4">
+                      <label for="title" class="block mt-4 text-sm grow">
+                          <span class="text-gray-700 dark:text-gray-400">Title</span>
+                          <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Title collection" name="title" value="{{ old('title') }}" id="title">
+                          @error("title")
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>  
+                      <label for="subtitle" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Subtitle</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New subtitle collection" name="subtitle" value="{{ old('subtitle') }}" autofocus>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Subtitle" name="subtitle" value="{{ old('subtitle') }}" id="subtitle">
                         @error("subtitle")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </label>  
+                      </label>
+                      <label for="title_code" class="block mt-4 text-sm basis-1/12 shrink">
+                          <span class="text-gray-700 dark:text-gray-400">Code</span>
+                          <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Title Code" name="title_code" value="{{ old('title_code') }}" id="title_code">
+                          @error("title_code")
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>  
+                    </div>
+                    <label class="block mt-4 text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Message</span>
+                      <textarea
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        rows="3"
+                        placeholder="Enter some long form content."
+                      ></textarea>
+                    </label>
                     <label for="abstract" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Abstract</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Abstract" value="{{ old('abstract') }}" name="abstract">
+                        <textarea
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        rows="3"
+                        placeholder="Abstract" value="{{ old('abstract') }}" name="abstract" id="abstract">
+                        </textarea>
                         @error('abstract')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -124,7 +139,7 @@
                     </label>
                     <label for="type" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">Type Collection</span>
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="type">
+                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="type" id="type">
                         @foreach ($types as $type)
                           @if (old('type') == $type->id)
                             <option value="{{ $type->id }}" selected>{{ $type->type }}</option>
@@ -156,169 +171,168 @@
                       </div>
                       @enderror
                     </label> --}}
-                    <label for="subjects" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">subject Collection Trial</span>
+                    <label for="select_subject" class="block mt-4 text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Subjects</span>
                       {{-- <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" /> --}}
                       <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subject" name="subjects[]" value="{{ old('subjects') }} placeholder="Start Typing..."></select>
                     </label>
-                    <label for="author" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Author</span>
-                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" value="{{ old('author') }}" name="author[]" multiple="multiple">
-                          @foreach ($authors as $author)
-                            @if (false)
-                              <option value="{{ $author->id }}" selected>{{ $author->author }}</option>
-                            @else
-                              <option value="{{ $author->id }}">{{ $author->author }}</option>
-                            @endif
-                          @endforeach
-                        </select>
-                        @error('author')
+                    <div class="flex space-x-4">
+                      <label for="author" class="block mt-4 text-sm grow">
+                          <span class="text-gray-700 dark:text-gray-400">Author</span>
+                          <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" value="{{ old('author') }}" name="author[]" multiple="multiple" id="author">
+                            @foreach ($authors as $author)
+                              @if (false)
+                                <option value="{{ $author->id }}" selected>{{ $author->author }}</option>
+                              @else
+                                <option value="{{ $author->id }}">{{ $author->author }}</option>
+                              @endif
+                            @endforeach
+                          </select>
+                          @error('author')
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>
+                      <label for="author_code" class="block mt-4 text-sm basis-1/12">
+                        <span class="text-gray-700 dark:text-gray-400">Code</span>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New author_code collection" name="author_code" value="{{ old('author_code') }}">
+                        @error("author_code")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </label>
-                    <label for="author_code" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">author_code</span>
-                      <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="New author_code collection" name="author_code" value="{{ old('author_code') }}" autofocus>
-                      @error("author_code")
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>  
-                    <label for="language" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Language</span>
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('language') }}" name="language">
-                        @foreach ($languages as $language)
-                          @if (old('language') == $language->id)
-                            <option value="{{ $language->id }}" selected>{{ $language->language }}</option>
-                          @else
-                            <option value="{{ $language->id }}">{{ $language->language }}</option>
-                          @endif
-                        @endforeach
-                      </select>
-                      @error('language')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="publish_year" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Publication year</span>
-                        <input type="text" id="publish_year" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_year') }}" name="publish_year">
+                      </label>
+                    </div>
+                    <div class="flex space-x-4">
+                      <label for="language" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Language</span>
+                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('language') }}" name="language">
+                          @foreach ($languages as $language)
+                            @if (old('language') == $language->id)
+                              <option value="{{ $language->id }}" selected>{{ $language->language }}</option>
+                            @else
+                              <option value="{{ $language->id }}">{{ $language->language }}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                        @error('language')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="classification" class="block mt-4 text-sm">
+                          <span class="text-gray-700 dark:text-gray-400">Classification</span>
+                          <input type="text" id="classification" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('classification') }}" name="classification">
+                          @error('classification')
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>
+                      <label for="volume" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">volume</span>
+                        <input type="text" id="volume" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('volume') }}" name="volume">
+                        @error('volume')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="edition" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">edition</span>
+                        <input type="text" id="edition" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('edition') }}" name="edition">
+                        @error('edition')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="collation" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">collation</span>
+                        <input type="text" id="collation" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('collation') }}" name="collation">
+                        @error('collation')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                    </div>
+                    <div class="flex space-x-4">
+                      <label for="publisher" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Publisher</span>
+                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('publisher') }}" name="publisher" id="publisher">
+                          @foreach ($publishers as $publisher)
+                            @if (old('publisher') == $publisher->id)
+                              <option value="{{ $publisher->id }}" selected>{{ $publisher->publisher }}</option>
+                            @else
+                              <option value="{{ $publisher->id }}">{{ $publisher->publisher }}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                        @error('publisher')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="publish_city" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Publish City</span>
+                        <input type="text" id="publish_city" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_city') }}" name="publish_city" id="publish_city">
+                        @error('publish_city')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="publish_year" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Publish Year</span>
+                        <input type="text" id="publish_year" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_year') }}" name="publish_year" id="publish_year">
                         @error('publish_year')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </label>
-                    <label for="classification" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Classification</span>
-                        <input type="text" id="classification" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('classification') }}" name="classification">
-                        @error('classification')
+                      </label>
+                    </div>
+                    <div class="flex space-x-4">
+                      <label for="procurement" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Procurement</span>
+                        <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('procurement') }}" name="procurement">
+                          @foreach ($procurements as $procurement)
+                            @if (old('procurement') == $procurement->id)
+                              <option value="{{ $procurement->id }}" selected>{{ $procurement->procurement }}</option>
+                            @else
+                              <option value="{{ $procurement->id }}">{{ $procurement->procurement }}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                        @error('procurement')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </label>
-                    <label for="volume" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">volume</span>
-                      <input type="text" id="volume" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('volume') }}" name="volume">
-                      @error('volume')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="edition" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">edition</span>
-                      <input type="text" id="edition" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('edition') }}" name="edition">
-                      @error('edition')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="collation" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">collation</span>
-                      <input type="text" id="collation" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('collation') }}" name="collation">
-                      @error('collation')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="publisher" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">publisher</span>
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('publisher') }}" name="publisher">
-                        @foreach ($publishers as $publisher)
-                          @if (old('publisher') == $publisher->id)
-                            <option value="{{ $publisher->id }}" selected>{{ $publisher->publisher }}</option>
-                          @else
-                            <option value="{{ $publisher->id }}">{{ $publisher->publisher }}</option>
-                          @endif
-                        @endforeach
-                      </select>
-                      @error('publisher')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="publish_city" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">publish_city</span>
-                      <input type="text" id="publish_city" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_city') }}" name="publish_city">
-                      @error('publish_city')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="publish_year" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">publish_year</span>
-                      <input type="text" id="publish_year" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('publish_year') }}" name="publish_year">
-                      @error('publish_year')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="procurement" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">procurement</span>
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" value="{{ old('procurement') }}" name="procurement">
-                        @foreach ($procurements as $procurement)
-                          @if (old('procurement') == $procurement->id)
-                            <option value="{{ $procurement->id }}" selected>{{ $procurement->procurement }}</option>
-                          @else
-                            <option value="{{ $procurement->id }}">{{ $procurement->procurement }}</option>
-                          @endif
-                        @endforeach
-                      </select>
-                      @error('procurement')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="year_of_procurement" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Year of Procurement</span>
-                      <input type="text" id="year_of_procurement" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('year_of_procurement') }}" name="year_of_procurement">
-                      @error('year_of_procurement')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
-                    <label for="price" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">price</span>
-                      <input type="text" id="price" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('price') }}" name="price">
-                      @error('price')
-                          <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                    </label>
+                      </label>
+                      <label for="year_of_procurement" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Year of Procurement</span>
+                        <input type="text" id="year_of_procurement" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('year_of_procurement') }}" name="year_of_procurement">
+                        @error('year_of_procurement')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                      <label for="price" class="block mt-4 text-sm grow">
+                        <span class="text-gray-700 dark:text-gray-400">Price</span>
+                        <input type="text" id="price" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Publication Year" value="{{ old('price') }}" name="price">
+                        @error('price')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                      </label>
+                    </div>
                     <label for="file" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">File</span>
                         <input type="file" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Collection File" name="file">
@@ -341,7 +355,7 @@
                 @elseif($page == 'subject')
                     <label for="subject_code" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Subject Code</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New Subject Code" name="subject_code" autofocus>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New Subject Code" name="subject_code">
                         @error("subject_code")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -350,7 +364,7 @@
                     </label>
                     <label for="{{ $page }}" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="{{  $page  }}" autofocus>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="{{  $page  }}">
                         @error("{{ $page }}")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -360,7 +374,7 @@
                 @else
                     <label for="{{ $page == 'users' ? 'username' : $page }}" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>
-                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="{{ $page == 'users' ? 'username' : $page }}" autofocus>
+                        <input type="text" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill New {{ $title }}" name="{{ $page == 'users' ? 'username' : $page }}">
                         @error("{{ $page == 'users' ? 'username' : $page }}")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -380,6 +394,12 @@
     </main>
     @if ($page == 'collections')    
       <script>
+        new TomSelect('#author',{
+          
+        });
+        new TomSelect('#type',{
+          
+        });
         let selectSubject = new TomSelect('#select-subject',{
               maxItems: null,
               maxOptions: 100,
