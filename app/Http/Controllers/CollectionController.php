@@ -60,21 +60,19 @@ class CollectionController extends Controller
         //     'title' => 'required|max:255',
         //     'isbn_issn_doi' => 'required|max:255',
         //     'abstract' => 'required|max:255',
-        //     'publish_year' => 'required|max:255',
+        //     'publish_year' => 'max:255',
         //     'type' => 'required|max:255',
         //     'language' => 'required|max:255',
-        //     'author' => 'required|max:255',
-        //     'file' => 'required|mimes:pdf|max:5048',
-        //     'cover' => ['required','mimes:png,jpg,jpeg','max:5048'],
+        //     // 'author' => 'required|max:255',
+        //     'file' => 'required|file|mimes:pdf|max:50048',
+        //     'cover' => ['required','file','mimes:png,jpg,jpeg','max:5048'],
         // ]);
-
-        // $path = $request->file('file')->store('public/files/ebooks');
-        // $path_cover = $request->file('cover')->store('public/files/covers');
-
-        
-        $path = 'f';
-        $path_cover = 'f';
-        
+        try{
+            $path = $request->file('file')->store('collections');
+            $path_cover = $request->file('cover')->store('covers');
+        } catch (\Exception $e) {
+            return redirect('/admin/collections')->with('error',$e->getMessage());
+        }
         $validated = [
             'inventory_code' => $request['inventory_code'],
             'isbn_issn_doi' => $request['isbn_issn_doi'],
@@ -99,11 +97,10 @@ class CollectionController extends Controller
             'path_file' => $path,
             'path_cover' => $path_cover,
         ];      
-        dd($request);
         try {
             $Collection = Collection::create($validated);
             $Collection->authors()->attach($request['author']);
-            $Collection->subjects()->attach($request['subject']);
+            $Collection->subjects()->attach($request['subjects']);
             
             return redirect('/admin/collections')->with('success',"New Collections has been aded!");
         } catch (\Exception $e) {

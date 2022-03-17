@@ -156,16 +156,16 @@
                       </div>
                       @enderror
                     </label> --}}
-                    <label for="subject" class="block mt-4 text-sm">
+                    <label for="subjects" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">subject Collection Trial</span>
                       {{-- <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" /> --}}
-                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subject" placeholder="Start Typing..."></select>
+                      <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="select-subject" name="subjects[]" value="{{ old('subjects') }} placeholder="Start Typing..."></select>
                     </label>
                     <label for="author" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Author</span>
                         <select class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" value="{{ old('author') }}" name="author[]" multiple="multiple">
                           @foreach ($authors as $author)
-                            @if (old('author') == $author->id)
+                            @if (false)
                               <option value="{{ $author->id }}" selected>{{ $author->author }}</option>
                             @else
                               <option value="{{ $author->id }}">{{ $author->author }}</option>
@@ -321,7 +321,7 @@
                     </label>
                     <label for="file" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">File</span>
-                        <input type="file" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Ebook File" name="file">
+                        <input type="file" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Collection File" name="file">
                         @error('file')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}

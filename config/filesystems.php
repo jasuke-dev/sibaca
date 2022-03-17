@@ -54,7 +54,12 @@ return [
         ],
         'collections' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/files/collections'),
+            'root' => storage_path('app/public/collections'),
+            'visibility' => 'public',
+        ],
+        'covers' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/covers'),
             'visibility' => 'public',
         ],
 
@@ -73,8 +78,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('collections') => storage_path('app/public/files/collections'),
-        public_path('covers') => storage_path('app/public/files/cover'),
+        // public_path('collections') => storage_path('app/public/files/collections'),
+        // public_path('covers') => storage_path('app/public/files/covers'),
     ],
 
 ];

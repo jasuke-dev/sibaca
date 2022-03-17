@@ -3,7 +3,7 @@
 @section('container')
     <div class="grid grid-flow-col grid-cols-6 gap-6 p-60">
         <div class="col-span-2 bg-slate-200 p-5 rounded-md self-center">
-            <img src="{{ asset('storage/files/' . $data[0]->path_cover) }}" alt="">
+            <img src="{{ asset('storage/'.$data[0]->path_cover) }}" alt="">
         </div>
         <div class="grid grid-flow-row grid-rows-6 col-span-4 gap-6">
             <div class="row-span-2 space-y-3">
@@ -49,7 +49,8 @@
                     <div class="col-span-1 font-semibold">Language</div>
                     <div class="col-span-3 font-medium">: {{ $data[0]->language->language }}</div>
                 </div>
-                <a class="font-bold text-blue-600" href="/pdf/{{ $data[0]->path_file }}">View PDF</a>
+                {{-- <a class="font-bold text-blue-600" href="/pdf/{{ $data[0]->path_file }}">View PDF</a> --}}
+                <a target="_blank" class="font-bold text-blue-600" href="{{ asset('storage/'.$data[0]->path_file) }}">View PDF</a>
                 <div class="font-semibold">
                     Abstract
                 </div>
