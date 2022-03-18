@@ -917,6 +917,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .row-span-4 {
   grid-row: span 4 / span 4;
 }
+.row-span-3 {
+  grid-row: span 3 / span 3;
+}
 .m-2 {
   margin: 0.5rem;
 }
@@ -966,6 +969,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+.mx-20 {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
@@ -1135,8 +1146,58 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-3 {
   height: 0.75rem;
 }
+.h-40 {
+  height: 10rem;
+}
+.h-56 {
+  height: 14rem;
+}
+.h-5\/6 {
+  height: 83.333333%;
+}
+.h-3\/6 {
+  height: 50%;
+}
+.h-2\/6 {
+  height: 33.333333%;
+}
+.h-auto {
+  height: auto;
+}
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.h-64 {
+  height: 16rem;
+}
+.h-72 {
+  height: 18rem;
+}
+.h-96 {
+  height: 24rem;
+}
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
 .max-h-0 {
   max-height: 0px;
+}
+.max-h-max {
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
+}
+.max-h-full {
+  max-height: 100%;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1198,14 +1259,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-1 {
   width: 0.25rem;
 }
+.w-10\/12 {
+  width: 83.333333%;
+}
 .w-8\/12 {
   width: 66.666667%;
 }
 .w-2\/12 {
   width: 16.666667%;
-}
-.w-10\/12 {
-  width: 83.333333%;
 }
 .min-w-full {
   min-width: 100%;
@@ -1218,6 +1279,19 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-xl {
   max-width: 36rem;
+}
+.max-w-fit {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.max-w-full {
+  max-width: 100%;
+}
+.max-w-min {
+  max-width: -webkit-min-content;
+  max-width: -moz-min-content;
+  max-width: min-content;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1234,23 +1308,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .grow {
   flex-grow: 1;
 }
+.grow-0 {
+  flex-grow: 0;
+}
 .basis-10\/12 {
   flex-basis: 83.333333%;
 }
-.basis-3\/4 {
-  flex-basis: 75%;
-}
-.basis-1\/4 {
-  flex-basis: 25%;
-}
-.basis-1\/5 {
-  flex-basis: 20%;
-}
-.basis-1\/6 {
-  flex-basis: 16.666667%;
-}
 .basis-1\/12 {
   flex-basis: 8.333333%;
+}
+.basis-2\/12 {
+  flex-basis: 16.666667%;
 }
 .translate-y-4 {
   --tw-translate-y: 1rem;
@@ -1342,14 +1410,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .justify-around {
   justify-content: space-around;
 }
-.justify-evenly {
-  justify-content: space-evenly;
-}
 .gap-6 {
   gap: 1.5rem;
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
 }
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1418,8 +1486,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-divide-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-divide-opacity));
 }
+.self-end {
+  align-self: flex-end;
+}
 .self-center {
   align-self: center;
+}
+.self-baseline {
+  align-self: baseline;
 }
 .justify-self-center {
   justify-self: center;
@@ -1713,13 +1787,41 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+.px-60 {
+  padding-left: 15rem;
+  padding-right: 15rem;
+}
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -1777,6 +1879,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .text-right {
   text-align: right;
+}
+.text-justify {
+  text-align: justify;
 }
 .align-top {
   vertical-align: top;

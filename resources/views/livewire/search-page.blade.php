@@ -108,7 +108,7 @@
           </div>
           <div class="grid grid-cols-10 basis-10/12 justify-between py-8">
             <div class="col-span-2 justify-self-center space-y-4">
-              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow">
                 <div>Type</div>
                 <div>
                   <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="type">
@@ -133,7 +133,7 @@
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
                 <div>Language</div>
                 <div>
-                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="language">
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full" wire:model="language">
                     <option value="0">Any</option>
                     @foreach ($languages as $language)
                         <option value="{{ $language->id }}">{{ $language->language }}</option>
@@ -144,7 +144,7 @@
               <div class="border-2 p-2 rounded-md">
                 <div>subjects</div>
                 <div>
-                  <select wire:model.defer="subject" class="block w-full text-sm bg-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
+                  <select wire:model.defer="subject" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
 
                   </select>
                 </div>

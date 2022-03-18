@@ -57,14 +57,14 @@ class CollectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
             'inventory_code' => 'required|max:255',
             'isbn_issn_doi' => 'required|max:255',
-            'abstract' => 'required|max:255',
-            'publish_year' => 'max:255',
+            'title' => 'required|max:255',
             'type' => 'required|max:255',
-            'language' => 'required|max:255',
-            // 'author' => 'required|max:255',
+            'author' => 'required',
+            'language' => 'required',
+            'publisher' => 'required',
+            'procurement' => 'required',
             'file' => 'required|file|mimes:pdf|max:50048',
             'cover' => ['required','file','mimes:png,jpg,jpeg','max:5048'],
         ]);
