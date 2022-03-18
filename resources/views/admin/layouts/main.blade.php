@@ -5,17 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIBACA</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="{{ asset('js/chart.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/tomSelect.js') }}"></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
-
+    <script src={{ asset("js/template/focus-trap.js") }}></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script src="{{ asset('js/chart.js') }}"></script>
+    <script src="{{ asset('js/tomSelect.js') }}"></script>
     {{-- livewire --}}
     @livewireStyles
     {{-- livewire --}}
@@ -30,6 +29,7 @@
     <div class="flex flex-col flex-1 w-full">
         @include('admin.layouts.partials.header')
         @yield('container')
+        @include('admin.layouts.partials.modal')
     </div>
 
     @stack('script')
@@ -38,5 +38,8 @@
     {{-- livewire --}}
     @livewireScripts
     {{-- livewire --}}
+
+    
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

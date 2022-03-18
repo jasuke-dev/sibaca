@@ -10,15 +10,15 @@
                 </h2>
                 {{-- add button --}}
                 <div class="flex gap-2">
-                    {{-- @if (Route::current()->uri == 'admin/subject')     --}}
-                    <form method="POST" action="/import/{{ $page }}" enctype="multipart/form-data">
-                        @csrf
-                        <input type='file' name="file"/>
-                        <button class="bg-purple-600 rounded-md" type="submit">Import CSV</button>
-                    </form>            
+                    <button
+                        @click="openModal"
+                        class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+                    >
+                        Import Data
+                    </button>
                     {{-- @endif --}}
 
-                    <a class="flex items-end justify-between p-4 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/admin/{{ $page }}/create">
+                    <a class="flex items-end justify-between p-4 text-sm font-semibold text-purple-100 bg-purple-600 hover:bg-purple-700 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple transition-colors duration-150" href="/admin/{{ $page }}/create">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
