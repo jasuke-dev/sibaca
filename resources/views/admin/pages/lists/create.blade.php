@@ -64,7 +64,27 @@
                         </div>
                       </div>
 
-                @elseif ($page == 'collections')    
+                @elseif ($page == 'collections')
+                    <label for="file" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">File</span>
+                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Collection File" name="file" id="pdf_file">
+                        @error('file')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </label>
+                    <label for="Cover" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Cover</span>
+                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Cover Image" name="cover">
+                        @error('cover')
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </label>
+                    <div class="h-fit my-4" id="pdf_preview">
+                    </div>
                     <div class="flex space-x-4">
                       <label for="inventory_code" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Inventory Code</span>
@@ -116,9 +136,9 @@
                       </label>  
                     </div>
                     <label for="abstract" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">Message</span>
+                      <span class="text-gray-700 dark:text-gray-400">Abstract</span>
                       <textarea
-                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md p-3 border-2"
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md p-3 border-2"
                         rows="3" placeholder="Enter some long form content." name="abstract" id="abstract"
                       >{{ old('abstract') }}</textarea>
                       @error('abstract')
@@ -218,7 +238,7 @@
                           @enderror
                       </label>
                       <label for="volume" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">volume</span>
+                        <span class="text-gray-700 dark:text-gray-400">Volume</span>
                         <input type="text" id="volume" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('volume') }}" name="volume">
                         @error('volume')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -227,7 +247,7 @@
                         @enderror
                       </label>
                       <label for="edition" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">edition</span>
+                        <span class="text-gray-700 dark:text-gray-400">Edition</span>
                         <input type="text" id="edition" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('edition') }}" name="edition">
                         @error('edition')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -236,7 +256,7 @@
                         @enderror
                       </label>
                       <label for="collation" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">collation</span>
+                        <span class="text-gray-700 dark:text-gray-400">Collation</span>
                         <input type="text" id="collation" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('collation') }}" name="collation">
                         @error('collation')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -319,25 +339,6 @@
                         @enderror
                       </label>
                     </div>
-                    <label for="file" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">File</span>
-                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Collection File" name="file">
-                        @error('file')
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>
-                    <label for="Cover" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Cover</span>
-                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Cover Image" name="cover">
-                        @error('cover')
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>
-                
                 @elseif($page == 'subject')
                     <label for="subject_code" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Subject Code</span>
@@ -405,7 +406,19 @@
                     callback();
                   });
               },
-              create: true
+              create: false
+        });
+
+        const file = document.getElementById('pdf_file');
+        const preview = document.getElementById('pdf_preview');
+        file.addEventListener('change', function(e) {
+          let url= URL.createObjectURL(event.target.files[0])
+          let embed = document.createElement('iframe');
+          embed.setAttribute('src',url);
+          embed.setAttribute('height','600');
+          embed.setAttribute('class','w-full');
+          preview.innerHTML='';
+          preview.appendChild(embed);
         });
       </script>
     @endif
