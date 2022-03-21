@@ -21,7 +21,8 @@ class CreateAuthorCollectionsTable extends Migration
                     ->nullOnDelete();
             $table  ->foreignId('collection_id')
                     ->nullable()
-                    ->constrained();
+                    ->constrained()
+                    ->cascadeOnDelete();
             $table->timestamps();
         });
     }

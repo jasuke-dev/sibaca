@@ -17,7 +17,8 @@ class CreateCollectionSubjectsTable extends Migration
             $table  ->id();
             $table  ->foreignId('collection_id')
                     ->nullable()
-                    ->constrained();
+                    ->constrained()
+                    ->cascadeOnDelete();
             $table  ->foreignId('subject_id')
                     ->nullable()
                     ->constrained()

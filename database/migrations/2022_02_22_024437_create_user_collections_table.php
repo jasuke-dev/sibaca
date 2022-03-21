@@ -20,7 +20,8 @@ class CreateUserCollectionsTable extends Migration
                     ->constrained();
             $table  ->foreignId('collection_id')
                     ->nullable()
-                    ->constrained();
+                    ->constrained()
+                    ->cascadeOnDelete();
             $table->timestamps();
         });
     }
