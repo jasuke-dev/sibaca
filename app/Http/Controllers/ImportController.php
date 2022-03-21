@@ -31,7 +31,9 @@ class ImportController extends Controller
             }elseif($import == 'collections'){
                 $filedata = file_get_contents(request()->file('file'));
                 $details = json_decode($filedata);
-                $details[1]->publisher_id;
+
+                
+                $authors = explode(";",$details[0]->authors);
                 foreach ($details as $row) 
                 {
                     $b64_pdf = utf8_decode($row->base64file);
@@ -46,30 +48,32 @@ class ImportController extends Controller
                         return redirect()->back()->with('error',"erro masukin file");
                     }
         
-                    Collection::create([
+                    $Collection = Collection::create([
                         'inventory_code' => $row->inventory_code, 
+                        'isbn_issn_doi'    => empty($row->isbn_issn_doi) ? NULL : $row->isbn_issn_doi,
                         'title'    => empty($row->title) ? NULL : $row->title, 
                         'subtitle'    => empty($row->subtitle) ? NULL : $row->subtitle, 
-                        'languange_id'    => empty($row->languange_id) ? NULL : $row->languange_id, 
+                        'abstract'    => empty($row->abstract) ? NULL : $row->abstract,
                         'classification'    => empty($row->classification) ? NULL : $row->classification, 
-                        'author_code'    => empty($row->author_code) ? NULL : $row->author_code, 
                         'title_code'    => empty($row->title_code) ? NULL : $row->title_code, 
+                        'author_code'    => empty($row->author_code) ? NULL : $row->author_code, 
                         'volume'    => empty($row->volume) ? NULL : $row->volume, 
                         'edition'    => empty($row->edition) ? NULL : $row->edition, 
-                        'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, 
-                        'publish_year'    => empty($row->publish_year) ? NULL : $row->publish_year, 
-                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id, 
-                        'year_of_procurement'    => empty($row->year_of_procurement) ? NULL : $row->year_of_procurement, 
-                        'price'    => empty($row->price) ? NULL : $row->price, 
                         'collation'    => empty($row->collation) ? NULL : $row->collation, 
-                        'isbn_issn_doi'    => empty($row->isbn_issn_doi) ? NULL : $row->isbn_issn_doi, 
-                        'abstract'    => empty($row->abstract) ? NULL : $row->abstract,
-                        'publish_city'    => null, 
+                        'year_of_procurement'    => empty($row->year_of_procurement) ? NULL : $row->year_of_procurement, 
+                        'publish_year'    => empty($row->publish_year) ? NULL : $row->publish_year, 
+                        'publish_city'    => empty($row->publish_city) ? NULL : $row->publish_city, 
+                        'price'    => empty($row->price) ? NULL : $row->price, 
                         'path_cover'    => null,
                         'path_file'    => $pathName,
-                        'type_id'    => null, 
-                        'author_id'    => null, 
+                        'type_id'    => empty($row->type_id) ? NULL : $row->type_id, 
+                        'language_id'    => empty($row->languange_id) ? NULL : $row->languange_id,
+                        'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, 
+                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id, 
                     ]);
+
+                    $Collection->authors()->attach(explode(";",$row->authors));
+                    $Collection->subjects()->attach(explode(";",$row->subjects));
                 }
                 // Excel::import(new CollectionsImport, request()->file('file'));
                 return redirect()->back()->with('success','Data Collection Imported Successfully');

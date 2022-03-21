@@ -1149,19 +1149,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-3 {
   height: 0.75rem;
 }
-.h-72 {
-  height: 18rem;
-}
 .h-fit {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-.h-32 {
-  height: 8rem;
-}
-.h-96 {
-  height: 24rem;
 }
 .max-h-full {
   max-height: 100%;
