@@ -48,7 +48,7 @@ class SearchController extends Controller
             if($request['data'] == 'subjects'){
                 if(isset($request['query'])){
                     $subjects = Subject::where('subject','LIKE','%'.$request['query'].'%')->take(100)->get();
-
+                
                     return response()->json([
                         'subjects' => $subjects,
                         'query' => $request['query']

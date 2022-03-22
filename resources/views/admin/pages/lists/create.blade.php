@@ -164,23 +164,6 @@
                       </div>
                       @enderror
                     </label>
-                    {{-- <label for="subject" class="block mt-4 text-sm">
-                      <span class="text-gray-700 dark:text-gray-400">subject Collection</span>
-                      <select class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" name="subject[]" multiple>
-                        @foreach ($subjects as $subject)
-                          @if (old('subject') == $subject->id)
-                            <option value="{{ $subject->id }}" selected>{{ $subject->subject }}</option>
-                          @else
-                            <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
-                          @endif
-                        @endforeach
-                      </select>
-                      @error('subject')
-                      <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                        {{ $message }}
-                      </div>
-                      @enderror
-                    </label> --}}
                     <label for="select_subject" class="block mt-4 text-sm">
                       <span class="text-gray-700 dark:text-gray-400">Subjects</span>
                       {{-- <input id="test" style="width:100%;" placeholder="type a number, scroll for more results" name="data" /> --}}

@@ -72,7 +72,7 @@
                     </table>
                 </div>
           @endif
-          @if (Route::current()->uri != 'admin/dashboard')    
+          @if (Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections' || Route::current()->uri == 'admin/publisher')    
             <form method="POST" action="/import/{{ $page }}" enctype="multipart/form-data">
                 @csrf
                 <input type='file' name="file"/>

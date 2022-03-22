@@ -1154,6 +1154,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-40 {
+  height: 10rem;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -1341,6 +1344,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex-wrap {
   flex-wrap: wrap;
 }
+.content-center {
+  align-content: center;
+}
 .items-end {
   align-items: flex-end;
 }
@@ -1437,6 +1443,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .self-end {
   align-self: flex-end;
+}
+.self-center {
+  align-self: center;
 }
 .self-baseline {
   align-self: baseline;
