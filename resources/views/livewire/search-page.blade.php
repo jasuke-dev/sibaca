@@ -122,7 +122,7 @@
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
                 <div>Author</div>
                 <div>
-                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="author">
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
                     <option value="0">Any</option>
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}">{{ $author->author }}</option>

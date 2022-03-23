@@ -9,9 +9,9 @@ class DetailsController extends Controller
 {
     public function index($id){
         // $data = Collection::with('authors','subjects')->where('id',$id)->get();
-        // dd($data[0]->authors);
+        // dd($data[0]->authors);        
         return view('search.details',[
-            'data' => Collection::with('authors','subjects','language','type')->where('id',$id)->get()
+            'data' => Collection::with('authors','subjects','language','type')->findOrFail($id)
         ]);
     }
 }

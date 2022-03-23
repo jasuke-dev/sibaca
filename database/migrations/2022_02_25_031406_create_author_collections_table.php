@@ -19,7 +19,7 @@ class CreateAuthorCollectionsTable extends Migration
                     ->nullable()
                     ->constrained()
                     ->nullOnDelete();
-            $table  ->foreignId('collection_id')
+            $table  ->foreignUuid('collection_id')
                     ->nullable()
                     ->constrained()
                     ->cascadeOnDelete();

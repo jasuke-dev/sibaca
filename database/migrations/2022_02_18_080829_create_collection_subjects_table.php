@@ -15,7 +15,7 @@ class CreateCollectionSubjectsTable extends Migration
     {
         Schema::create('collection_subjects', function (Blueprint $table) {
             $table  ->id();
-            $table  ->foreignId('collection_id')
+            $table  ->foreignUuid('collection_id')
                     ->nullable()
                     ->constrained()
                     ->cascadeOnDelete();
