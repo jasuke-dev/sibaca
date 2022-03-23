@@ -1235,6 +1235,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .min-w-0 {
   min-width: 0px;
 }
+.min-w-fit {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1243,6 +1248,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-xl {
   max-width: 36rem;
+}
+.max-w-fit {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1455,6 +1465,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .overflow-y-auto {
   overflow-y: auto;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 .overflow-x-scroll {
   overflow-x: scroll;

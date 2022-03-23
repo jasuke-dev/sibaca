@@ -2,8 +2,8 @@
 
 @section('container')
     <main class="h-full pb-16 overflow-y-auto">
-        <div class="container grid px-4 mx-auto">
-            <div class="flex justify-between items-center py-3">
+        <div class="container grid h-full mx-auto">
+            <div class="flex justify-between items-center py-3 px-10">
                 {{-- judul --}}
                 <h2 class="my-6 text-4xl font-semibold text-gray-700 dark:text-gray-200">
                     {{ $title }}
@@ -30,7 +30,7 @@
                 </div>
             </div>
             
-
+            <div class="container px-10">
             @if (Route::current()->uri == 'admin/author')
                 @livewire('author-datatables')
             @elseif(Route::current()->uri == 'admin/language')
@@ -48,7 +48,7 @@
             @elseif(Route::current()->uri == 'admin/procurement')
                 @livewire('procurement-datatables')            
             @endif
-            
+            </div>
         </div>
     </main>
 @endsection

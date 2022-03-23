@@ -20,18 +20,17 @@
     {{-- livewire --}}
   </head>
   <body>
-    
-    <div class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
     @include('sweetalert::alert')
-    {{-- @include('sweetalert::alert') --}}
-    @include('admin.layouts.partials.sidebar')
+    <div class="flex w-screen h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+      {{-- @include('sweetalert::alert') --}}
+      @include('admin.layouts.partials.sidebar')
 
-    <div class="flex flex-col flex-1 w-full">
-        @include('admin.layouts.partials.header')
-        @yield('container')
-        @include('admin.layouts.partials.modal')
+      <div class="flex flex-col flex-1 w-full flex-grow">
+          @include('admin.layouts.partials.header')
+          @yield('container')
+      </div>
     </div>
-
+    @include('admin.layouts.partials.modal')
     @stack('script')
     {{-- <script src="http://127.0.0.1:8000/js/bundle.js"></script> --}}
     
