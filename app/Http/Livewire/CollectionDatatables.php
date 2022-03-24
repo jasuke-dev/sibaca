@@ -7,8 +7,10 @@ use App\Models\Type;
 use App\Models\Author;
 use App\Models\Collection;
 use App\Models\Procurement;
+use App\Models\Publisher;
 use App\Models\Subject;
 use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
@@ -18,11 +20,14 @@ class CollectionDatatables extends LivewireDatatable
     public $model = Collection::class;
     public $exportable = true;
     public $complex = true;
+    public $persistComplexQuery = true;
+    
     public function builder()
     {
         return Collection::query()
                     ->leftJoin('languages', 'languages.id', 'collections.language_id')
                     ->leftJoin('types', 'types.id', 'collections.type_id')
+                    ->leftJoin('publishers', 'publishers.id', 'collections.publisher_id')
                     ->leftJoin('procurements', 'procurements.id', 'collections.procurement_id');
     }
 
@@ -54,16 +59,32 @@ class CollectionDatatables extends LivewireDatatable
                 ->alignCenter(),
             NumberColumn::name('publish_year')
                 ->filterable()
-                ->alignCenter(),
+                ->alignCenter()
+                ->label('Publish Year'),
             Column::name('languages.language')
                 ->filterable($this->languages->pluck('language'))
-                ->label('Language'),
+                ->label('Language')
+                ->alignCenter(),
             Column::name('types.type')
                 ->filterable($this->types->pluck('type'))
+                ->alignCenter()
                 ->label('Types'),
             Column::name('procurements.procurement')
                 ->filterable($this->procurements->pluck('procurement'))
+                ->alignCenter()
                 ->label('Procurement'),
+            NumberColumn::name('year_of_procurement')
+                ->label('Procurement Year')
+                ->filterable()
+                ->alignCenter(),
+            Column::name('publishers.publisher')
+                ->filterable($this->publishers->pluck('publisher'))
+                ->alignCenter()
+                ->label('Publisher'),
+            DateColumn::name('Created_at')
+                ->label('Created at')
+                ->filterable()
+                ->alignCenter(),
             Column::callback(['id','title'], function($id, $title){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
@@ -95,6 +116,10 @@ class CollectionDatatables extends LivewireDatatable
     public function getProcurementsProperty()
     {
         return Procurement::all();
+    }
+    public function getPublishersProperty()
+    {
+        return Publisher::all();
     }
     // public function getSubjectsProperty()
     // {
