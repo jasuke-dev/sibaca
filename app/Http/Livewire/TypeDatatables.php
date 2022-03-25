@@ -32,7 +32,8 @@ class TypeDatatables extends LivewireDatatable
             Column::callback(['id','type'], function($id, $type){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'type' => $type
+                    'type' => $type,
+                    'edit' => false
                 ]);
             })->unsortable()
             ->alignCenter()

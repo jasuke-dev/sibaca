@@ -32,7 +32,8 @@ class PublisherDatatables extends LivewireDatatable
             Column::callback(['id','publisher'], function($id, $publisher){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'language' => $publisher
+                    'language' => $publisher,
+                    'edit' => false
                 ]);
             })->unsortable()
             ->alignCenter()

@@ -32,7 +32,8 @@ class ProcurementDatatables extends LivewireDatatable
             Column::callback(['id','procurement'], function($id, $procurement){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'language' => $procurement
+                    'language' => $procurement,
+                    'edit' => false
                 ]);
             })->unsortable()
             ->alignCenter()

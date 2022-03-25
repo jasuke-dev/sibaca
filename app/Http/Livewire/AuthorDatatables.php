@@ -33,7 +33,8 @@ class AuthorDatatables extends LivewireDatatable
             Column::callback(['id','author'], function($id, $author){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'name' => $author
+                    'name' => $author,
+                    'edit' => false
                 ]);
             })->unsortable()
             ->alignCenter()

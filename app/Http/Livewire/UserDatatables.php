@@ -39,7 +39,8 @@ class UserDatatables extends LivewireDatatable
             Column::callback(['id','username'], function($id, $username){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'username' => $username
+                    'username' => $username,
+                    'edit' => false
                 ]);
             })->unsortable()
             ->alignCenter()
