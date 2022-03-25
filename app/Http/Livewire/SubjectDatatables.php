@@ -32,7 +32,7 @@ class SubjectDatatables extends LivewireDatatable
             Column::callback(['code','subject'], function($code, $subject){
                 return view('livewire.lists-datatables', [
                     'id' => $code,
-                    'subject' => $subject,
+                    'name' => $subject,
                     'edit' => false
                 ]);
             })->unsortable()

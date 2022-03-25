@@ -33,7 +33,7 @@ class LanguageDatatables extends LivewireDatatable
             Column::callback(['id','language'], function($id, $language){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'language' => $language,
+                    'name' => $language,
                     'edit' => false
                 ]);
             })->unsortable()

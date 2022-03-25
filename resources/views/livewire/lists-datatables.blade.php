@@ -1,6 +1,6 @@
 <div>
     <div class="flex space-x-1 justify-around">
-        @include('datatables::delete', ['value' => $id])
+        @include('datatables::delete', ['value' => $id, 'name' => $name])
     </div>
     @if ($edit)
             <a href="/admin/collections/{{ $id }}/edit">

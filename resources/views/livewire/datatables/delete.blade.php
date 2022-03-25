@@ -31,10 +31,13 @@
             <div class="w-full">
                 <div class="mt-3 text-center">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        {{ __('Delete') }} {{ $value }}
+                        {{ __('Delete') }}
                     </h3>
+                    <div class="text-lg leading-6 font-bold text-gray-900 my-10">
+                        {{ $name }}
+                    </div>
                     <div class="mt-2">
-                        <div class="mt-10 text-gray-700">
+                        <div class="text-gray-700">
                             {{ __('Are you sure?')}}
                         </div>
                         <div class="mt-10 flex justify-center">

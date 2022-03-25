@@ -94,7 +94,7 @@ class CollectionDatatables extends LivewireDatatable
             Column::callback(['id','title'], function($id, $title){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'title' => $title,
+                    'name' => $title,
                     'edit' => true
                 ]);
             })->unsortable()
