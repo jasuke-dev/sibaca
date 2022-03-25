@@ -42,7 +42,9 @@ class Collection extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'user_collections')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
     }
-
+    public function creators(){
+        return $this->belongsTo(User::class);
+    }
     public function type(){
         return $this->belongsTo(Type::class);
     }

@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
@@ -94,6 +95,7 @@ class CollectionController extends Controller
             'publish_city' => $request['publish_city'],
             'publish_year' => $request['publish_year'],
             'procurement_id' => $request['procurement'],
+            'user_id' => Auth::id(),
             'year_of_procurement' => $request['year_of_procurement'],
             'price' => $request['price'],
             'path_file' => $path,

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Imports\SubjectsImport;
 use App\Imports\CollectionsImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,7 +70,8 @@ class ImportController extends Controller
                         'type_id'    => empty($row->type_id) ? NULL : $row->type_id, 
                         'language_id'    => empty($row->languange_id) ? NULL : $row->languange_id,
                         'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, 
-                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id, 
+                        'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id,
+                        'user_id' => Auth::id(), 
                     ]);
 
                     $Collection->authors()->attach(explode(";",$row->authors));

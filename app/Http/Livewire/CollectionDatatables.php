@@ -9,6 +9,7 @@ use App\Models\Collection;
 use App\Models\Procurement;
 use App\Models\Publisher;
 use App\Models\Subject;
+use App\Models\User;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
@@ -28,6 +29,7 @@ class CollectionDatatables extends LivewireDatatable
                     ->leftJoin('languages', 'languages.id', 'collections.language_id')
                     ->leftJoin('types', 'types.id', 'collections.type_id')
                     ->leftJoin('publishers', 'publishers.id', 'collections.publisher_id')
+                    ->leftJoin('users', 'users.id', 'collections.user_id')
                     ->leftJoin('procurements', 'procurements.id', 'collections.procurement_id');
     }
 
@@ -81,6 +83,10 @@ class CollectionDatatables extends LivewireDatatable
                 ->filterable($this->publishers->pluck('publisher'))
                 ->alignCenter()
                 ->label('Publisher'),
+            Column::name('creators.username')
+                ->filterable($this->creators)
+                ->alignCenter()
+                ->label('Creator'),
             DateColumn::name('Created_at')
                 ->label('Created at')
                 ->filterable()
@@ -120,6 +126,10 @@ class CollectionDatatables extends LivewireDatatable
     public function getPublishersProperty()
     {
         return Publisher::all();
+    }
+    public function getCreatorsProperty()
+    {
+        return User::pluck('username');
     }
     // public function getSubjectsProperty()
     // {
