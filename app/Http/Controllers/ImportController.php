@@ -68,7 +68,7 @@ class ImportController extends Controller
                         'path_cover'    => null,
                         'path_file'    => $pathName,
                         'type_id'    => empty($row->type_id) ? NULL : $row->type_id, 
-                        'language_id'    => empty($row->languange_id) ? NULL : $row->languange_id,
+                        'language_code'    => empty($row->languange_code) ? NULL : $row->languange_code,
                         'publisher_id'    => empty($row->publisher_id) ? NULL : $row->publisher_id, 
                         'procurement_id'    => empty($row->procurement_id) ? NULL : $row->procurement_id,
                         'user_id' => Auth::id(), 

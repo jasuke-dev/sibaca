@@ -98,7 +98,6 @@
           </li>
         </ul>
       </div>
-      {{ $counter }}
       <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50s">
           <div class="grid grid-cols-10 basis-10/12 justify-between py-4">
             <div class="col-span-2 justify-self-center">Filters Off</div>
@@ -136,7 +135,7 @@
                   <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full" wire:model="language">
                     <option value="0">Any</option>
                     @foreach ($languages as $language)
-                        <option value="{{ $language->id }}">{{ $language->language }}</option>
+                        <option value="{{ $language->code }}">{{ $language->language }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -144,12 +143,12 @@
               <div class="border-2 p-2 rounded-md">
                 <div>subjects</div>
                 <div>
-                  <select wire:model.defer="subject" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" id="id" placeholder="Start Typing..." name="subject[]">
+                  <select wire:model.defer="subject" class="block text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md p-3 mt-3 appearance-none multiple-select  w-56 max-w-full" id="id" placeholder="Start Typing..." name="subject[]">
 
                   </select>
                 </div>
-                <button wire:click="$emit('rere')">click</button>
               </div>
+              <button wire:click="$emit('rere')">click</button>
             </div>
             <div id="results" class="col-span-8 space-y-6">
               @foreach ($results as $result)
@@ -182,7 +181,7 @@
     let selectSubject = new TomSelect('#id',{
           maxItems: null,
           maxOptions: 100,
-          valueField: 'id',
+          valueField: 'code',
           labelField: 'subject',
           searchField: 'subject',
           sortField: 'subject',
@@ -216,11 +215,12 @@
                   // selected_subject.push(options[i].dataset.value);
                   // selected_subject.push(options[i].textContent);
                   let obj = {
-                    id : parseInt(options[i].dataset.value),
+                    code : options[i].dataset.value,
                     subject : options[i].textContent
                   }
                   selected_subject.push(obj);
                 }
+                Livewire.emit('rere')
             }
             else if (mutation.type === 'attributes') {
                 console.log('The ' + mutation.attributeName + ' attribute was modified.');
@@ -241,7 +241,7 @@
           selectSubject = new TomSelect('#id',{
                 maxItems: null,
                 maxOptions: 100,
-                valueField: 'id',
+                valueField: 'code',
                 labelField: 'subject',
                 searchField: 'subject',
                 sortField: 'subject',
@@ -260,6 +260,8 @@
           });
           try {
             selectSubject.setValue(event.detail.newSubject)
+            console.log(event,detail.newSubject)
+            console.log("failed to reset value subject")
           } catch (error) {
             console.log("failed to reset value subject")
           }
@@ -270,11 +272,12 @@
               let options = document.querySelectorAll(".item");
               for (let i = 0; i < options.length; i++) {
                 let obj = {
-                  id : parseInt(options[i].dataset.value),
+                  code : options[i].dataset.value,
                   subject : options[i].textContent
                 }
                 selected_subject.push(obj);
               }
+              Livewire.emit('rere')
           });
 
 

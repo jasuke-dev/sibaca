@@ -373,7 +373,7 @@
         let selectSubject = new TomSelect('#select-subject',{
               maxItems: null,
               maxOptions: 100,
-              valueField: 'id',
+              valueField: 'code',
               labelField: 'subject',
               searchField: 'subject',
               sortField: 'subject',

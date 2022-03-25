@@ -173,7 +173,7 @@ class CollectionController extends Controller
             'abstract' => $request['abstract'],
             'type_id' => $request['type'],
             'author_code' => $request['author_code'],
-            'language_id' => $request['language'],
+            'language_code' => $request['language'],
             'publish_year' => $request['publish_year'],
             'classification' => $request['classification'],
             'volume' => $request['volume'],

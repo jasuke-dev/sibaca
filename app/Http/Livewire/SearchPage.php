@@ -46,8 +46,6 @@ class SearchPage extends Component
 
     public function render()
     {
-        $this->counter++;
-        // $this->dispatchBrowserEvent('changed-tracker');
         $this->reRenderSubject($this->subject);
         return view('livewire.search-page',[
             'results' => Collection::with('authors','subjects')
@@ -61,18 +59,17 @@ class SearchPage extends Component
                                         });
                                     })
                                     ->when($this->language, function($query, $language){
-                                        return $query->where('language_id','LIKE',$language);
+                                        return $query->where('language_code','LIKE',$language);
                                     })
                                     ->when($this->subject, function($query, $subject){
                                         return $query->WhereHas('subjects', function($query){
-                                            $query->WhereIn('subject_id', $this->subject);
+                                            $query->WhereIn('subjects.code', $this->subject);
                                         });
                                     })
                                     ->paginate(10),
             'types' => Type::all(),
             'authors' => Author::all(),
             'languages' => Language::all(),
-            'randID' => rand(0,10),
             
         ]);
     }

@@ -19,7 +19,8 @@ class LanguageDatatables extends LivewireDatatable
         return [
             NumberColumn::name('code')
                 ->filterable()
-                ->alignCenter(),
+                ->alignCenter()
+                ->editable(),
             Column::name('language')
                 ->filterable()
                 ->alignCenter()
