@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/tomSelect.js') }}"></script>
     <script src={{ asset("js/template/init-alpine.js") }}></script>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @livewireStyles
 </head>

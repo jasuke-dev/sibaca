@@ -11,11 +11,13 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\SearchController;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,15 +67,4 @@ Route::get('/search', [SearchController::class, 'index'])->name('user')->middlew
 Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('user');
 
 
-Route::get('/pdf/{file}', function ($file) {
-    // file path
-   $path = public_path('storage/files/collections' . '/' . $file);
-    // header
-   $header = [
-     'Content-Type' => 'application/pdf',
-     'Content-Disposition' => 'inline; filename="' . $file . '"'
-   ];
-  return response()->file($path);
-  
- 
-})->name('pdf')->middleware('auth');
+Route::get('/pdf/{collection}', [PDFController::class, 'viewer'])->name('pdf')->middleware('auth');

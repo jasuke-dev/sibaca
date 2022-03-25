@@ -18,16 +18,23 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-
+    
 </IfModule>
-
+    
+<IfModule mod_headers.c>
+    # <FilesMatch ".pdf$">
+    #     Header set Cache-Control "no-cache, no-store, must-revalidate"
+    #     Header set Pragma "no-cache"
+    #     Header set Expires 0
+    # </FilesMatch>
+</IfModule>
 <IfModule mod_expires.c>
     ExpiresActive On
     # CSS and JavaScript
-    ExpiresByType application/javascript    "access plus 1 month"
-    ExpiresByType text/css "access 1 month"
-    ExpiresByType text/html "access 1 month"
-    ExpiresByType application/pdf "access 1 month"
-    ExpiresByType text/x-javascript "access 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/html "access plus 1 month"
+    # ExpiresByType application/pdf "access 5 minute"
+    ExpiresByType text/x-javascript "access plus 1 month"
 </IfModule>
+
