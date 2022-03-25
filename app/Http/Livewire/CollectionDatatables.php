@@ -26,7 +26,7 @@ class CollectionDatatables extends LivewireDatatable
     public function builder()
     {
         return Collection::query()
-                    ->leftJoin('languages', 'languages.id', 'collections.language_id')
+                    ->leftJoin('languages', 'languages.code', 'collections.language_code')
                     ->leftJoin('types', 'types.id', 'collections.type_id')
                     ->leftJoin('publishers', 'publishers.id', 'collections.publisher_id')
                     ->leftJoin('users', 'users.id', 'collections.user_id')

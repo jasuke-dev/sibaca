@@ -36,10 +36,10 @@ class CreateCollectionsTable extends Migration
                   ->nullable()
                   ->constrained()
                   ->nullOnDelete();
-            $table->foreignId('language_id')
-                  ->nullable()
-                  ->constrained()
-                  ->nullOnDelete();
+            $table->string('language_code');
+            $table->foreign('language_code')
+                  ->references('code')->on('languages')
+                  ->onDelete(null);
             $table->foreignId('publisher_id')
                   ->nullable()
                   ->constrained()

@@ -14,6 +14,7 @@ class LanguageFactory extends Factory
     public function definition()
     {
         return [
+            'code' => $this->faker->uuid(),
             'language' => $this->faker->country(),
         ];
     }

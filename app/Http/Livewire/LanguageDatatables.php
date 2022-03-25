@@ -17,7 +17,7 @@ class LanguageDatatables extends LivewireDatatable
     public function columns()
     {
         return [
-            NumberColumn::name('id')
+            NumberColumn::name('code')
                 ->filterable()
                 ->alignCenter(),
             Column::name('language')
@@ -30,9 +30,9 @@ class LanguageDatatables extends LivewireDatatable
             DateColumn::name('updated_at')
                 ->filterable()
                 ->alignCenter(),
-            Column::callback(['id','language'], function($id, $language){
+            Column::callback(['code','language'], function($code, $language){
                 return view('livewire.lists-datatables', [
-                    'id' => $id,
+                    'id' => $code,
                     'name' => $language,
                     'edit' => false
                 ]);

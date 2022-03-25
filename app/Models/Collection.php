@@ -28,7 +28,7 @@ class Collection extends Model
     ];
 
     public function language(){
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Language::class,'language_code','code');
     }
 
     public function subjects(){

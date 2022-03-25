@@ -59,18 +59,18 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'inventory_code' => 'required|max:255',
-            'isbn_issn_doi' => 'required|max:255',
-            'title' => 'required|max:255',
-            'type' => 'required|max:255',
-            'author' => 'required',
-            'language' => 'required',
-            'publisher' => 'required',
-            'procurement' => 'required',
-            'file' => 'required|file|mimes:pdf|max:50048',
-            'cover' => ['required','file','mimes:png,jpg,jpeg','max:5048'],
-        ]);
+        // $request->validate([
+        //     'inventory_code' => 'required|max:255',
+        //     'isbn_issn_doi' => 'required|max:255',
+        //     'title' => 'required|max:255',
+        //     'type' => 'required|max:255',
+        //     'author' => 'required',
+        //     'language' => 'required',
+        //     'publisher' => 'required',
+        //     'procurement' => 'required',
+        //     'file' => 'required|file|mimes:pdf|max:50048',
+        //     'cover' => ['required','file','mimes:png,jpg,jpeg','max:5048'],
+        // ]);
         try{
             $path = $request->file('file')->store('collections');
             $path_cover = $request->file('cover')->store('covers');
@@ -86,7 +86,7 @@ class CollectionController extends Controller
             'abstract' => $request['abstract'],
             'type_id' => $request['type'],
             'author_code' => $request['author_code'],
-            'language_id' => $request['language'],
+            'language_code' => $request['language'],
             'publish_year' => $request['publish_year'],
             'classification' => $request['classification'],
             'volume' => $request['volume'],
