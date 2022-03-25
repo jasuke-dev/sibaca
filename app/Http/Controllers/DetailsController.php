@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class DetailsController extends Controller
 {
-    public function index($id){
-        // $data = Collection::with('authors','subjects')->where('id',$id)->get();
-        // dd($data[0]->authors);        
+    public function index($id){  
         return view('search.details',[
             'data' => Collection::with('authors','subjects','language','type')->findOrFail($id)
         ]);

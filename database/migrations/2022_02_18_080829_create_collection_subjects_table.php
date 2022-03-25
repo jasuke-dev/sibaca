@@ -21,10 +21,6 @@ class CreateCollectionSubjectsTable extends Migration
                     ->cascadeOnDelete();
             $table->string('code');
             $table->foreign('code')->references('code')->on('subjects');
-            // $table  ->foreignId('code')
-            //         ->constrained('subjects','code')
-            //         ->nullable()
-            //         ->nullOnDelete();
             $table  ->timestamps();
         });
     }
