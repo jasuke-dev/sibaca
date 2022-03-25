@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use GuzzleHttp\Psr7\Message;
+use Illuminate\Database\QueryException;
 
 class SubjectController extends Controller
 {
@@ -54,8 +56,11 @@ class SubjectController extends Controller
             'code' => $request['subject_code'],
             'subject' => $request['subject'],
         ];
-
-        Subject::create($validatedData);
+        try {
+            Subject::create($validatedData);
+        } catch (QueryException $th) {
+            return redirect('/admin/subject')->with('error','Something Error while Insert Data (Code must be unique)');
+        }
 
         return redirect('/admin/subject')->with('success',"New Subject has been aded!");
     }
