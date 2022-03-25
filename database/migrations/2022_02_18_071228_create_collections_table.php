@@ -15,7 +15,7 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('inventory_code')->nullable();
+            $table->string('inventory_code')->unique()->nullable();
             $table->string('isbn_issn_doi')->unique()->nullable();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();

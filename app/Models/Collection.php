@@ -32,7 +32,7 @@ class Collection extends Model
     }
 
     public function subjects(){
-        return $this->belongsToMany(Subject::class, 'collection_subjects')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
+        return $this->belongsToMany(Subject::class, 'collection_subjects','collection_id','code',null,'code')->withTimestamps(); //meng custom tabel ketiga aslinya collection_subject
     }
 
     public function authors(){

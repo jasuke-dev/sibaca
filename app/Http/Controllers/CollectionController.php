@@ -26,6 +26,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
+        // return (Collection::with('subjects')->findOrFail('ee6542c2-6314-444a-8116-41fd985c976b'));
         return view('admin.pages.lists.index',[
             'title' => 'Collections',
             'page' => 'collections',
