@@ -1,11 +1,11 @@
-<div class="bg-gray-50 min-h-screen overflow-hidden">
+<div class="bg-gray-100 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" x-cloak>
     <div class="flex flex-col w-screen">
-      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-slate-900">
+      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-gray-50 dark:bg-gray-800 shadow-md">
         <div class="grid grid-cols-10 basis-10/12 justify-between">
-          <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center">Sibaca</div>
-          <input type="text" wire:model="search" class="min-w-full text-black px-2 col-span-4 rounded-md" >
+          <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">Sibaca</div>
+          <input type="text" wire:model="search" class="min-w-full text-black border bg-gray-50 px-2 col-span-4 rounded-md" >
         </div>
-        <ul class="flex items-center flex-shrink-0 space-x-6 mr-14">
+        <ul class="flex items-center flex-shrink-0 space-x-6 mr-14 text-purple-600 dark:text-purple-300">
           <!-- Theme toggler -->
           <li class="flex">
             <button
@@ -98,7 +98,7 @@
           </li>
         </ul>
       </div>
-      <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50s">
+      <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50 dark:divide-gray-700/50">
           <div class="grid grid-cols-10 basis-10/12 justify-between py-4">
             <div class="col-span-2 justify-self-center">Filters Off</div>
             <div class="col-span-8 text-gray-500 font-light">
@@ -107,10 +107,10 @@
           </div>
           <div class="grid grid-cols-10 basis-10/12 justify-between py-8">
             <div class="col-span-2 justify-self-center space-y-4">
-              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow">
-                <div>Type</div>
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow dark:border-gray-500">
+                <div class="dark:text-gray-200">Type</div>
                 <div>
-                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2" wire:model="type">
+                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 dark:bg-gray-900 dark:text-gray-200" wire:model="type">
                     <option value="0">Any</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->type }}</option>
@@ -118,10 +118,10 @@
                   </select>
                 </div>
               </div>
-              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
-                <div>Author</div>
+              <div class="flex flex-row space-x-4 border-2 dark:border-gray-500 p-2 rounded-md">
+                <div class="dark:text-gray-200">Author</div>
                 <div>
-                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
+                  <select class="bg-gray-100 text-blue-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
                     <option value="0">Any</option>
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}">{{ $author->author }}</option>
@@ -129,10 +129,10 @@
                   </select>
                 </div>
               </div>
-              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md">
-                <div>Language</div>
+              <div class="flex flex-row space-x-4 border-2 p-2 rounded-md dark:border-gray-500">
+                <div class="dark:text-gray-200">Language</div>
                 <div>
-                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full" wire:model="language">
+                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 w-24 max-w-full dark:bg-gray-900 dark:text-gray-200" wire:model="language">
                     <option value="0">Any</option>
                     @foreach ($languages as $language)
                         <option value="{{ $language->code }}">{{ $language->language }}</option>
@@ -140,10 +140,10 @@
                   </select>
                 </div>
               </div>
-              <div class="border-2 p-2 rounded-md">
+              <div class="border-2 p-2 rounded-md dark:border-gray-500">
                 <div>subjects</div>
                 <div>
-                  <select wire:model.defer="subject" class="block text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md p-3 mt-3 appearance-none multiple-select  w-56 max-w-full" id="id" placeholder="Start Typing..." name="subject[]">
+                  <select wire:model.defer="subject" class="block text-sm dark:bg-gray-900 dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md p-3 mt-3 appearance-none multiple-select  w-56 max-w-full" id="id" placeholder="Start Typing..." name="subject[]">
 
                   </select>
                 </div>
@@ -153,15 +153,15 @@
             <div id="results" class="col-span-8 space-y-6">
               @foreach ($results as $result)
                 <div class="mb-4 space-y-1">
-                  <a href="/details/{{ $result->id }}" class="text-xl font-bold text-blue-700 hover:text-purple-700"> {{ $result->title }} </a>
+                  <a href="/details/{{ $result->id }}" class="text-xl font-bold text-blue-700 hover:underline dark:text-blue-400 dark:hover:underline"> {{ $result->title }} </a>
                   <div>
                     @foreach ($result->authors as $author)
-                        <a href="" class="font-medium hover:text-green-900 text-lime-700">{{ $author->author }}</a>
+                        <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->author }}</a>
                     @endforeach
                   </div>
                   <div>
                     @foreach ($result->subjects as $subject)
-                        <a href="" class="bg-slate-200 hover:bg-slate-300 font-normal py-1 px-3 rounded text-sm">{{ $subject->subject }}</a>
+                        <a href="" class="bg-slate-200 hover:bg-slate-300 dark:bg-gray-800 dark:hover:bg-gray-700 font-normal py-1 px-3 rounded text-sm">{{ $subject->subject }}</a>
                     @endforeach
                   </div>
                   <p class="line-clamp-3 md:line-clamp-2">{{ $result->abstract }}</p>
