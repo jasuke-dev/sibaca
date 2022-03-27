@@ -14,13 +14,13 @@ use SebastianBergmann\Environment\Console;
 class SearchPage extends Component
 {
     use WithPagination;
-    public $search;
+    public $query;
     public $type;
     public $author;
     public $language;
     public $subject = [];
     public $counter = 0;
-    protected $queryString = ['search','type','author','language','subject'];
+    protected $queryString = ['query','type','author','language','subject'];
 
     // protected $listeners = ['contentChanged' => 'setEvent'];
 
@@ -49,7 +49,7 @@ class SearchPage extends Component
         $this->reRenderSubject($this->subject);
         return view('livewire.search-page',[
             'results' => Collection::with('authors','subjects')
-                                    ->where('title', 'LIKE', "%$this->search%" ?? '%')
+                                    ->where('title', 'LIKE', "%$this->query%" ?? '%')
                                     ->when($this->type, function($query, $type){
                                         return $query->where('type_id','LIKE',$type);
                                     })

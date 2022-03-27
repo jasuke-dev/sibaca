@@ -4,8 +4,14 @@
 <div class="flex flex-col w-screen">
     <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-gray-50 dark:bg-gray-800 shadow-md">
       <div class="grid grid-cols-10 basis-10/12 justify-between">
-        <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">Sibaca</div>
-        <input type="text" wire:model="search" class="min-w-full text-black border bg-gray-50 px-2 col-span-4 rounded-md" >
+        <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
+            <a href="/search">
+                Sibaca
+            </a>
+        </div>
+        <form action="/search" method="get" class="col-span-4">
+            <input type="text" name="query" class="min-w-full min-h-full text-black border bg-gray-50 px-2 rounded-md" >
+        </form>
       </div>
       <ul class="flex items-center flex-shrink-0 space-x-6 mr-14 text-purple-600 dark:text-purple-300">
         <!-- Theme toggler -->

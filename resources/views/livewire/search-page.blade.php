@@ -2,8 +2,12 @@
     <div class="flex flex-col w-screen">
       <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-gray-50 dark:bg-gray-800 shadow-md">
         <div class="grid grid-cols-10 basis-10/12 justify-between">
-          <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">Sibaca</div>
-          <input type="text" wire:model="search" class="min-w-full text-black border bg-gray-50 px-2 col-span-4 rounded-md" >
+          <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
+            <a href="/search">
+              Sibaca
+            </a>
+          </div>
+          <input type="text" wire:model="query" class="min-w-full text-black border bg-gray-50 px-2 col-span-4 rounded-md" >
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6 mr-14 text-purple-600 dark:text-purple-300">
           <!-- Theme toggler -->
@@ -99,13 +103,13 @@
         </ul>
       </div>
       <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50 dark:divide-gray-700/50">
-          <div class="grid grid-cols-10 basis-10/12 justify-between py-4">
+          <div class="grid grid-cols-11 basis-11/12 justify-between py-4">
             <div class="col-span-2 justify-self-center">Filters Off</div>
             <div class="col-span-8 text-gray-500 font-light">
               About {{ $results->total() }} results
             </div>
           </div>
-          <div class="grid grid-cols-10 basis-10/12 justify-between py-8">
+          <div class="grid grid-cols-11 basis-11/12 justify-between py-8">
             <div class="col-span-2 justify-self-center space-y-4">
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow dark:border-gray-500">
                 <div class="dark:text-gray-200">Type</div>
@@ -150,12 +154,13 @@
               </div>
               <button wire:click="$emit('rere')">click</button>
             </div>
-            <div id="results" class="col-span-8 space-y-6">
+            <div id="results" class="space-y-6 col-span-9 grid grid-cols-9">
               @foreach ($results as $result)
-                <div class="mb-4 space-y-1">
+                <div class="mb-4 space-y-1 col-span-8">
                   <a href="/details/{{ $result->id }}" class="text-xl font-bold text-blue-700 hover:underline dark:text-blue-400 dark:hover:underline"> {{ $result->title }} </a>
                   <div>
                     @foreach ($result->authors as $author)
+                        {{ $loop->index != 0 ? ','  : '' }}
                         <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->author }}</a>
                     @endforeach
                   </div>
@@ -166,11 +171,19 @@
                   </div>
                   <p class="line-clamp-3 md:line-clamp-2">{{ $result->abstract }}</p>
                 </div>
+                <div class="cols-span-1">
+                  <a target="__blank" class="font-bold text-blue-600 dark:text-blue-400 flex space-x-2 justify-center items-center" href="{{ '/pdf/'.$result->id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Read</span>
+                  </a>
+                </div>
               @endforeach
-              <div class="mt-12">
-                {{ $results->links() }}
-              </div>
             </div>
+          </div>
+          <div class="mt-12">
+            {{ $results->links() }}
           </div>
       </div>
     </div>    
