@@ -11,8 +11,9 @@
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6 mr-14 text-purple-600 dark:text-purple-300">
           <!-- Theme toggler -->
-          <li class="flex">
+          <li class="flex" >
             <button
+              x-data = "data()"
               class="rounded-md focus:outline-none focus:shadow-outline-purple"
               @click="toggleTheme"
               aria-label="Toggle color mode"
