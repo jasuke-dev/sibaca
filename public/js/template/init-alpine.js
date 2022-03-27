@@ -13,7 +13,15 @@ function data() {
   }
 
   function setThemeToLocalStorage(value) {
+    console.log("ganti")
+    window.localStorage.setItem('theme',(value ? 'dark':''))
     window.localStorage.setItem('dark', value)
+    if (localStorage.theme === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+        } else {
+        console.log("remove")
+        document.documentElement.classList.remove('dark')
+    }
   }
 
   //mengecek lokasi untuk menentukan dropdown

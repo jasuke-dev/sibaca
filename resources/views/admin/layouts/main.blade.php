@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="overflow-hidden" :class="!dark ? '': 'dark' " x-data="data()" lang="en">
+<html class="overflow-hidden" x-data="data()" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,7 @@
     <script src={{ asset("js/template/init-alpine.js") }}></script>
     <script src={{ asset("js/template/focus-trap.js") }}></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/tomSelect.js') }}"></script>
     {{-- livewire --}}
@@ -35,7 +35,5 @@
     @livewireScripts
     {{-- livewire --}}
 
-    
-    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<div class="bg-gray-100 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" x-cloak>
+<div class="bg-gray-100 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" \>
     <div class="flex flex-col w-screen">
       <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-gray-50 dark:bg-gray-800 shadow-md">
         <div class="grid grid-cols-10 basis-10/12 justify-between">
