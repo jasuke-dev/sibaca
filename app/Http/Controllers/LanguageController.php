@@ -44,9 +44,13 @@ class LanguageController extends Controller
     {
         $validatedData = $request->validate([
             'language' => 'required|max:255',
+            'code' => 'required|max:255',
         ]);
-
-        Language::create($validatedData);
+        try {
+            Language::create($validatedData);
+        } catch (\Throwable $th) {
+            return redirect('/admin/language')->with('error',$th->getMessage());
+        }
 
         return redirect('/admin/language')->with('success',"New Language has been aded!");
     }

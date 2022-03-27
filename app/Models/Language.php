@@ -16,7 +16,7 @@ class Language extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'language',
+        'language','code'
     ];
 
     public function collection(){

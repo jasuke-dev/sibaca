@@ -11,7 +11,7 @@
     <title>Document</title>
     @livewireStyles
 </head>
-<body>
+<body class="font-sans">
 
     @yield('container')
 

@@ -13,7 +13,12 @@
                 <label for="file" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">File</span>
                     <div class="flex gap-4 mt-2">
-                      <a target="_blank" class="font-bold text-blue-600 self-center" href="{{ asset('storage/'.$collection->path_file) }}">PDF</a>
+                      <a target="_blank" class="font-bold text-purple-600 self-center" href="{{ asset('storage/'.$collection->path_file) }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        PDF
+                      </a>
                       <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 appearance-none border-2 self-center" placeholder="Collection File" name="file" id="pdf_file">
                     </div>
                     <input type="hidden" name="oldFile" value="{{ $collection->path_file }}">
@@ -26,7 +31,7 @@
                 <label for="Cover" class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Cover</span>
                     <div class="flex gap-4 mt-4">
-                      <img src="{{ asset('storage/'.$collection->path_cover) }}" alt="" class="h-40 self-center">
+                      <img src="{{ asset('storage/'.$collection->path_cover) }}" alt="Image not Found" class="h-40 self-center dark:text-gray-300">
                       <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2 self-end" placeholder="Cover Image" name="cover">
                     </div>
                     <input type="hidden" name="oldCover" value="{{ $collection->path_cover }}">
@@ -138,7 +143,7 @@
                   </label>
                   <label for="author_code" class="block mt-4 text-sm basis-1/12">
                     <span class="text-gray-700 dark:text-gray-400">Code</span>
-                    <input type="text" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="New author_code collection" name="author_code" value="{{ old('author_code',$collection->author_code) }}">
+                    <input type="text" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 text-gray-800 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="New author_code collection" name="author_code" value="{{ old('author_code',$collection->author_code) }}">
                     @error("author_code")
                         <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                             {{ $message }}
@@ -151,10 +156,10 @@
                     <span class="text-gray-700 dark:text-gray-400">Language</span>
                     <select class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" value="{{ old('language') }}" name="language">
                       @foreach ($languages as $language)
-                        @if (old('language', $collection->language_id) == $language->id)
-                          <option value="{{ $language->id }}" selected>{{ $language->language }}</option>
+                        @if (old('language', $collection->language_code) == $language->Code)
+                          <option value="{{ $language->code }}" selected>{{ $language->language }}</option>
                         @else
-                          <option value="{{ $language->id }}">{{ $language->language }}</option>
+                          <option value="{{ $language->code }}">{{ $language->language }}</option>
                         @endif
                       @endforeach
                     </select>
@@ -286,7 +291,7 @@
     </main>
     <script>
         let selected_subject = @js($collection->subjects);
-        let selected_subject_id = @js($collection->subjects->pluck('id'));
+        let selected_subject_code = @js($collection->subjects->pluck('code'));
         let selected_author = @js($collection->authors->pluck('id'));
 
         let selectAuthor = new TomSelect('#author',{
@@ -299,7 +304,7 @@
         let selectSubject = new TomSelect('#select-subject',{
               maxItems: null,
               maxOptions: 100,
-              valueField: 'id',
+              valueField: 'code',
               labelField: 'subject',
               searchField: 'subject',
               sortField: 'subject',
@@ -320,8 +325,10 @@
         });
 
         try {
+          console.log(selected_subject_code)
             selectAuthor.setValue(selected_author)
-            selectSubject.setValue(selected_subject_id)
+            selectSubject.setValue(selected_subject_code)
+            
         } catch (error) {
             console.log("failed to reset value subject")
         }
