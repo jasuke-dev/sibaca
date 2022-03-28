@@ -12,6 +12,14 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/tomSelect.js') }}"></script>
+    <script>
+      if (localStorage.theme === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark')
+          } else {
+          console.log("remove")
+          document.documentElement.classList.remove('dark')
+      }
+    </script>
     {{-- livewire --}}
     @livewireStyles
     {{-- livewire --}}
