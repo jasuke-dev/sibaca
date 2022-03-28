@@ -20,7 +20,11 @@ class AuthorDatatables extends LivewireDatatable
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
-            Column::name('author')
+            Column::name('firstname')
+                ->filterable()
+                ->alignCenter()
+                ->editable(),
+            Column::name('lastname')
                 ->filterable()
                 ->alignCenter()
                 ->editable(),
@@ -30,10 +34,10 @@ class AuthorDatatables extends LivewireDatatable
             DateColumn::name('updated_at')
                 ->filterable()
                 ->alignCenter(),
-            Column::callback(['id','author'], function($id, $author){
+            Column::callback(['id','firstname','lastname'], function($id, $firstname, $lastname){
                 return view('livewire.lists-datatables', [
                     'id' => $id,
-                    'name' => $author,
+                    'name' => $firstname.' '.$lastname,
                     'edit' => false
                 ]);
             })->unsortable()

@@ -123,7 +123,8 @@
                     </div>
                     <div>
                         @foreach ($data->authors as $author)
-                            <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->author }}</a>
+                          {{ $loop->index != 0 ? ','  : '' }}
+                          <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</a>
                         @endforeach
                     </div>
                     <div>

@@ -53,9 +53,20 @@ class CollectionDatatables extends LivewireDatatable
                 ->filterable()
                 ->searchable()
                 ->truncate(30),
-            Column::name('authors.author')
-                ->filterable($this->authors->pluck('author'))
-                ->alignCenter(),
+            Column::name('authors.firstname')
+                ->alignCenter()
+                ->label('Author Firstname')
+                ->filterable($this->authors->pluck('firstname')),
+            Column::name('authors.lastname')
+                ->alignCenter()
+                ->label('Author lastname')
+                ->filterable($this->authors->pluck('lastname')),
+            // Column::raw('CONCAT(authors.firstname, " ", authors.lastname) AS Full')
+            //     ->label('Authors')
+            //     ->filterable(),
+            // Column::callback(['authors.firstname', 'authors.lastname'], function ($id, $planetName) {
+            //     return "User $id hails from $planetName";
+            // })->label('Computed (php closure)'),
             Column::name('subjects.subject')
                 ->filterable()
                 ->alignCenter(),

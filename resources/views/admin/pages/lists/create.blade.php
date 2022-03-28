@@ -353,13 +353,33 @@
                     </label>
                     <label for="{{ $page }}" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>
-                        <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Fill New {{ $title }}" name="{{  $page  }}">
+                        <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Fill New {{ $title }}" name="{{ $page }}">
                         @error("{{ $page }}")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
                             </div>
                         @enderror
                     </label>
+                @elseif($page == 'author')
+                    <label for="code" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Firstname</span>
+                        <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Fill New Author" name="firstname">
+                        @error("code")
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </label>
+                    <label for="lastname" class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>
+                        <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Fill New {{ $title }}" name="lastname">
+                        @error("lastname")
+                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </label>
+
                 @else
                     <label for="{{ $page == 'users' ? 'username' : $page }}" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">{{ $title }}</span>

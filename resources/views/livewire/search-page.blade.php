@@ -146,7 +146,7 @@
                   <select class="bg-gray-100 text-blue-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
                     <option value="0">Any</option>
                     @foreach ($authors as $author)
-                        <option value="{{ $author->id }}">{{ $author->author }}</option>
+                        <option value="{{ $author->id }}">{{ $author->full_name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -181,7 +181,7 @@
                   <div>
                     @foreach ($result->authors as $author)
                         {{ $loop->index != 0 ? ','  : '' }}
-                        <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->author }}</a>
+                        <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</a>
                     @endforeach
                   </div>
                   <div>

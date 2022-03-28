@@ -9,12 +9,19 @@ class Author extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-        'author',
+    protected $guarded = [
+        'id',
     ];
+    protected $appends = [ 'full_name' ];
 
     public function collections()
     {
         return $this->belongsToMany(Collection::class);
+    }
+
+    //accessor
+    public function getFullNameAttribute()
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }
