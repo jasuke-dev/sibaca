@@ -10,13 +10,14 @@
                 </h2>
                 {{-- add button --}}
                 <div class="flex gap-2">
+                    @if(Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections')
                     <button
                         @click="openModal"
                         class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
                     >
                         Import Data
                     </button>
-                    {{-- @endif --}}
+                    @endif
 
                     <a class="flex items-end justify-between p-4 text-sm font-semibold text-purple-100 bg-purple-600 hover:bg-purple-700 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple transition-colors duration-150" href="/admin/{{ $page }}/create">
                         <div class="flex items-center">

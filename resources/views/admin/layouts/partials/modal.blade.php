@@ -72,8 +72,47 @@
                         </thead>
                     </table>
                 </div>
+          @elseif(Route::current()->uri == 'admin/collections')
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    Insert data in format .JSON format
+                </p>
+                <div class="overflow-x-auto my-5">
+                    <table class="w-full whitespace-no-wrap">
+                        <thead>
+                          <tr
+                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                          >
+                            <th class="px-4 py-3">Accno</th>
+                            <th class="px-4 py-3">ket inventaris</th>
+                            <th class="px-4 py-3">judul</th>
+                            <th class="px-4 py-3">Anak Judul</th>
+                            <th class="px-4 py-3">subject</th>
+                            <th class="px-4 py-3">judul</th>
+                            <th class="px-4 py-3">bahasa</th>
+                            <th class="px-4 py-3">status_pengarang</th>
+                            <th class="px-4 py-3">pengarang</th>
+                            <th class="px-4 py-3">penerjemah</th>
+                            <th class="px-4 py-3">Editor</th>
+                            <th class="px-4 py-3">kd_kelas</th>
+                            <th class="px-4 py-3">kd_pengarang</th>
+                            <th class="px-4 py-3">kd_judul</th>
+                            <th class="px-4 py-3">jilid</th>
+                            <th class="px-4 py-3">edisi</th>
+                            <th class="px-4 py-3">kota</th>
+                            <th class="px-4 py-3">penerbit</th>
+                            <th class="px-4 py-3">sumber pengadaan</th>
+                            <th class="px-4 py-3">tahun_pengadaan</th>
+                            <th class="px-4 py-3">harga</th>
+                            <th class="px-4 py-3">kolasi</th>
+                            <th class="px-4 py-3">ISBN/ISSN</th>
+                            <th class="px-4 py-3">type</th>
+                            <th class="px-4 py-3">abstract</th>
+                          </tr>
+                        </thead>
+                    </table>
+                </div>
           @endif
-          @if (Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections' || Route::current()->uri == 'admin/publisher')    
+          @if (Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections')    
             <form method="POST" action="/import/{{ $page }}" enctype="multipart/form-data">
                 @csrf
                 <input type='file' name="file"/>
