@@ -105,9 +105,26 @@
       </div>
       <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50 dark:divide-gray-700/50">
           <div class="grid grid-cols-11 basis-11/12 justify-between py-4">
-            <div class="col-span-2 justify-self-center">Filters Off</div>
+            @if ($type || $author || $language || $subject)
+              <div class="col-span-2 justify-self-center text-lime-600 font-semibold text-xl">
+                Filter On
+              </div>
+            @else
+              <div class="col-span-2 justify-self-center font-semibold text-xl">
+                Filter Off
+              </div>
+            @endif
             <div class="col-span-8 text-gray-500 font-light">
-              About {{ $results->total() }} results
+              About {{ $results->total() }} results 
+              {{ $type || $author || $language || $subject ? 'for ':'' }}
+              {{ $type ? 'Type '.$type.' ':'' }}
+              {{ $author ? 'AND Author '.$author.' ':'' }}
+              {{ $language ? 'AND Language '.$language.' ':'' }}
+              @if ($subject)
+                  @foreach ($subject as $value)
+                    {{ $value }}
+                  @endforeach
+              @endif
             </div>
           </div>
           <div class="grid grid-cols-11 basis-11/12 justify-between py-8">
@@ -115,7 +132,7 @@
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow dark:border-gray-500">
                 <div class="dark:text-gray-200">Type</div>
                 <div>
-                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 dark:bg-gray-900 dark:text-gray-200" wire:model="type">
+                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 dark:bg-gray-900 dark:text-gray-200 max-w-full" wire:model="type">
                     <option value="0">Any</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->type }}</option>
@@ -153,7 +170,9 @@
                   </select>
                 </div>
               </div>
-              <button wire:click="$emit('rere')">click</button>
+              <button wire:click="ResetPage" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-rose-500 hover:text-rose-500 hover:border-2 dark:hover:text-rose-500 focus:border-rose-500 active:text-rose-500 focus:outline-none focus:shadow-outline-gray min-w-full h-12">
+                Reset Filter
+              </button>
             </div>
             <div id="results" class="space-y-6 col-span-9 grid grid-cols-9">
               @foreach ($results as $result)

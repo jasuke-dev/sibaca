@@ -30,6 +30,14 @@ class SearchPage extends Component
     // }
     protected $listeners = ['subjectChanged','rere'=>'$refresh'];
 
+    public function ResetPage()
+    {
+        $this->type = null;
+        $this->author = null;
+        $this->language = null;
+        $this->subject = [];        
+    }
+
     public function subjectChanged($value){        
         $this->dispatchBrowserEvent('subject-updated',[
             'type' => 'success',
