@@ -10,6 +10,7 @@ use App\Imports\CollectionsImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Spatie\PdfToImage\Pdf;
 
 class ImportController extends Controller
 {
@@ -45,8 +46,18 @@ class ImportController extends Controller
                         $path = Storage::disk('collections')->put($RandName, base64_decode($b64_pdf, true));
                         // $path = Storage::putFile('collections', base64_decode($b64_pdf, true));
                         $pathName = 'collections/'.$RandName;
+                        
+                        try {
+                            //generate Cover
+                            $pdf = new Pdf('storage/'.$pathName);
+                            $RandCoverName = Str::random(10);
+                            $pathCover = 'covers/'.$RandCoverName;
+                            $pdf->saveImage('storage/'.$pathCover);
+                        } catch (\Throwable $th) {
+                            return redirect()->back()->with('error',"Error when generating thumbnail");
+                        }
                     }catch(\Exception $e){
-                        return redirect()->back()->with('error',"erro masukin file");
+                        return redirect()->back()->with('error',"Error while save file");
                     }
         
                     $Collection = Collection::create([
@@ -65,7 +76,7 @@ class ImportController extends Controller
                         'publish_year'    => empty($row->publish_year) ? NULL : $row->publish_year, 
                         'publish_city'    => empty($row->publish_city) ? NULL : $row->publish_city, 
                         'price'    => empty($row->price) ? NULL : $row->price, 
-                        'path_cover'    => null,
+                        'path_cover'    => $pathCover,
                         'path_file'    => $pathName,
                         'type_id'    => empty($row->type_id) ? NULL : $row->type_id, 
                         'language_code'    => empty($row->languange_code) ? NULL : $row->languange_code,

@@ -18,6 +18,9 @@ class DashboardController extends Controller
         $posts = Collection::withCount('type')->get();
     }
     public function index(){
+        if (!extension_loaded('imagick')){
+            dd('imagick not installed');
+        }
         if(! $this->authorize('SuperAdmin')){
             abort(403);
         }

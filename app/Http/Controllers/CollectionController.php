@@ -8,14 +8,16 @@ use App\Models\Subject;
 use App\Models\Language;
 use App\Models\Publisher;
 use App\Models\Collection;
+use Spatie\PdfToImage\Pdf;
 use App\Models\Procurement;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\AuthorCollection;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
-use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
@@ -59,21 +61,29 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'inventory_code' => 'required|max:255',
-        //     'isbn_issn_doi' => 'required|max:255',
-        //     'title' => 'required|max:255',
-        //     'type' => 'required|max:255',
-        //     'author' => 'required',
-        //     'language' => 'required',
-        //     'publisher' => 'required',
-        //     'procurement' => 'required',
-        //     'file' => 'required|file|mimes:pdf|max:50048',
-        //     'cover' => ['required','file','mimes:png,jpg,jpeg','max:5048'],
-        // ]);
+        $request->validate([
+            'inventory_code' => 'required|max:255',
+            'isbn_issn_doi' => 'required|max:255',
+            'title' => 'required|max:255',
+            'type' => 'required|max:255',
+            'author' => 'required',
+            'language' => 'required',
+            'publisher' => 'required',
+            'procurement' => 'required',
+            'file' => 'required|file|mimes:pdf|max:50048',
+            'cover' => ['file','mimes:png,jpg,jpeg','max:5048'],
+        ]);
         try{
             $path = $request->file('file')->store('collections');
-            $path_cover = $request->file('cover')->store('covers');
+            if (request()->has('cover')){
+                $pathCover = $request->file('cover')->store('covers');
+            }else{
+                //generate Cover
+                $pdf = new Pdf('storage/'.$path);
+                $RandCoverName = Str::random(10);
+                $pathCover = 'covers/'.$RandCoverName;
+                $pdf->saveImage('storage/'.$pathCover);
+            }
         } catch (\Exception $e) {
             return redirect('/admin/collections')->with('error',$e->getMessage());
         }
@@ -100,7 +110,7 @@ class CollectionController extends Controller
             'year_of_procurement' => $request['year_of_procurement'],
             'price' => $request['price'],
             'path_file' => $path,
-            'path_cover' => $path_cover,
+            'path_cover' => $pathCover,
         ];      
         try {
             $Collection = Collection::create($validated);

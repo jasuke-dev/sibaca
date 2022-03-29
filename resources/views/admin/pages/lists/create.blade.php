@@ -65,24 +65,29 @@
                       </div>
 
                 @elseif ($page == 'collections')
-                    <label for="file" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">File</span>
-                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Collection File" name="file" id="pdf_file">
-                        @error('file')
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>
-                    <label for="Cover" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Cover</span>
-                        <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Cover Image" name="cover">
-                        @error('cover')
-                            <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </label>
+                    <div class="flex space-x-4">
+                      <label for="file" class="block mt-4 text-sm grow">
+                          <span class="text-gray-700 dark:text-gray-400">File</span>
+                          <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Collection File" name="file" id="pdf_file">
+                          @error('file')
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>
+                      <label for="Cover" class="block mt-4 text-sm grow">
+                          <span class="text-gray-700 dark:text-gray-400">Cover</span>
+                          <input type="file" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Will generate cover form first page of file if not fill" name="cover">
+                          <div class="flex items-center font-medium tracking-wide text-xs mt-1 ml-1">
+                            Will generate cover form first page of file if not fill
+                          </div>
+                          @error('cover')
+                              <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </label>
+                    </div>
                     <div class="h-fit my-4" id="pdf_preview">
                     </div>
                     <div class="flex space-x-4">
@@ -174,7 +179,7 @@
                           <span class="text-gray-700 dark:text-gray-400">Author</span>
                           <select class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" name="author[]" multiple="multiple" id="author">
                             @foreach ($authors as $author)
-                                <option value="{{ $author->id }}">{{ $author->author }}</option>
+                                <option value="{{ $author->id }}">{{ $author->full_name }}</option>
                             @endforeach
                           </select>
                           @error('author')
@@ -185,7 +190,7 @@
                       </label>
                       <label for="author_code" class="block mt-4 text-sm basis-1/12">
                         <span class="text-gray-700 dark:text-gray-400">Code</span>
-                        <input type="text" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="New author_code collection" name="author_code" value="{{ old('author_code') }}">
+                        <input type="text" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Author code" name="author_code" value="{{ old('author_code') }}">
                         @error("author_code")
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
