@@ -16,20 +16,16 @@ class UserDatatables extends LivewireDatatable
     
     public function columns()
     {
-        return [
-            Column::checkbox(),
-
+        return [            
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
             Column::name('username')
                 ->filterable()
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter(),
             Column::name('role')
                 ->filterable()
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter(),
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
@@ -40,7 +36,8 @@ class UserDatatables extends LivewireDatatable
                 return view('livewire.lists-datatables', [
                     'id' => $id,
                     'name' => $username,
-                    'edit' => false
+                    'edit' => true,
+                    'model' => 'users'
                 ]);
             })->unsortable()
             ->alignCenter()

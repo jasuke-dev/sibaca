@@ -62,7 +62,7 @@
                             <span class="ml-2">User</span>
                           </label>
                         </div>
-                      </div>
+                    </div>
 
                 @elseif ($page == 'collections')
                     <div class="flex space-x-4">

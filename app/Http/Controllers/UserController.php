@@ -83,7 +83,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.pages.lists.edit',[
+            'user' => $user,
+            'page' => 'edit'
+        ]);
     }
 
     /**
@@ -95,7 +98,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if(! $this->authorize('SuperAdmin')){
+            abort(403);
+        }
+        $validatedData = $request->validate([
+            'username' => 'required|max:255',
+            'password' => 'min:5|max:255',
+            'role' => 'required|max:255',
+        ]);
+        if($request['password']){
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        }
+
+        User::create($validatedData);
+        return redirect('/admin/users')->with('success',"User edited succesfully!");
+
     }
 
     /**

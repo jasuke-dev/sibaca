@@ -106,7 +106,8 @@ class CollectionDatatables extends LivewireDatatable
                 return view('livewire.lists-datatables', [
                     'id' => $id,
                     'name' => $title,
-                    'edit' => true
+                    'edit' => true,
+                    'model' => 'collections'
                 ]);
             })->unsortable()
             ->alignCenter()

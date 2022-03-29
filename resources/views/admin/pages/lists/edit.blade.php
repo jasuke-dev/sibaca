@@ -1,6 +1,64 @@
 @extends('admin.layouts.main')
 
 @section('container')
+    @if(explode("/",Route::current()->uri)[1] == 'users')
+    <main class="h-full py-16 overflow-y-auto">
+      {{-- form --}}
+      <form action="/admin/users/{{ $user->id }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('put')
+          <div class="w-10/12 px-8 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 mx-auto">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+              Edit Collections
+            </h2>
+            <label for="username" class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">User</span>
+                <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Edit User" name="username" required value="{{ old('username', $user->username) }}">
+                @error("username")
+                    <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </label>    
+            <label for="password" class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill Password" name="password" required>
+                @error('password')
+                    <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </label>
+            <div class="mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Account Type
+                </span>
+                <div class="mt-2 space-x-4">
+                  @foreach(["super" => "Super Admin", "admin" => "Admin", "User" => "user"] AS $role => $roleLabel )
+                    <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
+                      <input
+                        type="radio"
+                        class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        name="role"
+                        value="{{ $role }}"
+                        {{ old('role', $user->role) == $role ? "checked = 'checked'" : '' }}
+                      />
+                      <span class="ml-2">{{ $roleLabel }}</span>
+                    </label>
+                  @endforeach
+                </div>
+            </div>
+            {{-- button --}}
+            <button class="flex items-center justify-between mt-6 px-8 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+              </svg>
+             <span>Edit</span>
+            </button>
+          </div>
+      </form>
+    </main>
+    @elseif(explode("/",Route::current()->uri)[1] == 'collections')
     <main class="h-full py-16 overflow-y-auto">
         {{-- form --}}
         <form action="/admin/collections/{{ $collection->id }}" method="POST" enctype="multipart/form-data">
@@ -132,7 +190,7 @@
                       <span class="text-gray-700 dark:text-gray-400">Author</span>
                       <select class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border multiple-select" name="author[]" multiple="multiple" id="author">
                         @foreach ($authors as $author)
-                            <option value="{{ $author->id }}">{{ $author->author }}</option>
+                            <option value="{{ $author->id }}">{{ $author->full_name }}</option>
                         @endforeach
                       </select>
                       @error('author')
@@ -285,7 +343,7 @@
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                     </svg>
                    <span>Edit</span>
-                  </button>
+                </button>
             </div>
         </form>
     </main>
@@ -333,4 +391,5 @@
             console.log("failed to reset value subject")
         }
     </script>
+    @endif
 @endsection
