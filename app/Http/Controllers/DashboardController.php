@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Collection;
+use Illuminate\Http\Request;
 use App\Models\UserCollection;
-use Illuminate\Database\Eloquent\Factories\CrossJoinSequence;
-use Illuminate\Support\Facades\DB;
-
 use function PHPSTORM_META\type;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Factories\CrossJoinSequence;
 
 class DashboardController extends Controller
 {
@@ -24,7 +25,11 @@ class DashboardController extends Controller
         if(! $this->authorize('SuperAdmin')){
             abort(403);
         }
-        return view('admin.pages.dashboard.index');
+        return view('admin.pages.dashboard.index',[
+            'user' => User::count(),
+            'collection' => Collection::count(),
+            'reads' => UserCollection::count(),
+        ]);
     }
 
     public function ajax(Request $request){
