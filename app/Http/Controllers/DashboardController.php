@@ -49,20 +49,14 @@ class DashboardController extends Controller
                 
             }elseif(isset($request->range) && $request->data == 'timeseries'){
                 if($request->range == 'pastsixmonths'){
-                    $firstMonth = intval(date("m", strtotime("-6 months")));
-                    $firstYear = intval(date("Y", strtotime("-6 months")));
-                    $lastYear = intval(date("Y"));
-                    $lastMonth = intval(date("m"));
+                    $firstdate = date("Y-m-01", strtotime("-6 months"));
+                    $lastdate = date("Y-m-t");
                 }elseif($request->range == 'pastyears'){
-                    $lastYear = intval(date("Y"));
-                    $lastMonth = intval(date("m"));
-                    $firstMonth = intval(date("m", strtotime("-12 months")));
-                    $firstYear = intval(date("Y", strtotime("-12 months")));
+                    $firstdate = date("Y-m-01", strtotime("-12 months"));
+                    $lastdate = date("Y-m-t");
                 }elseif($request->range == 'pastmonths'){
-                    $lastYear = intval(date("Y"));
-                    $lastMonth = intval(date("m"));
-                    $firstMonth = intval(date("m", strtotime("-1 months")));
-                    $firstYear = intval(date("Y", strtotime("-1 months")));
+                    $firstdate = date("Y-m-01");
+                    $lastdate = date("Y-m-t");
                 }
 
                 $timeseries = DB::select("SELECT c.created_at,
@@ -77,11 +71,34 @@ class DashboardController extends Controller
                 ) AS u
                 LEFT JOIN user_collections AS t ON t.created_at = c.created_at and t.user_id = u.user_id
                 LEFT JOIN users AS s on s.id = u.user_id
-                WHERE YEAR(c.created_at) between ${firstYear} and ${lastYear} or MONTH(c.created_at) between ${firstMonth} and ${lastMonth}
+                WHERE c.created_at BETWEEN '${firstdate}' AND '${lastdate}'
                 GROUP BY MONTH(c.created_at), s.username
                 ORDER BY created_at ASC");
 
-                return response()->json(['timeseries' => $timeseries]);
+                return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
+            }elseif($request->data == 'deposit' && isset($request->range)){
+                if($request->range == 'pastsixmonths'){
+                    $firstdate = date("Y-m-01", strtotime("-6 months"));
+                    $lastdate = date("Y-m-t");
+                }elseif($request->range == 'pastyears'){
+                    $firstdate = date("Y-m-01", strtotime("-12 months"));
+                    $lastdate = date("Y-m-t");
+                }elseif($request->range == 'pastmonths'){
+                    $firstdate = date("Y-m-01");
+                    $lastdate = date("Y-m-t");
+                }
+
+                $deposit = DB::select("SELECT count(t.user_id) AS Count,s.username, DATE_FORMAT(c.created_at, '%M %Y') AS Month 
+                FROM
+                ( SELECT DISTINCT created_at FROM collections) AS c CROSS JOIN
+                ( SELECT DISTINCT user_id FROM collections) AS u LEFT JOIN
+                `collections` AS t ON t.created_at = c.created_at and t.user_id = u.user_id
+                LEFT JOIN users AS s on s.id = u.user_id
+                WHERE c.created_at BETWEEN '${firstdate}' AND '${lastdate}' 
+                GROUP BY MONTH(c.created_at), s.username
+                ORDER BY c.created_at ASC");
+
+                return response()->json(['data' => $deposit, 'query' => $firstdate, 'query2' => $lastdate]);
             }
         }
 

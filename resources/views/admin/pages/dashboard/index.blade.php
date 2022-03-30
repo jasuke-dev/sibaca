@@ -80,11 +80,13 @@
         <!-- Card -->
         <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <div
-            class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+            class="p-3 mr-4 text-rose-500 bg-rose-100 rounded-full dark:text-blue-100 dark:bg-rose-500"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-            </svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+            ></path>
+          </svg>  
           </div>
           <div>
             <p
@@ -108,7 +110,7 @@
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
             Lines
           </h4>
-          <select id="range">
+          <select id="range-reads" class="p-4 rounded-md font-semibold border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900">
             <option value="pastsixmonths" selected> Past 6 Months</option>
             <option value="pastmonths">Past months</option>
             <option value="pastyears">Past Year</option>
@@ -126,9 +128,16 @@
         </div>
         <!-- Bars chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-          <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Bars
-          </h4>
+          <div class="flex justify-between">
+            <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+              Bars
+            </h4>
+            <select id="range-deposit" class="p-4 rounded-md font-semibold border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900">
+              <option value="pastsixmonths" selected> Past 6 Months</option>
+              <option value="pastmonths">Past months</option>
+              <option value="pastyears">Past Year</option>
+            </select>
+          </div>
           <canvas id="bars"></canvas>
         </div>
       </div>
@@ -146,18 +155,30 @@
 
 
     <script>
-        BarChart()
         getTimeseries('pastsixmonths')
+        getDepositSeries('pastsixmonths')
         //Fetching data
         fetch('/admin/dashboard/ajax?data=types')
           .then(response => response.json())
           .then( data => 
             PieChart(data.types)
         )
+        function getDepositSeries(range){
+          fetch(`/admin/dashboard/ajax?data=deposit&range=${range}`)
+            .then(response => response.json())
+            .then( data => {
+                console.log("data deposit")
+                console.log(data.data)
+                BarChart(data.data)
+            }
+          )
+        }
         function getTimeseries(range){
           fetch(`/admin/dashboard/ajax?data=timeseries&range=${range}`)
             .then(response => response.json())
             .then( data => {
+                console.log(data.query)
+                console.log(data.query2)
                 console.log(data.timeseries)
                 LineChart(data.timeseries)
             }
@@ -297,27 +318,55 @@
         }
 
         //Bar Chart Function
-        function BarChart(){
+        function BarChart(data){
+          //menyiapkan variabel untuk transformasi
+          let config = {};
+          // variabel set untuk menyimpan nilai-nilai unik
+          const labels = new Set();
+          let label_username = new Set();
+          const datasets = [];
+
+          data.map(function(val, index){
+              labels.add(val.Month)
+              label_username.add(val.username)
+          })
+
+          // merubah set menjadi array agar bisa memanfaatkan index
+          label_username = [...label_username]
+
+          // membuat array warna berdasarkan banyaknya label username
+          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+
+          //melakukan nested looping untuk mengumpulkan data berdasarkan label username sejenis untuk digunakan di config
+          label_username.forEach ((value, index) => {
+              let temp = value;
+              let data_label = [];
+              for(let j=0; j<data.length; j++){
+                if(data[j].username === temp){
+                  //mengumpulkan data berdasarkan label user sejenis
+                  console.log('index :',index)
+                  console.log('j :',j)
+                  data_label.push(data[j].Count)
+                }
+              }
+              // membuat object berdasarkan label user sejenis
+              const obj = {
+                label: temp,
+                backgroundColor: colorArray[index],
+                borderColor: colorArray[index],
+                data: data_label,
+                fill: false,
+              };
+              datasets.push(obj);
+          })
+          console.log('datasets deposit')
+          console.log(datasets)
+
           const barConfig = {
             type: 'bar',
             data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [
-                {
-                  label: 'Shoes',
-                  backgroundColor: '#0694a2',
-                  // borderColor: window.chartColors.red,
-                  borderWidth: 1,
-                  data: [-3, 14, 52, 74, 33, 90, 70],
-                },
-                {
-                  label: 'Bags',
-                  backgroundColor: '#7e3af2',
-                  // borderColor: window.chartColors.blue,
-                  borderWidth: 1,
-                  data: [66, 33, 43, 12, 54, 62, 84],
-                },
-              ],
+              labels: [...labels],
+              datasets: datasets
             },
             options: {
               responsive: true,
@@ -327,6 +376,9 @@
             },
           }
           const barsCtx = document.getElementById('bars')
+          if(window.myBar){
+            window.myBar.destroy();
+          }
           window.myBar = new Chart(barsCtx, barConfig)
         }
 
@@ -368,10 +420,15 @@
             return interpolatedColorArray;
         }
 
-        let rangePicker = document.getElementById('range');
+        let rangePicker = document.getElementById('range-reads');
         rangePicker.addEventListener('change' , function(){
           console.log(rangePicker.value)
           getTimeseries(rangePicker.value);
+        })
+        let rangeDepositPicker = document.getElementById('range-deposit');
+        rangeDepositPicker.addEventListener('change' , function(){
+          console.log(rangeDepositPicker.value)
+          getDepositSeries(rangeDepositPicker.value);
         })
     </script>
 @endsection
