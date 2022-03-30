@@ -38,7 +38,6 @@ class DashboardController extends Controller
         if(! $this->authorize('SuperAdmin')){
             abort(403);
         }
-        
         if(isset($request->data)){
             if($request->data == 'types'){
                 $types = DB::table('collections')
@@ -48,14 +47,26 @@ class DashboardController extends Controller
                             ->get();
                 return response()->json(['types' => $types]);
                 
-            }elseif($request->data == 'timeseries'){
-
-                $yearfilter = 2022;
-                $firstMonth = 1;
-                $lastMonth = 6;
+            }elseif(isset($request->range) && $request->data == 'timeseries'){
+                if($request->range == 'pastsixmonths'){
+                    $firstMonth = intval(date("m", strtotime("-6 months")));
+                    $firstYear = intval(date("Y", strtotime("-6 months")));
+                    $lastYear = intval(date("Y"));
+                    $lastMonth = intval(date("m"));
+                }elseif($request->range == 'pastyears'){
+                    $lastYear = intval(date("Y"));
+                    $lastMonth = intval(date("m"));
+                    $firstMonth = intval(date("m", strtotime("-12 months")));
+                    $firstYear = intval(date("Y", strtotime("-12 months")));
+                }elseif($request->range == 'pastmonths'){
+                    $lastYear = intval(date("Y"));
+                    $lastMonth = intval(date("m"));
+                    $firstMonth = intval(date("m", strtotime("-1 months")));
+                    $firstYear = intval(date("Y", strtotime("-1 months")));
+                }
 
                 $timeseries = DB::select("SELECT c.created_at,
-                DATE_FORMAT(c.created_at, '%M') AS Month,
+                DATE_FORMAT(c.created_at, '%M %Y') AS Month,
                     s.username,
                     COUNT(t.user_id) AS Count
                 FROM (
@@ -66,8 +77,9 @@ class DashboardController extends Controller
                 ) AS u
                 LEFT JOIN user_collections AS t ON t.created_at = c.created_at and t.user_id = u.user_id
                 LEFT JOIN users AS s on s.id = u.user_id
-                WHERE YEAR(c.created_at) = ${yearfilter} and MONTH(c.created_at) between ${firstMonth} and ${lastMonth}
-                GROUP BY MONTH(c.created_at), s.username");
+                WHERE YEAR(c.created_at) between ${firstYear} and ${lastYear} or MONTH(c.created_at) between ${firstMonth} and ${lastMonth}
+                GROUP BY MONTH(c.created_at), s.username
+                ORDER BY created_at ASC");
 
                 return response()->json(['timeseries' => $timeseries]);
             }

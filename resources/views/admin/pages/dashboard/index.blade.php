@@ -108,7 +108,11 @@
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
             Lines
           </h4>
-          <input type="date">
+          <select id="range">
+            <option value="pastsixmonths" selected> Past 6 Months</option>
+            <option value="pastmonths">Past months</option>
+            <option value="pastyears">Past Year</option>
+          </select>
         </div>
         <canvas id="line"></canvas>
       </div>
@@ -142,20 +146,23 @@
 
 
     <script>
-      BarChart()
+        BarChart()
+        getTimeseries('pastsixmonths')
         //Fetching data
         fetch('/admin/dashboard/ajax?data=types')
           .then(response => response.json())
           .then( data => 
             PieChart(data.types)
         )
-        fetch('/admin/dashboard/ajax?data=timeseries')
-          .then(response => response.json())
-          .then( data => {
-              console.log(data.timeseries)
-              LineChart(data.timeseries)
-          }
-        )
+        function getTimeseries(range){
+          fetch(`/admin/dashboard/ajax?data=timeseries&range=${range}`)
+            .then(response => response.json())
+            .then( data => {
+                console.log(data.timeseries)
+                LineChart(data.timeseries)
+            }
+          )
+        }
 
         //Pie Chart Function
         function PieChart(types){
@@ -242,7 +249,7 @@
           console.log('datasets')
           console.log(datasets)
           const lineConfig = {
-            type: 'line',
+            type: 'bar',
             data: {
               labels: [...labels],
               datasets: datasets
@@ -283,6 +290,9 @@
             },
           }
           const lineCtx = document.getElementById('line')
+          if(window.myLine){
+            window.myLine.destroy()
+          }
           window.myLine = new Chart(lineCtx, lineConfig)
         }
 
@@ -357,5 +367,11 @@
 
             return interpolatedColorArray;
         }
+
+        let rangePicker = document.getElementById('range');
+        rangePicker.addEventListener('change' , function(){
+          console.log(rangePicker.value)
+          getTimeseries(rangePicker.value);
+        })
     </script>
 @endsection
