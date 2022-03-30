@@ -18,7 +18,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class CollectionDatatables extends LivewireDatatable
 {
     public $hideable = 'select';
-    public $model = Collection::class;
+    // public $model = Collection::class;
     public $exportable = true;
     public $complex = true;
     public $persistComplexQuery = true;

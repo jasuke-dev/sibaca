@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\User;
 use App\Models\Collection;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class DashboardController extends Controller
             'user' => User::count(),
             'collection' => Collection::count(),
             'reads' => UserCollection::count(),
+            'author' => Author::count(),
         ]);
     }
 

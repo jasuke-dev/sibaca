@@ -8,7 +8,7 @@
       </h2>
 
       <!-- Cards -->
-      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
+      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         <!-- Card -->
         <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <div
@@ -77,6 +77,28 @@
             </p>
           </div>
         </div>
+        <!-- Card -->
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+          <div
+            class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+            </svg>
+          </div>
+          <div>
+            <p
+              class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+            >
+              Total Authors
+            </p>
+            <p
+              class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+            >
+            {{ $author }}
+            </p>
+          </div>
+        </div>
 
       </div>
 
@@ -94,7 +116,7 @@
         <!-- Doughnut/Pie chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 relative">
-            Doughnut/Pie
+            Collection Types
           </h4>
           <canvas id="pie" style="height:40vh; width:40vw"></canvas>
         </div>
