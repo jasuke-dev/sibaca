@@ -104,6 +104,10 @@ class CollectionDatatables extends LivewireDatatable
                 ->label('Created at')
                 ->filterable()
                 ->alignCenter(),
+            DateColumn::name('Updated_at')
+                ->label('Updated at')
+                ->filterable()
+                ->alignCenter(),
             Column::callback(['id','title'], function($id, $title){
                 return view('livewire.lists-datatables', [
                     'id' => $id,

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
+use Carbon\Carbon;
 
 class CollectionController extends Controller
 {
@@ -195,6 +196,7 @@ class CollectionController extends Controller
             'procurement_id' => $request['procurement'],
             'year_of_procurement' => $request['year_of_procurement'],
             'price' => $request['price'],
+            'updated_at' => Carbon::now()->timestamp
         ];
         if($request->file('file') && $request->file('cover')){
             Storage::delete($request->oldFile);

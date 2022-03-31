@@ -22,32 +22,39 @@
             </label>    
             <label for="password" class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Password</span>
-                <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill Password" name="password" required>
+                <input type="text" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border" placeholder="Fill Password" name="password">
                 @error('password')
                     <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                         {{ $message }}
                     </div>
                 @enderror
             </label>
-            <div class="mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Account Type
-                </span>
-                <div class="mt-2 space-x-4">
-                  @foreach(["super" => "Super Admin", "admin" => "Admin", "User" => "user"] AS $role => $roleLabel )
-                    <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
-                      <input
-                        type="radio"
-                        class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        name="role"
-                        value="{{ $role }}"
-                        {{ old('role', $user->role) == $role ? "checked = 'checked'" : '' }}
-                      />
-                      <span class="ml-2">{{ $roleLabel }}</span>
-                    </label>
-                  @endforeach
-                </div>
-            </div>
+            <label for="role" class="block mt-4 text-sm">
+              <div class="mt-4 text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">
+                    Account Type
+                  </span>
+                  <div class="mt-2 space-x-4">
+                    @foreach(["super" => "Super Admin", "admin" => "Admin", "user" => "User"] AS $role => $roleLabel )
+                      <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
+                        <input
+                          type="radio"
+                          class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                          name="role"
+                          value="{{ $role }}"
+                          {{ old('role', $user->role) == $role ? "checked = 'checked'" : '' }}
+                        />
+                        <span class="ml-2">{{ $roleLabel }}</span>
+                      </label>
+                    @endforeach
+                  </div>
+                  @error('password')
+                  <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                      {{ $message }}
+                  </div>
+              @enderror
+              </div>
+            </label>
             {{-- button --}}
             <button class="flex items-center justify-between mt-6 px-8 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700" type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">

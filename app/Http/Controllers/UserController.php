@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -103,16 +104,23 @@ class UserController extends Controller
         }
         $validatedData = $request->validate([
             'username' => 'required|max:255',
-            'password' => 'min:5|max:255',
-            'role' => 'required|max:255',
+            'password' => 'max:255',
+            'role' => 'required|in:super,admin,user',
         ]);
+        $validatedData['updated_at'] = Carbon::now();
         if($request['password']){
             $validatedData['password'] = Hash::make($validatedData['password']);
+        }else{
+            $validatedData['password'] = $user->password;
         }
-
-        User::create($validatedData);
-        return redirect('/admin/users')->with('success',"User edited succesfully!");
-
+        try {
+            User::where('id' , $user->id)
+            ->update($validatedData);
+            return redirect('/admin/users')->with('success','User Succesfuly updated');
+        } catch (\Throwable $th) {
+            return redirect('/admin/users')->with('error',"Failed to edit user!");
+        }
+        
     }
 
     /**
