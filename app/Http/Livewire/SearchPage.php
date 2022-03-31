@@ -28,6 +28,22 @@ class SearchPage extends Component
     // {
     //     $this->dispatchBrowserEvent('contentChanged');
     // }
+    public function updatingLanguage(){
+        $this->gotoPage(1);
+    }
+    public function updatingQuery(){
+        $this->gotoPage(1);
+    }
+    public function updatingType(){
+        $this->gotoPage(1);
+    }
+    public function updatingAuthor(){
+        $this->gotoPage(1);
+    }
+    public function updatingSubject(){
+        $this->gotoPage(1);
+    }
+
     protected $listeners = ['subjectChanged','rere'=>'$refresh'];
 
     public function setAuthor($id){

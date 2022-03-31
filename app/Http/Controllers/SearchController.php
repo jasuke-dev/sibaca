@@ -39,7 +39,7 @@ class SearchController extends Controller
                             })->paginate(10); 
         // return $result[0]->authors[0]->author;       
         return view('search.index',[
-            'results' => $result,
+            // 'results' => $result,
         ]);
     }
     public function ajax(Request $request){

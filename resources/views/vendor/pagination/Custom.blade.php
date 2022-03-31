@@ -11,17 +11,17 @@
     </span>
     @else
     {{-- previous enable --}}
-    <a href="{{ $paginator->previousPageUrl() }}"
+    <button wire:click="previousPage"
       class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 transition bg-white border border-gray-300 rounded dark:text-gray-200 dark:border-gray-600 hover:text-gray-400 dark:hover:text-gray-300 focus:outline-none focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-30 dark:bg-gray-700 dark:focus:ring-gray-500 dark:focus:ring-opacity-30">
       {!! __('pagination.previous') !!}
-    </a>
+    </button>
     @endif
     {{-- next enable --}}
     @if ($paginator->hasMorePages())
-    <a href="{{ $paginator->nextPageUrl() }}"
+    <button wire:click="nextPage"
       class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 transition bg-white border border-gray-300 rounded dark:text-gray-200 dark:border-gray-600 hover:text-gray-400 dark:hover:text-gray-300 focus:outline-none focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-30 dark:bg-gray-700 dark:focus:ring-gray-500 dark:focus:ring-opacity-30">
       {!! __('pagination.next') !!}
-    </a>
+    </button>
     @else
     {{-- next disable --}}
     <span
@@ -64,7 +64,7 @@
         </span>
         @else
         {{-- Previous Page Link Enable --}}
-        <a href="{{ $paginator->previousPageUrl() }}"
+        <button wire:click="previousPage"
           rel="prev"
           class="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 transition bg-white border border-gray-300 rounded-l hover:text-gray-400 focus:z-10 focus:outline-none focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-30 dark:focus:ring-gray-500 dark:focus:ring-opacity-30 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700"
           aria-label="{{ __('pagination.previous') }}">
@@ -75,7 +75,7 @@
               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
               clip-rule="evenodd" />
           </svg>
-        </a>
+        </button>
         @endif
 
         {{-- Pagination Elements --}}
@@ -98,11 +98,11 @@
         </span>
         @else
         {{-- Array Of Links Enable --}}
-        <a href="{{ $url }}"
+        <button wire:click="gotoPage({{ $page }})"
           class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 transition bg-white border border-gray-300 hover:text-gray-400 dark:hover:text-gray-300 focus:z-10 focus:outline-none focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-30 dark:focus:ring-gray-500 dark:focus:ring-opacity-30 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-700"
           aria-label="{{ __('pagination.goto_page', ['page' => $page]) }}">
           {{ $page }}
-        </a>
+        </button>
         @endif
         @endforeach
         @endif
@@ -110,7 +110,7 @@
 
         {{-- Next Page Link Enable --}}
         @if ($paginator->hasMorePages())
-        <a href="{{ $paginator->nextPageUrl() }}"
+        <button wire:click="nextPage"
           rel="next"
           class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 transition bg-white border border-gray-300 rounded-r hover:text-gray-400 focus:z-10 focus:outline-none focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-30 dark:focus:ring-gray-500 dark:focus:ring-opacity-30 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-700"
           aria-label="{{ __('pagination.next') }}">
@@ -121,7 +121,7 @@
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
               clip-rule="evenodd" />
           </svg>
-        </a>
+        </button>
         @else
         {{-- Next Page Link Disable --}}
         <span aria-disabled="true"
