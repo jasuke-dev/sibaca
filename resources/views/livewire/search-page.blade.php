@@ -1,13 +1,34 @@
-<div class="bg-gray-100 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" \>
+<div class="bg-gray-50 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" \>
     <div class="flex flex-col w-screen">
-      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-gray-50 dark:bg-gray-800 shadow-md">
+      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-800 shadow-md">
         <div class="grid grid-cols-10 basis-10/12 justify-between">
           <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
             <a href="/search">
               Sibaca
             </a>
           </div>
-          <input type="text" wire:model="query" class="min-w-full text-black border bg-gray-50 px-2 col-span-4 rounded-md" >
+          <div class="col-span-4">
+            <div class="relative w-full max-w-xl mr-6 text-gray-600 focus-within:text-gray-800 dark:text-gray-200 dark:focus-within:text-white min-h-full">
+              <div class="absolute inset-y-0 flex items-center pl-2">
+                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <input type="text" wire:model.debounce.500ms="query" class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-2 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-gray-100 dark:focus:border-gray-500 border-gray-100 dark:border-gray-700 focus:outline-none focus:shadow-outline-purple form-input h-10" >
+            </div>
+          </div>
+          {{-- <div class="min-w-full col-span-4 lg:mr-32 h-12">
+            <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+              <div class="absolute inset-y-0 flex items-center pl-2">
+                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <input
+                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input max-h-44" type="text" placeholder="Search for projects" aria-label="Search"
+              />
+            </div>
+          </div> --}}
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6 mr-14 text-purple-600 dark:text-purple-300">
           <!-- Theme toggler -->
@@ -56,12 +77,9 @@
               aria-label="Account"
               aria-haspopup="true"
             >
-              <img
-                class="object-cover w-8 h-8 rounded-full"
-                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                alt=""
-                aria-hidden="true"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-600 dark:text-gray-200 object-cover" viewbox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+            </svg>
             </button>
             <template x-if="isProfileMenuOpen">
               <ul
@@ -116,7 +134,8 @@
             @endif
             <div class="col-span-8 text-gray-500 font-light">
               About {{ $results->total() }} results 
-              {{ $type || $author || $language || $subject ? 'for ':'' }}
+              {{ $type || $author || $language || $subject || $query ? 'for ':'' }}
+              {{ $query ? $query : '' }}
               {{ $type ? 'Type '.$type.' ':'' }}
               {{ $author ? 'AND Author '.$author.' ':'' }}
               {{ $language ? 'AND Language '.$language.' ':'' }}
