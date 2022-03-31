@@ -189,7 +189,7 @@
                   </select>
                 </div>
               </div>
-              <button wire:click="ResetPage" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-rose-500 hover:text-rose-500 hover:border-2 dark:hover:text-rose-500 focus:border-rose-500 active:text-rose-500 focus:outline-none focus:shadow-outline-gray min-w-full h-12">
+              <button wire:click="ResetPage" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-rose-500 hover:text-rose-500 hover:border-2 hover:font-bold dark:hover:text-rose-500 focus:border-rose-500 active:text-rose-500 focus:outline-none focus:shadow-outline-gray min-w-full h-12">
                 Reset Filter
               </button>
             </div>
@@ -200,12 +200,12 @@
                   <div>
                     @foreach ($result->authors as $author)
                         {{ $loop->index != 0 ? ','  : '' }}
-                        <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</a>
+                        <button wire:click='setAuthor({{ $author->id }})' class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</button>
                     @endforeach
                   </div>
                   <div>
                     @foreach ($result->subjects as $subject)
-                        <a href="" class="bg-slate-200 hover:bg-slate-300 dark:bg-gray-800 dark:hover:bg-gray-700 font-normal py-1 px-3 rounded text-sm">{{ $subject->subject }}</a>
+                        <button wire:click='setSubject("{{ $subject->code }}")' class="bg-slate-200 hover:bg-slate-300 dark:bg-gray-800 dark:hover:bg-gray-700 font-normal py-1 px-3 rounded text-sm">{{ $subject->subject }}</button>
                     @endforeach
                   </div>
                   <p class="line-clamp-3 md:line-clamp-2">{{ $result->abstract }}</p>

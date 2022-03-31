@@ -30,6 +30,13 @@ class SearchPage extends Component
     // }
     protected $listeners = ['subjectChanged','rere'=>'$refresh'];
 
+    public function setAuthor($id){
+        $this->author = $id;
+    }
+    public function setSubject($code){
+        $this->subject = [$code];
+        // array_push($this->subject,$code);
+    }
     public function ResetPage()
     {
         $this->type = null;
