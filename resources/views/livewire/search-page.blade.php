@@ -219,10 +219,10 @@
                   </a>
                 </div>
               @endforeach
+              <div class="mt-12 col-span-8 text-blue-500">
+                {{ $results->links('vendor.pagination.Custom') }}
+              </div>
             </div>
-          </div>
-          <div class="mt-12">
-            {{ $results->links() }}
           </div>
       </div>
     </div>    

@@ -74,7 +74,7 @@ class SearchPage extends Component
                                             $query->WhereIn('subjects.code', $this->subject);
                                         });
                                     })
-                                    ->paginate(10),
+                                    ->paginate(2),
             'types' => Type::all(),
             'authors' => Author::all(),
             'languages' => Language::all(),
