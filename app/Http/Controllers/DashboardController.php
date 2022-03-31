@@ -73,7 +73,7 @@ class DashboardController extends Controller
                 ) AS u
                 LEFT JOIN user_collections AS t ON t.created_at = c.created_at and t.user_id = u.user_id
                 LEFT JOIN users AS s on s.id = u.user_id
-                WHERE c.created_at BETWEEN '${firstdate}' AND '${lastdate}'
+                WHERE cast(c.created_at as date) BETWEEN '${firstdate}' AND '${lastdate}'
                 GROUP BY MONTH(c.created_at), s.username
                 ORDER BY created_at ASC");
 
@@ -100,7 +100,7 @@ class DashboardController extends Controller
                 ( SELECT DISTINCT user_id FROM collections) AS u LEFT JOIN
                 `collections` AS t ON t.created_at = c.created_at and t.user_id = u.user_id
                 LEFT JOIN users AS s on s.id = u.user_id
-                WHERE c.created_at BETWEEN '${firstdate}' AND '${lastdate}' 
+                WHERE cast(c.created_at as date) BETWEEN '${firstdate}' AND '${lastdate}' 
                 GROUP BY MONTH(c.created_at), s.username
                 ORDER BY c.created_at ASC");
 
