@@ -34,35 +34,53 @@
                             </div>
                         @enderror
                     </label>
-                    <div class="mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">
-                          Account Type
-                        </span>
-                        <div class="mt-2">
-                          <label
-                            class="inline-flex items-center text-gray-600 dark:text-gray-400"
-                          >
-                            <input
-                              type="radio"
-                              class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                              name="role"
-                              value="admin"
-                            />
-                            <span class="ml-2">Admin</span>
-                          </label>
-                          <label
-                            class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
-                          >
-                            <input
-                              type="radio"
-                              class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                              name="role"
-                              value="user"
-                            />
-                            <span class="ml-2">User</span>
-                          </label>
-                        </div>
-                    </div>
+                    <label for="role" class="block mt-4 text-sm">
+                      <div class="mt-4 text-sm">
+                          <span class="text-gray-700 dark:text-gray-400">
+                            Account Type
+                          </span>
+                          <div class="mt-2">
+                            <label
+                              class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                            >
+                              <input
+                                type="radio"
+                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                name="role"
+                                value="super"
+                              />
+                              <span class="ml-2">Super Admin</span>
+                            </label>
+                            <label
+                              class="inline-flex items-center text-gray-600 dark:text-gray-400"
+                            >
+                              <input
+                                type="radio"
+                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                name="role"
+                                value="admin"
+                              />
+                              <span class="ml-2">Admin</span>
+                            </label>
+                            <label
+                              class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400"
+                            >
+                              <input
+                                type="radio"
+                                class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                name="role"
+                                value="user"
+                              />
+                              <span class="ml-2">User</span>
+                            </label>
+                          </div>
+                      </div>
+                      @error('role')
+                      <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                          {{ $message }}
+                      </div>
+                      @enderror
+                    </label>
 
                 @elseif ($page == 'collections')
                     <div class="flex space-x-4">

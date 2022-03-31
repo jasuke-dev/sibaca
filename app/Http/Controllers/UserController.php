@@ -54,7 +54,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'username' => 'required|max:255',
             'password' => 'required|min:5|max:255',
-            'role' => 'required|max:255',
+            'role' => 'required|in:super,admin,user',
         ]);
         
         $validatedData['password'] = Hash::make($validatedData['password']);
