@@ -93,11 +93,11 @@ class CollectionDatatables extends LivewireDatatable
                 ->filterable()
                 ->alignCenter(),
             Column::name('publishers.publisher')
-                ->filterable($this->publishers->pluck('publisher'))
+                ->filterable()
                 ->alignCenter()
                 ->label('Publisher'),
             Column::name('creators.username')
-                ->filterable($this->creators)
+                ->filterable()
                 ->alignCenter()
                 ->label('Creator'),
             DateColumn::name('Created_at')
@@ -137,14 +137,14 @@ class CollectionDatatables extends LivewireDatatable
     {
         return Procurement::all();
     }
-    public function getPublishersProperty()
-    {
-        return Publisher::all();
-    }
-    public function getCreatorsProperty()
-    {
-        return User::pluck('username');
-    }
+    // public function getPublishersProperty()
+    // {
+    //     return Publisher::all();
+    // }
+    // public function getCreatorsProperty()
+    // {
+    //     return User::pluck('username');
+    // }
     // public function getSubjectsProperty()
     // {
     //     return Subject::all();
