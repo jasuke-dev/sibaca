@@ -28,9 +28,9 @@ class LanguageDatatables extends LivewireDatatable
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
-            DateColumn::name('updated_at')
-                ->filterable()
-                ->alignCenter(),
+            // DateColumn::name('updated_at')
+            //     ->filterable()
+            //     ->alignCenter(),
             Column::callback(['code','language'], function($code, $language){
                 return view('livewire.lists-datatables', [
                     'id' => $code,

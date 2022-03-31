@@ -26,9 +26,9 @@ class TypeDatatables extends LivewireDatatable
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
-            DateColumn::name('updated_at')
-                ->filterable()
-                ->alignCenter(),
+            // DateColumn::name('updated_at')
+            //     ->filterable()
+            //     ->alignCenter(),
             Column::callback(['id','type'], function($id, $type){
                 return view('livewire.lists-datatables', [
                     'id' => $id,

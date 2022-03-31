@@ -26,9 +26,9 @@ class ProcurementDatatables extends LivewireDatatable
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
-            DateColumn::name('updated_at')
-                ->filterable()
-                ->alignCenter(),
+            // DateColumn::name('updated_at')
+            //     ->filterable()
+            //     ->alignCenter(),
             Column::callback(['id','procurement'], function($id, $procurement){
                 return view('livewire.lists-datatables', [
                     'id' => $id,

@@ -26,9 +26,9 @@ class PublisherDatatables extends LivewireDatatable
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
-            DateColumn::name('updated_at')
-                ->filterable()
-                ->alignCenter(),
+            // DateColumn::name('updated_at')
+            //     ->filterable()
+            //     ->alignCenter(),
             Column::callback(['id','publisher'], function($id, $publisher){
                 return view('livewire.lists-datatables', [
                     'id' => $id,

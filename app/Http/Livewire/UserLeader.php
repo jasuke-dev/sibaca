@@ -15,9 +15,9 @@ class UserLeader extends LivewireDatatable
 
     public function columns()
     {
-        return [
-            Column::name('firstname')
-                ->label('Author'),
+        return [            
+            Column::raw('CONCAT(firstname," ",lastname) AS Author')
+                ->searchable(),
             Column::name('collections.title')
                 ->truncate(100),
             NumberColumn::name('collections.id:count')

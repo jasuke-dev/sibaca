@@ -20,6 +20,8 @@ class AuthorDatatables extends LivewireDatatable
             NumberColumn::name('id')
                 ->filterable()
                 ->alignCenter(),
+            Column::raw('CONCAT(firstname," ",lastname) AS Fullname')
+                ->searchable(),
             Column::name('firstname')
                 ->filterable()
                 ->alignCenter()

@@ -18,7 +18,8 @@ class SubjectDatatables extends LivewireDatatable
         return [
             Column::name('code')
                 ->filterable()
-                ->alignCenter(),
+                ->alignCenter()
+                ->editable(),
             Column::name('subject')
                 ->filterable()
                 ->alignCenter()
@@ -26,9 +27,9 @@ class SubjectDatatables extends LivewireDatatable
             DateColumn::name('created_at')
                 ->filterable()
                 ->alignCenter(),
-            DateColumn::name('updated_at')
-                ->filterable()
-                ->alignCenter(),
+            // DateColumn::name('updated_at')
+            //     ->filterable()
+            //     ->alignCenter(),
             Column::callback(['code','subject'], function($code, $subject){
                 return view('livewire.lists-datatables', [
                     'id' => $code,
