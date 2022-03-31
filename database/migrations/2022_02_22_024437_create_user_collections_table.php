@@ -17,7 +17,8 @@ class CreateUserCollectionsTable extends Migration
             $table->id();
             $table  ->foreignId('user_id')
                     ->nullable()
-                    ->constrained();
+                    ->constrained()
+                    ->cascadeOnDelete();
             $table  ->foreignUuid('collection_id')
                     ->nullable()
                     ->constrained()

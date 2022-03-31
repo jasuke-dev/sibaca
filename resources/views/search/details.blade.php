@@ -164,7 +164,7 @@
                         <div class="col-span-3 font-medium">: {{ $data->language->language }}</div>
                     </div>
                     {{-- <a class="font-bold text-blue-600" href="/pdf/{{ $data->path_file }}">View PDF</a> --}}
-                    <a target="" class="font-bold text-blue-600" href="{{ '/pdf/'.$data->id }}">View PDF</a>
+                    <a target="__blank" class="font-bold text-blue-600" href="{{ '/pdf/'.$data->id }}">View PDF</a>
                 </div>
             </div>
         </div>
