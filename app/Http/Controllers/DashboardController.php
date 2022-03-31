@@ -49,7 +49,7 @@ class DashboardController extends Controller
                             ->get();
                 return response()->json(['types' => $types]);
                 
-            }elseif(isset($request->range) && $request->data == 'timeseries'){
+            }elseif(isset($request->range) && $request->data == 'timeseriesUser'){
                 if($request->range == 'pastsixmonths'){
                     $firstdate = date("Y-m-01", strtotime("-6 months"));
                     $lastdate = date("Y-m-t");
@@ -105,6 +105,28 @@ class DashboardController extends Controller
                 ORDER BY c.created_at ASC");
 
                 return response()->json(['data' => $deposit, 'query' => $firstdate, 'query2' => $lastdate]);
+            }elseif($request->data = 'timeseries' && isset($request->range)){
+                if($request->range == 'pastsixmonths'){
+                    $firstdate = date("Y-m-01", strtotime("-6 months"));
+                    $lastdate = date("Y-m-t");
+                }elseif($request->range == 'pastyears'){
+                    $firstdate = date("Y-m-01", strtotime("-12 months"));
+                    $lastdate = date("Y-m-t");
+                }elseif($request->range == 'pastmonths'){
+                    $firstdate = date("Y-m-01");
+                    $lastdate = date("Y-m-t");
+                }
+                $timeseries = DB::select("SELECT collections.created_at,
+                DATE_FORMAT(user_collections.created_at, '%M %Y') AS Month,
+                COUNT(user_collections.user_id) AS Count,
+                'Read Count' AS username
+                FROM collections
+                JOIN user_collections ON user_collections.collection_id = collections.id
+                WHERE cast(user_collections.created_at as date) BETWEEN '2021-01-01' AND '2023-01-01'
+                GROUP BY MONTH(user_collections.created_at)
+                ORDER BY created_at ASC");
+
+                return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
             }
         }
 

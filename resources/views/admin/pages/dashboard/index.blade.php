@@ -243,7 +243,7 @@
               type_data.data.push(val.count)
           })
 
-          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", type_data.label.length);
+          let colorArray = interpolateColors("rgb(103, 15, 255)", "rgb(4, 122, 91)", type_data.label.length);
           //config dari pie Chart
           const pieConfig = {
             type: 'doughnut',
@@ -291,7 +291,7 @@
           let colorArray = [];
           // membuat array warna berdasarkan banyaknya label username
           if(label_username.length != 1){
-            colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+            colorArray = interpolateColors("rgb(103, 15, 255)", "rgb(3, 84, 63)", label_username.length);
           }else{
             colorArray[0] = "#7e3af2";
           }
@@ -388,7 +388,7 @@
           // membuat array warna berdasarkan banyaknya label username
           let colorArray = []
           if(label_username.length != 1){
-            colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+            colorArray = interpolateColors("rgb(103, 15, 255)", "rgb(3, 84, 63)", label_username.length);
           }else{
             colorArray[0] = "#7e3af2";
           }

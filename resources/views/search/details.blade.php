@@ -5,9 +5,10 @@
     <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-900 shadow-md">
       <div class="grid grid-cols-10 basis-10/12 justify-between">
         <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
-            <a href="/search">
-                Sibaca
-            </a>
+          <a href="/search" class="flex space-x-2">
+            <img src="{{ asset('storage/unsoed.png') }}" alt="" class="max-h-8">
+            <div>Sibaca</div>
+          </a>
         </div>
         <form action="/search" method="get" class="col-span-4">
             {{-- <input type="text" name="query" class="min-w-full min-h-full text-black border bg-gray-50 px-2 rounded-md" > --}}
@@ -61,7 +62,7 @@
         <!-- Profile menu -->
         <li class="relative">
           <button
-            class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+            class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none flex space-x-2"
             @click="toggleProfileMenu"
             @keydown.escape="closeProfileMenu"
             aria-label="Account"
@@ -70,6 +71,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-600 dark:text-gray-200 object-cover" viewbox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
           </svg>
+          <div class="self-center font-semibold text-lg">
+            {{ Auth::user()->username }}
+          </div>
           </button>
           <template x-if="isProfileMenuOpen">
             <ul
