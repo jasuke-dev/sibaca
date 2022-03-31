@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Exportarray;
 use App\Models\Author;
 use App\Models\User;
 use App\Models\Collection;
@@ -11,6 +12,7 @@ use function PHPSTORM_META\type;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\CrossJoinSequence;
+use Maatwebsite\Excel\Excel;
 
 class DashboardController extends Controller
 {
@@ -75,7 +77,11 @@ class DashboardController extends Controller
                 GROUP BY MONTH(c.created_at), s.username
                 ORDER BY created_at ASC");
 
-                return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
+                if(isset($request->export) && $request->export == 'download'){
+                    return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
+                }else{
+                    return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
+                }
             }elseif($request->data == 'deposit' && isset($request->range)){
                 if($request->range == 'pastsixmonths'){
                     $firstdate = date("Y-m-01", strtotime("-6 months"));

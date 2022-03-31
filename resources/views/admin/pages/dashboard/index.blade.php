@@ -106,15 +106,19 @@
 
       <!-- Lines chart -->
       <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 my-10">
-        <div class="flex justify-between">
+        <div class="flex justify-between py-6">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
             Lines
           </h4>
-          <select id="range-reads" class="p-4 rounded-md font-semibold border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900">
-            <option value="pastsixmonths" selected> Past 6 Months</option>
-            <option value="pastmonths">Past months</option>
-            <option value="pastyears">Past Year</option>
-          </select>
+          <div class="flex space-x-2">
+            <button class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-400 hover:text-white focus:outline-none dark:bg-green-600 dark:text-white dark:hover:bg-green-800 dark:border-0 h-12" id="export_reads"><span>{{ __('Export') }}</span>
+            <x-icons.excel class="m-2" /></button>
+            <select id="range-reads" class="px-4 rounded-md font-medium border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900 leading-4">
+              <option value="pastsixmonths" selected> Past 6 Months</option>
+              <option value="pastmonths">Past months</option>
+              <option value="pastyears">Past Year</option>
+            </select>
+          </div>
         </div>
         <canvas id="line"></canvas>
       </div>
@@ -128,15 +132,19 @@
         </div>
         <!-- Bars chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-          <div class="flex justify-between">
+          <div class="flex justify-between py-6">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
               Bars
             </h4>
-            <select id="range-deposit" class="p-4 rounded-md font-semibold border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900">
-              <option value="pastsixmonths" selected> Past 6 Months</option>
-              <option value="pastmonths">Past months</option>
-              <option value="pastyears">Past Year</option>
-            </select>
+            <div class="flex space-x-2">
+              <button class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-400 hover:text-white focus:outline-none dark:bg-green-600 dark:text-white dark:hover:bg-green-800 dark:border-0 h-12"><span>{{ __('Export') }}</span>
+              <x-icons.excel class="m-2" /></button>
+              <select id="range-deposit" class="px-4 rounded-md font-semibold border-2 text-gray-800 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900 h-12">
+                <option value="pastsixmonths" selected> Past 6 Months</option>
+                <option value="pastmonths">Past months</option>
+                <option value="pastyears">Past Year</option>
+              </select>
+            </div>
           </div>
           <canvas id="bars"></canvas>
         </div>
@@ -183,6 +191,31 @@
                 LineChart(data.timeseries)
             }
           )
+        }
+        function ExportTimeseries(range){
+          fetch(`/admin/dashboard/ajax?data=timeseries&range=${range}&export=download`)
+            .then( response => response.json())
+            .then(data => {
+                let csv = 'Username,Month,Count\n';
+                // data.forEach(obj=>{
+                //   csv += obj.username.join(',');
+                //   csv += obj.Month.join(',');
+                //   csv += obj.Count.join(',');
+                //   csv += "\n";
+                // })
+                data.timeseries.map(function(obj, index){
+                      csv += obj.username;
+                      csv += "," + obj.Month;
+                      csv += "," + obj.Count;
+                      csv += "\n";
+                })
+
+                let hiddenElement = document.createElement('a');  
+                hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);  
+                
+                hiddenElement.download = 'data.csv';  
+                hiddenElement.click();  
+            })
         }
 
         //Pie Chart Function
@@ -420,6 +453,7 @@
             return interpolatedColorArray;
         }
 
+        //event listener
         let rangePicker = document.getElementById('range-reads');
         rangePicker.addEventListener('change' , function(){
           console.log(rangePicker.value)
@@ -430,5 +464,11 @@
           console.log(rangeDepositPicker.value)
           getDepositSeries(rangeDepositPicker.value);
         })
+        let exportReads = document.getElementById('export_reads');
+        exportReads.addEventListener('click' , ()=>{
+            console.log('export csv');
+            ExportTimeseries(rangePicker.value);
+
+        });
     </script>
 @endsection
