@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="flex flex-col w-screen bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-800 shadow-md">
+<div class="flex flex-col w-screen bg-gray-50 dark:bg-gray-800">
+    <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-900 shadow-md">
       <div class="grid grid-cols-10 basis-10/12 justify-between">
         <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
             <a href="/search">

@@ -1,6 +1,6 @@
-<div class="bg-gray-50 dark:bg-gray-900 min-h-screen overflow-hidden dark:text-gray-400" \>
+<div class="bg-gray-50 dark:bg-gray-800 min-h-screen overflow-hidden dark:text-gray-400" \>
     <div class="flex flex-col w-screen">
-      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-800 shadow-md">
+      <div class="flex flex-row flex-1 py-4 text-white font-bold justify-between flex-wrap bg-white dark:bg-gray-900 shadow-md">
         <div class="grid grid-cols-10 basis-10/12 justify-between">
           <div class="font-mono text-3xl tracking-widest col-span-2 justify-self-center text-gray-800 dark:text-gray-50">
             <a href="/search">
@@ -151,7 +151,7 @@
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md grow dark:border-gray-500">
                 <div class="dark:text-gray-200">Type</div>
                 <div>
-                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 dark:bg-gray-900 dark:text-gray-200 max-w-full" wire:model="type">
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 dark:bg-gray-800 dark:text-gray-200 max-w-full" wire:model="type">
                     <option value="0">Any</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->type }}</option>
@@ -162,7 +162,7 @@
               <div class="flex flex-row space-x-4 border-2 dark:border-gray-500 p-2 rounded-md">
                 <div class="dark:text-gray-200">Author</div>
                 <div>
-                  <select class="bg-gray-100 text-blue-700 dark:bg-gray-900 dark:text-gray-200 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
+                  <select class="bg-gray-50 text-blue-700 dark:bg-gray-800 dark:text-gray-200 focus:outline-none px-2 w-24 max-w-full" wire:model="author">
                     <option value="0">Any</option>
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}">{{ $author->full_name }}</option>
@@ -173,7 +173,7 @@
               <div class="flex flex-row space-x-4 border-2 p-2 rounded-md dark:border-gray-500">
                 <div class="dark:text-gray-200">Language</div>
                 <div>
-                  <select class="bg-gray-100 text-blue-700 focus:outline-none px-2 w-24 max-w-full dark:bg-gray-900 dark:text-gray-200" wire:model="language">
+                  <select class="bg-gray-50 text-blue-700 focus:outline-none px-2 w-24 max-w-full dark:bg-gray-800 dark:text-gray-200" wire:model="language">
                     <option value="0">Any</option>
                     @foreach ($languages as $language)
                         <option value="{{ $language->code }}">{{ $language->language }}</option>
@@ -184,7 +184,7 @@
               <div class="border-2 p-2 rounded-md dark:border-gray-500">
                 <div>subjects</div>
                 <div>
-                  <select wire:model.defer="subject" class="block text-sm dark:bg-gray-900 dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md p-3 mt-3 appearance-none multiple-select  w-56 max-w-full" id="id" placeholder="Start Typing..." name="subject[]">
+                  <select wire:model.defer="subject" class="block text-sm dark:bg-gray-800 dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md p-3 mt-3 appearance-none multiple-select  w-56 max-w-full" id="id" placeholder="Start Typing..." name="subject[]">
 
                   </select>
                 </div>
