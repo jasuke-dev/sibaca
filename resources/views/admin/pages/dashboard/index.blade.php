@@ -288,8 +288,13 @@
           // merubah set menjadi array agar bisa memanfaatkan index
           label_username = [...label_username]
 
+          let colorArray = [];
           // membuat array warna berdasarkan banyaknya label username
-          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+          if(label_username.length != 1){
+            colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+          }else{
+            colorArray[0] = "#7e3af2";
+          }
 
           //melakukan nested looping untuk mengumpulkan data berdasarkan label username sejenis untuk digunakan di config
           label_username.forEach ((value, index) => {
@@ -381,7 +386,12 @@
           label_username = [...label_username]
 
           // membuat array warna berdasarkan banyaknya label username
-          let colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+          let colorArray = []
+          if(label_username.length != 1){
+            colorArray = interpolateColors("rgb(6, 148, 162)", "rgb(126, 58, 142)", label_username.length);
+          }else{
+            colorArray[0] = "#7e3af2";
+          }
 
           //melakukan nested looping untuk mengumpulkan data berdasarkan label username sejenis untuk digunakan di config
           label_username.forEach ((value, index) => {
