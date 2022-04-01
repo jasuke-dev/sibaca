@@ -122,7 +122,7 @@ class DashboardController extends Controller
                 'Read Count' AS username
                 FROM collections
                 JOIN user_collections ON user_collections.collection_id = collections.id
-                WHERE cast(user_collections.created_at as date) BETWEEN '2021-01-01' AND '2023-01-01'
+                WHERE cast(user_collections.created_at as date) BETWEEN '${firstdate}' AND '${lastdate}'
                 GROUP BY MONTH(user_collections.created_at)
                 ORDER BY created_at ASC");
 
