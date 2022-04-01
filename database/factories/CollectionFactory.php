@@ -24,8 +24,7 @@ class CollectionFactory extends Factory
             'path_cover' => 'public/files/covers/0xjpWzngfZdaIZVb3dPqvHK3bXIxDpQN6Dd91V2z.png',
             'path_file' => 'public/files/ebooks/aXtMu0H3juK2aJOsXmCMG1JKes8KfLrTQvIed7DB.pdf',
             'type_id' => Type::factory(),
-            'language_id' => Language::factory(),
-            'author_id' => Author::factory(),
+            'language_code' => Language::factory(),
         ];
     }
 }

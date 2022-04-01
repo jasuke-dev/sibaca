@@ -16,8 +16,9 @@ class UserCollectionFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
-            'collection_id' => Collection::factory(),
+            'user_id' => User::all()->random()->id,
+            'collection_id' => Collection::all()->random()->id,
+            'created_at' => $this->faker->dateTimeBetween('-6 months','now'),
         ];
     }
 }
