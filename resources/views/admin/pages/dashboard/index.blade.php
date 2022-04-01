@@ -108,7 +108,7 @@
       <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 my-10">
         <div class="flex justify-between py-6">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Lines
+            Data Read Collection Timeseries
           </h4>
           <div class="flex space-x-2">
             <button class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-400 hover:text-white focus:outline-none dark:bg-green-600 dark:text-white dark:hover:bg-green-800 dark:border-0 h-12" id="export_reads"><span>{{ __('Export') }}</span>
@@ -126,7 +126,7 @@
         <!-- Doughnut/Pie chart -->
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 relative">
-            Collection Types
+            Data Collection Types
           </h4>
           <canvas id="pie" style="height:40vh; width:40vw"></canvas>
         </div>
@@ -134,7 +134,7 @@
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <div class="flex justify-between py-6">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-              Bars
+              Data Deposit Timeseries by Admin
             </h4>
             <div class="flex space-x-2">
               <button class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-400 hover:text-white focus:outline-none dark:bg-green-600 dark:text-white dark:hover:bg-green-800 dark:border-0 h-12" id="export_deposit"><span>{{ __('Export') }}</span>
@@ -151,9 +151,11 @@
       </div>
       <div class="grid gap-6 mb-8 md:grid-cols-2">
         <div class="grow p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800">
+          <div class="font-semibold text-lg p-4"> Most Readed Collections </div>
           @livewire('collection-leader')   
         </div>
         <div class="grow p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800">
+          <div class="font-semibold text-lg p-4"> Top Author </div>
           @livewire('user-leader')   
         </div>
       </div>

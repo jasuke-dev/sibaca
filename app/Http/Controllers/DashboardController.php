@@ -124,7 +124,7 @@ class DashboardController extends Controller
                 JOIN user_collections ON user_collections.collection_id = collections.id
                 WHERE cast(user_collections.created_at as date) BETWEEN '${firstdate}' AND '${lastdate}'
                 GROUP BY MONTH(user_collections.created_at)
-                ORDER BY created_at ASC");
+                ORDER BY user_collections.created_at ASC");
 
                 return response()->json(['timeseries' => $timeseries, 'query' => $firstdate, 'query2' => $lastdate]);
             }

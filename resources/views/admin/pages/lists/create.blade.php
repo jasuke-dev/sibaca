@@ -236,7 +236,7 @@
                       </label>
                       <label for="classification" class="block mt-4 text-sm">
                           <span class="text-gray-700 dark:text-gray-400">Classification</span>
-                          <input type="text" id="classification" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('classification') }}" name="classification">
+                          <input type="text" id="classification" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Classification" value="{{ old('classification') }}" name="classification">
                           @error('classification')
                               <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                   {{ $message }}
@@ -245,7 +245,7 @@
                       </label>
                       <label for="volume" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Volume</span>
-                        <input type="text" id="volume" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('volume') }}" name="volume">
+                        <input type="text" id="volume" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Volume" value="{{ old('volume') }}" name="volume">
                         @error('volume')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -254,7 +254,7 @@
                       </label>
                       <label for="edition" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Edition</span>
-                        <input type="text" id="edition" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('edition') }}" name="edition">
+                        <input type="text" id="edition" class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Edition" value="{{ old('edition') }}" name="edition">
                         @error('edition')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -263,7 +263,7 @@
                       </label>
                       <label for="collation" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Collation</span>
-                        <input type="text" id="collation" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('collation') }}" name="collation">
+                        <input type="text" id="collation" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Collation" value="{{ old('collation') }}" name="collation">
                         @error('collation')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -291,7 +291,7 @@
                       </label>
                       <label for="publish_city" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Publish City</span>
-                        <input type="text" id="publish_city" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('publish_city') }}" name="publish_city" id="publish_city">
+                        <input type="text" id="publish_city" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publish City" value="{{ old('publish_city') }}" name="publish_city" id="publish_city">
                         @error('publish_city')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -300,7 +300,7 @@
                       </label>
                       <label for="publish_year" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Publish Year</span>
-                        <input type="text" id="publish_year" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('publish_year') }}" name="publish_year" id="publish_year">
+                        <input type="text" id="publish_year" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publish Year" value="{{ old('publish_year') }}" name="publish_year" id="publish_year">
                         @error('publish_year')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -328,7 +328,7 @@
                       </label>
                       <label for="year_of_procurement" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Year of Procurement</span>
-                        <input type="text" id="year_of_procurement" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('year_of_procurement') }}" name="year_of_procurement">
+                        <input type="text" id="year_of_procurement" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Year of Procurement" value="{{ old('year_of_procurement') }}" name="year_of_procurement">
                         @error('year_of_procurement')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}
@@ -337,7 +337,7 @@
                       </label>
                       <label for="price" class="block mt-4 text-sm grow">
                         <span class="text-gray-700 dark:text-gray-400">Price</span>
-                        <input type="text" id="price" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Publication Year" value="{{ old('price') }}" name="price">
+                        <input type="text" id="price" class="block w-full text-sm  shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" placeholder="Price" value="{{ old('price') }}" name="price">
                         @error('price')
                             <div class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                 {{ $message }}

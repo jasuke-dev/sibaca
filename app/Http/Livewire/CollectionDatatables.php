@@ -87,6 +87,8 @@ class CollectionDatatables extends LivewireDatatable
                 ->filterable($this->procurements->pluck('procurement'))
                 ->alignCenter()
                 ->label('Procurement'),
+            Column::name('price')
+                ->alignCenter(),
             NumberColumn::name('year_of_procurement')
                 ->label('Procurement Year')
                 ->filterable()

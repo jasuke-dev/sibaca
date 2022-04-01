@@ -133,12 +133,12 @@
                     <div>
                         @foreach ($data->authors as $author)
                           {{ $loop->index != 0 ? ','  : '' }}
-                          <a href="" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</a>
+                          <a href="/search?author{{ $author->id }}" class="font-medium hover:text-green-900 text-lime-700 dark:text-lime-500 dark:hover:text-lime-400">{{ $author->full_name }}</a>
                         @endforeach
                     </div>
                     <div>
                         @foreach ($data->subjects as $subject)
-                        <button class="bg-slate-200 hover:bg-slate-300 font-normal py-2 px-4 rounded text-sm dark:bg-gray-800 dark:hover:bg-gray-700">{{ $subject->subject }}</button>
+                        <a href="/search?subject[0]={{ $subject->code }}" class="bg-slate-200 hover:bg-slate-300 font-normal py-2 px-4 rounded text-sm dark:bg-gray-800 dark:hover:bg-gray-700">{{ $subject->subject }}</a>
                         @endforeach
                     </div>
                 </div>
