@@ -18,8 +18,8 @@ class SubjectDatatables extends LivewireDatatable
         return [
             Column::name('code')
                 ->filterable()
-                ->alignCenter()
-                ->editable(),
+                ->alignCenter()                
+                ->searchable(),
             Column::name('subject')
                 ->filterable()
                 ->alignCenter()

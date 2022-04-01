@@ -30,11 +30,10 @@ class CollectionDatatables extends LivewireDatatable
                     ->leftJoin('types', 'types.id', 'collections.type_id')
                     ->leftJoin('publishers', 'publishers.id', 'collections.publisher_id')
                     ->leftJoin('users', 'users.id', 'collections.user_id')
-                    ->leftJoin('procurements', 'procurements.id', 'collections.procurement_id')
-                    ->leftJoin('author_collections', 'author_collections.collection_id', 'collections.id')
-                    ->leftJoin('authors', 'authors.id', 'author_collections.author_id');
+                    ->leftJoin('procurements', 'procurements.id', 'collections.procurement_id');
     }
-
+    // ->leftJoin('author_collections', 'author_collections.collection_id', 'collections.id')
+    // ->leftJoin('authors', 'authors.id', 'author_collections.author_id')
     public function columns()
     {
         return [
@@ -55,17 +54,17 @@ class CollectionDatatables extends LivewireDatatable
                 ->filterable()
                 ->searchable()
                 ->truncate(30),
-            // Column::name('authors.firstname')
-            //     ->alignCenter()
-            //     ->label('Author Firstname')
-            //     ->filterable($this->authors->pluck('firstname')),
-            // Column::name('authors.lastname')
-            //     ->alignCenter()
-            //     ->label('Author lastname')
-            //     ->filterable($this->authors->pluck('lastname')),
-            Column::raw('CONCAT(authors.firstname, " ", authors.lastname) AS Full')
-                ->label('Authors')
-                ->filterable(),
+            Column::name('authors.firstname')
+                ->alignCenter()
+                ->label('Author Firstname')
+                ->filterable($this->authors->pluck('firstname')),
+            Column::name('authors.lastname')
+                ->alignCenter()
+                ->label('Author lastname')
+                ->filterable($this->authors->pluck('lastname')),
+            // Column::raw('CONCAT(authors.firstname, " ", authors.lastname) AS Full')
+            //     ->label('Authors')
+            //     ->filterable(),
             // Column::callback(['authors.firstname', 'authors.lastname'], function ($id, $planetName) {
             //     return "User $id hails from $planetName";
             // })->label('Computed (php closure)'),
