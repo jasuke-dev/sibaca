@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'upt' : "url('/storage/upt.jpg')"
+      },
       colors: {
         transparent: 'transparent',
         white: '#ffffff',

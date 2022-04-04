@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="w-screen h-screen flex justify-center items-center dark:bg-gray-900 bg-gray-100">
+    <div class="w-screen h-screen flex justify-center items-center bg-upt bg-cover dark:bg-gray-900 bg-gray-100 shadow-2xl shadow-cool-gray-900" style="background-image:linear-gradient(rgba(14, 11, 19, 0.624), rgba(7, 24, 46, 0.659)), url('storage/upt.jpg')">
         <form class="p-10 bg-white dark:bg-gray-800 rounded flex justify-center items-center flex-col shadow-md" action="/login" method="POST">
             @csrf
             <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-600 dark:text-gray-100 mb-2" viewbox="0 0 20 20" fill="currentColor">
