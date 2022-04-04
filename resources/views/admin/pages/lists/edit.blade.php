@@ -360,7 +360,26 @@
         let selected_author = @js($collection->authors->pluck('id'));
 
         let selectAuthor = new TomSelect('#author',{
-          
+          create: async function(input, callback){
+                let loop = true;
+                let send = false;
+                let inputAuthor = input.split(" ");
+                let length = inputAuthor.length;
+                console.log(length)
+                if(length == 2){                  
+                  if(inputAuthor[1].slice(-1) == "+"){
+                    let lastname = inputAuthor[1].slice(0,-1);
+                    let firstname = inputAuthor[0];
+                    let newId;
+                    const response = await fetch(`/addAuthor?firstname=${firstname}&lastname=${lastname}`);
+                    const data = await response.json();
+
+                    if(data.status == 'success'){
+                      callback({value:data.id, text:`${firstname} ${lastname}`})
+                    }
+                  }
+                }
+              }
         });
         new TomSelect('#type',{
           

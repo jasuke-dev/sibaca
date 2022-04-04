@@ -14,6 +14,20 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function addAuthor(Request $request){
+        $validatedData = $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+        ]);
+
+        try {
+            $author = Author::create($validatedData);
+            return response()->json(['status' => 'success','id' => $author->id]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'error']);
+        }
+    }
+
     public function index()
     {
         return view('admin.pages.lists.index',[

@@ -62,9 +62,11 @@ Route::resource('/admin/procurement', ProcurementController::class)->middleware(
 
 Route::post('/import/{import}', [ImportController::class, 'import'])->middleware('admin');
 
-Route::get('/search', [SearchController::class, 'index'])->name('user')->middleware('user');
+Route::get('/search', [SearchController::class, 'index'])->name('user')->middleware('auth');
 
-Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('user');
+Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('auth');
 
 
 Route::get('/pdf/{collection}', [PDFController::class, 'viewer'])->name('pdf')->middleware('auth');
+
+Route::get('/addAuthor', [AuthorController::class, 'addAuthor']);
