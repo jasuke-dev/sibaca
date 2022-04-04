@@ -72,6 +72,22 @@
                         </thead>
                     </table>
                 </div>
+          @elseif(Route::current()->uri == 'admin/author')
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    Insert data in format .xlsx or .csv with the following format
+                </p>
+                <div class="overflow-x-auto my-5">
+                    <table class="w-full whitespace-no-wrap">
+                        <thead>
+                          <tr
+                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                          >
+                            <th class="px-4 py-3">firstname</th>
+                            <th class="px-4 py-3">lastname</th>
+                          </tr>
+                        </thead>
+                    </table>
+                </div>
           @elseif(Route::current()->uri == 'admin/collections')
                 <p class="text-sm text-gray-700 dark:text-gray-400">
                     Insert data in format .JSON format
@@ -112,7 +128,7 @@
                     </table>
                 </div>
           @endif
-          @if (Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections')    
+          @if (Route::current()->uri == 'admin/subject' || Route::current()->uri == 'admin/collections' || Route::current()->uri == 'admin/author')    
             <form method="POST" action="/import/{{ $page }}" enctype="multipart/form-data">
                 @csrf
                 <input type='file' name="file"/>

@@ -57,11 +57,11 @@ class CollectionDatatables extends LivewireDatatable
             Column::name('authors.firstname')
                 ->alignCenter()
                 ->label('Author Firstname')
-                ->filterable($this->authors->pluck('firstname')),
+                ->filterable(),
             Column::name('authors.lastname')
                 ->alignCenter()
                 ->label('Author lastname')
-                ->filterable($this->authors->pluck('lastname')),
+                ->filterable(),
             // Column::raw('CONCAT(authors.firstname, " ", authors.lastname) AS Full')
             //     ->label('Authors')
             //     ->filterable(),

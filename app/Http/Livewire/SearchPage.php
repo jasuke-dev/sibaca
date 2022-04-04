@@ -81,6 +81,7 @@ class SearchPage extends Component
         return view('livewire.search-page',[
             'results' => Collection::with('authors','subjects')
                                     ->where('title', 'LIKE', "%$this->query%" ?? '%')
+                                    ->orWhere('abstract','LIKE', "%$this->query%" ?? '%')
                                     ->when($this->type, function($query, $type){
                                         return $query->where('type_id','LIKE',$type);
                                     })

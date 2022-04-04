@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AuthorImport;
 use App\Models\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class ImportController extends Controller
             }elseif($import == 'type'){
 
             }elseif($import == 'author'){
-
+                Excel::import(new AuthorImport, request()->file('file'));
+                return redirect()->back()->with('success','Data Imported Successfully');
             }elseif($import == 'publisher'){
 
             }elseif($import == 'procurement'){

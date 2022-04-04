@@ -68,7 +68,7 @@ class CollectionController extends Controller
             'title' => 'required|max:255',
             'type' => 'required|max:255',
             'author' => 'required',
-            'subject' => 'required',
+            'subjects' => 'required',
             'language' => 'required',
             'publisher' => 'required',
             'procurement' => 'required',
