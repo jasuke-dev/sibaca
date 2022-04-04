@@ -221,7 +221,7 @@
                     <span class="text-gray-700 dark:text-gray-400">Language</span>
                     <select class="block w-full text-sm shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md p-3 mt-3 appearance-none border-2" value="{{ old('language') }}" name="language">
                       @foreach ($languages as $language)
-                        @if (old('language', $collection->language_code) == $language->Code)
+                        @if (old('language', $collection->language_code) == $language->code)
                           <option value="{{ $language->code }}" selected>{{ $language->language }}</option>
                         @else
                           <option value="{{ $language->code }}">{{ $language->language }}</option>

@@ -39,6 +39,7 @@ class CreateCollectionsTable extends Migration
             $table->string('language_code');
             $table->foreign('language_code')
                   ->references('code')->on('languages')
+                  ->onUpdate('CASCADE')
                   ->onDelete(null);
             $table->foreignId('publisher_id')
                   ->nullable()

@@ -23,6 +23,7 @@ class SubjectDatatables extends LivewireDatatable
             Column::name('subject')
                 ->filterable()
                 ->alignCenter()
+                ->searchable()
                 ->editable(),
             DateColumn::name('created_at')
                 ->filterable()
