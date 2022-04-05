@@ -15,6 +15,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\SearchController;
+use App\Models\Author;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -70,3 +71,24 @@ Route::get('/details/{id}', [DetailsController::class, 'index'])->middleware('au
 Route::get('/pdf/{collection}', [PDFController::class, 'viewer'])->name('pdf')->middleware('auth');
 
 Route::get('/addAuthor', [AuthorController::class, 'addAuthor']);
+
+Route::get('coba', function(){
+    $list ='SINGH,Vikram;DHAR,Pawan K';
+    $list_author_code = [];
+    $satu = explode(';',$list);
+    foreach($satu as $a){
+        $SearchAuthor = Author::query()
+            ->where('firstname','like',$a[0])
+            ->orwhere('lastname','LIKE',$a[1])->get();
+        
+        if(isset($SearchAuthor[0])){
+            array_push($list_author_code, $SearchAuthor[0]->id);
+        }else{
+            $newAuthor = Author::create(['firstname'=>$a[0],'lastname' => $a[1]]);
+            array_push($list_author_code,$newAuthor->id);
+        }
+    }
+    dd($list_author_code);
+
+    dd(isset($author[0]));
+});

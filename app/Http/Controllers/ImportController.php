@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\AuthorImport;
+use App\Models\Author;
 use App\Models\Collection;
+use Spatie\PdfToImage\Pdf;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Imports\AuthorImport;
 use App\Imports\SubjectsImport;
 use App\Imports\CollectionsImport;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
-use Spatie\PdfToImage\Pdf;
 
 class ImportController extends Controller
 {
@@ -87,8 +89,39 @@ class ImportController extends Controller
                         'user_id' => Auth::id(), 
                     ]);
 
-                    $Collection->authors()->attach(explode(";",$row->authors));
-                    $Collection->subjects()->attach(explode(";",$row->subjects));
+                    //mengkondisikan subject
+                    $list_subject_code = [];
+                    $subjects = explode(',',$row->subjects);
+                    foreach($subjects as $subject){
+                        $SearchSubject = Subject::query()
+                            ->where('subject','like',$subject)->get();
+                        
+                        if(isset($SearchAuthor[0])){
+                            array_push($list_subject_code, $SearchAuthor[0]->code);
+                        }else{
+                            $newSubject = Subject::create(['code'=>Str::random(5),'subject'=>$subject]);
+                            array_push($list_subject_code,$newSubject->code);
+                        }
+                    }
+                    //mengkondisikan author
+                    $list_author_code = [];
+                    $authors = explode(';',$row->authors);
+                    foreach($authors as $a){
+                        $author = explode(',',$a);
+                        $SearchAuthor = Author::query()
+                            ->where('firstname','like',$author[0])
+                            ->orwhere('lastname','LIKE',$author[1])->get();
+                        
+                        if(isset($SearchAuthor[0])){
+                            array_push($list_author_code, $SearchAuthor[0]->id);
+                        }else{
+                            $newAuthor = Author::create(['firstname'=>$author[0],'lastname' => $author[1]]);
+                            array_push($list_author_code,$newAuthor->id);
+                        }
+                    }
+                    
+                    $Collection->authors()->attach($list_author_code);
+                    $Collection->subjects()->attach($list_subject_code);
                 }
                 // Excel::import(new CollectionsImport, request()->file('file'));
                 return redirect()->back()->with('success','Data Collection Imported Successfully');
