@@ -1,24 +1,26 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DetailsController;
-use App\Http\Controllers\ImportController;
-use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PDFController;
-use App\Http\Controllers\ProcurementController;
-use App\Http\Controllers\PublisherController;
-use App\Http\Controllers\SearchController;
 use App\Models\Author;
+use App\Models\Collection;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ProcurementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,23 +74,15 @@ Route::get('/pdf/{collection}', [PDFController::class, 'viewer'])->name('pdf')->
 
 Route::get('/addAuthor', [AuthorController::class, 'addAuthor']);
 
-Route::get('coba', function(){
-    $list ='SINGH,Vikram;DHAR,Pawan K';
-    $list_author_code = [];
-    $satu = explode(';',$list);
-    foreach($satu as $a){
-        $SearchAuthor = Author::query()
-            ->where('firstname','like',$a[0])
-            ->orwhere('lastname','LIKE',$a[1])->get();
-        
-        if(isset($SearchAuthor[0])){
-            array_push($list_author_code, $SearchAuthor[0]->id);
-        }else{
-            $newAuthor = Author::create(['firstname'=>$a[0],'lastname' => $a[1]]);
-            array_push($list_author_code,$newAuthor->id);
-        }
-    }
-    dd($list_author_code);
-
-    dd(isset($author[0]));
-});
+// Route::get('/coba', function(){
+//     //codding edit untuk function delete pada livewire-datatabele
+//     public function delete($id)
+//     {
+//         $data = $this->model::find($id);
+//         if($data->path_file && $data->path_cover){
+//             Storage::delete($data->path_file);
+//             Storage::delete($data->path_cover);
+//         }
+//         $this->model::destroy($id);
+//     }
+// });
