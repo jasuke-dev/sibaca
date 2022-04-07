@@ -55,7 +55,7 @@ class ImportController extends Controller
                             //generate Cover
                             $pdf = new Pdf('storage/'.$pathName);
                             $RandCoverName = Str::random(10);
-                            $pathCover = 'covers/'.$RandCoverName;
+                            $pathCover = 'covers/'.$RandCoverName.'.jpg';
                             $pdf->saveImage('storage/'.$pathCover);
                         } catch (\Throwable $th) {
                             return redirect()->back()->with('error',"Error when generating thumbnail");
@@ -96,8 +96,8 @@ class ImportController extends Controller
                         $SearchSubject = Subject::query()
                             ->where('subject','like',$subject)->get();
                         
-                        if(isset($SearchAuthor[0])){
-                            array_push($list_subject_code, $SearchAuthor[0]->code);
+                        if(isset($SearchSubject[0])){
+                            array_push($list_subject_code, $SearchSubject[0]->code);
                         }else{
                             $newSubject = Subject::create(['code'=>Str::random(5),'subject'=>$subject]);
                             array_push($list_subject_code,$newSubject->code);

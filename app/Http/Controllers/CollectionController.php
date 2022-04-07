@@ -62,28 +62,29 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'inventory_code' => 'required|max:255',
-            'isbn_issn_doi' => 'required|max:255',
-            'title' => 'required|max:255',
-            'type' => 'required|max:255',
-            'author' => 'required',
-            'subjects' => 'required',
-            'language' => 'required',
-            'publisher' => 'required',
-            'procurement' => 'required',
-            'file' => 'required|file|mimes:pdf|max:50048',
-            'cover' => ['file','mimes:png,jpg,jpeg','max:5048'],
-        ]);
+        // $request->validate([
+        //     'inventory_code' => 'required|max:255',
+        //     'isbn_issn_doi' => 'required|max:255',
+        //     'title' => 'required|max:255',
+        //     'type' => 'required|max:255',
+        //     'author' => 'required',
+        //     'subjects' => 'required',
+        //     'language' => 'required',
+        //     'publisher' => 'required',
+        //     'procurement' => 'required',
+        //     'file' => 'required|file|mimes:pdf|max:50048',
+        //     'cover' => ['file','mimes:png,jpg,jpeg','max:5048'],
+        // ]);
         try{
             $path = $request->file('file')->store('collections');
             if (request()->has('cover')){
                 $pathCover = $request->file('cover')->store('covers');
             }else{
                 //generate Cover
-                $pdf = new Pdf('storage/'.$path);
+                //instanciate new pdf lama karna spatie pdf imagick $this->imagick->pingImage($pdfFile); dikomen aja
+                $pdf = new Pdf($request->file('file'));
                 $RandCoverName = Str::random(10);
-                $pathCover = 'covers/'.$RandCoverName;
+                $pathCover = 'covers/'.$RandCoverName.'.jpg';
                 $pdf->saveImage('storage/'.$pathCover);
             }
         } catch (\Exception $e) {
