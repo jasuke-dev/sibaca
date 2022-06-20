@@ -18,7 +18,7 @@ class UserCollectionFactory extends Factory
         return [
             'user_id' => User::all()->random()->id,
             'collection_id' => Collection::all()->random()->id,
-            'created_at' => $this->faker->dateTimeBetween('-4 months','+1 months'),
+            'created_at' => $this->faker->dateTimeBetween('-10 months','-2 months'),
         ];
     }
 }

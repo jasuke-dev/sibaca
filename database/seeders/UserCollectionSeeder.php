@@ -15,6 +15,6 @@ class UserCollectionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\UserCollection::factory(5)->create();
+        \App\Models\UserCollection::factory(500)->create();
     }
 }

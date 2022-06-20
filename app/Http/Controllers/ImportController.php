@@ -17,6 +17,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ImportController extends Controller
 {
+    public static $progress;
+    public static $maxProgress;
+
+    function __construct(){
+        ImportController::$progress = 0;
+        ImportController::$maxProgress = 0;
+    }
+    public function setProgress($value){
+        ImportController::$progress = $value;
+    }
+    public function getProgress(){
+        return ImportController::$progress;
+    }
+
     public function import($import)
     {
         try {
@@ -28,7 +42,9 @@ class ImportController extends Controller
             }elseif($import == 'type'){
 
             }elseif($import == 'author'){
-                Excel::import(new AuthorImport, request()->file('file'));
+                $this->setProgress('100');
+                Excel::import(new AuthorImport, request()->file('file'));                
+                return response()->json(['progress' => $this->getProgress(), 'maxProgress' => self::$maxProgress]);
                 return redirect()->back()->with('success','Data Imported Successfully');
             }elseif($import == 'publisher'){
 
@@ -124,6 +140,7 @@ class ImportController extends Controller
                     $Collection->subjects()->attach($list_subject_code);
                 }
                 // Excel::import(new CollectionsImport, request()->file('file'));
+                return response()->json(['progress' => $this->getProgress(), 'maxProgress' => self::$maxProgress]);
                 return redirect()->back()->with('success','Data Collection Imported Successfully');
             }
         } catch (\Exception $e) {
@@ -132,5 +149,8 @@ class ImportController extends Controller
         // return view('user.profile', [
         //     'user' => User::findOrFail($id)
         // ]);
+    }
+    public function progress(){
+        return response()->json(['progress' => $this->getProgress(), 'maxProgress' => self::$maxProgress]);
     }
 }

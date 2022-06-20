@@ -52,4 +52,12 @@
             </div>
         </div>
     </main>
+    @if (Route::current()->uri == 'admin/collections')
+        {{-- <script>
+            const inputElement = document.getElementById('input')
+
+            // Create a FilePond instance
+            const pond = FilePond.create(inputElement);
+        </script> --}}
+    @endif
 @endsection

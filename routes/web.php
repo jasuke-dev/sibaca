@@ -74,6 +74,8 @@ Route::get('/pdf/{collection}', [PDFController::class, 'viewer'])->name('pdf')->
 
 Route::get('/addAuthor', [AuthorController::class, 'addAuthor']);
 
+Route::get('/progress-import', [ImportController::class, 'progress']);
+
 // Route::get('/coba', function(){
 //     //codding edit untuk function delete pada livewire-datatabele
 //     public function delete($id)
