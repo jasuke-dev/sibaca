@@ -44,39 +44,10 @@
     @livewireScripts
     {{-- livewire --}}
 
+    
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-    <script>
-        const progress = document.getElementById('progress-input');
-        function progressInput(){
-          fetch('/progress-import')
-            .then(responese => responese.json())
-            .then( data =>{
-              console.log(data);
-              if(data.progress != 2){
-                progress.innerHTML = data.progress;
-                setTimeout(progressInput, 100);
-              }
-            })
-        }
-        const inputElement = document.getElementById('input')
-
-        // Create a FilePond instance
-        const pond = FilePond.create(inputElement);
-
-        FilePond.setOptions({
-          server: {
-            url: '/import/collections',
-            process:{
-              onload: (responese) =>{
-                console.log(responese)
-                progressInput();
-              }
-            },
-            headers: {
-              'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-          },
-        })
-    </script>    
+    {{-- pagescript --}}
+    @yield('pageScript')
+    {{-- pagescript --}}
 </body>
 </html>

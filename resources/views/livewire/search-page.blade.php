@@ -126,6 +126,7 @@
         </ul>
       </div>
       <div class="flex flex-row flex-1 justify-between flex-wrap divide-y divide-gray-300/50 dark:divide-gray-700/50">
+        {{ $type }}
           <div class="grid grid-cols-11 basis-11/12 justify-between py-4">
             @if ($type || $author || $language || $subject)
               <div class="col-span-2 justify-self-center text-lime-600 font-semibold text-xl">
@@ -317,9 +318,9 @@
           try {
             selectSubject.setValue(event.detail.newSubject)
             console.log(event,detail.newSubject)
-            console.log("failed to reset value subject")
+            console.log("reset value subject")
           } catch (error) {
-            console.log("failed to reset value subject")
+            console.log("failed to reset value subject2")
           }
 
           // melacak perubahan list subject untuk di inisialisaikan ulang ketika re render component livewire

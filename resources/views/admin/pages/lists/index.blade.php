@@ -53,11 +53,90 @@
         </div>
     </main>
     @if (Route::current()->uri == 'admin/collections')
-        {{-- <script>
-            const inputElement = document.getElementById('input')
+        @section('pageScript')
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+            <script>
+                const progress = document.getElementById('progress-input');
+                function progressInput(){
+                fetch('/progress-import')
+                    .then(responese => responese.json())
+                    .then( data =>{
+                    console.log(data);
+                    if(data.progress != 2){
+                        progress.innerHTML = data.progress;
+                        setTimeout(progressInput, 100);
+                    }
+                    })
+                }
+                const inputElement = document.getElementById('input')
 
-            // Create a FilePond instance
-            const pond = FilePond.create(inputElement);
-        </script> --}}
+                // Create a FilePond instance
+                const pond = FilePond.create(inputElement);
+
+                FilePond.setOptions({
+                server: {
+                    url: '/import/collections',
+                    process:{
+                    onload: (responese) =>{
+                        console.log(responese)
+                        Swal.fire({
+                            icon: 'success',
+                            title : "Data Success Imported",
+                            confirmButtonText: 'Oke',
+                        }).then((result) => {
+                            location.reload()
+                        })
+                    }
+                    },
+                    headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                },
+                })
+            </script>    
+        @endsection
+    @elseif(Route::current()->uri == 'admin/subject')
+        @section('pageScript')
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+            <script>
+                const progress = document.getElementById('progress-input');
+                function progressInput(){
+                    fetch('/progress-import')
+                        .then(responese => responese.json())
+                        .then( data =>{
+                        console.log(data);
+                            if(data.progress != 2){
+                                progress.innerHTML = data.progress;
+                                setTimeout(progressInput, 100);
+                            }
+                        })
+                }
+                const inputElement = document.getElementById('input')
+
+                // Create a FilePond instance
+                const pond = FilePond.create(inputElement);
+
+                FilePond.setOptions({
+                server: {
+                    url: '/import/subject',
+                    process:{
+                    onload: (responese) =>{
+                        console.log(responese)
+                        Swal.fire({
+                            icon: 'success',
+                            title : "Data Success Imported",
+                            confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload()
+                        })
+                    }                
+                    },
+                    headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                },
+                })
+            </script>    
+        @endsection
     @endif
 @endsection

@@ -78,16 +78,37 @@ class SearchPage extends Component
     public function render()
     {
         $this->reRenderSubject($this->subject);
+        $this->counter++;
+        // dd(Collection::with('authors','subjects')
+        //                             ->where('title', 'LIKE', "%$this->query%" ?? '%')
+        //                             ->where('abstract','LIKE', "%$this->query%" ?? '%')
+        //                             ->when($this->type, function($query, $type){
+        //                                 return $query->where('type_id','LIKE',$type);
+        //                             })
+        //                             ->when($this->author, function($query){
+        //                                 return $query->WhereHas('authors', function($query){
+        //                                     $query->where('author_id','LIKE',$this->author);
+        //                                 });
+        //                             })
+        //                             ->when($this->language, function($query, $language){
+        //                                 return $query->where('language_code','LIKE',$language);
+        //                             })
+        //                             ->when($this->subject, function($query, $subject){
+        //                                 return $query->WhereHas('subjects', function($query){
+        //                                     $query->WhereIn('subjects.code', $this->subject);
+        //                                 });
+        //                             })
+        //                             ->paginate(10));
         return view('livewire.search-page',[
             'results' => Collection::with('authors','subjects')
                                     ->where('title', 'LIKE', "%$this->query%" ?? '%')
-                                    ->orWhere('abstract','LIKE', "%$this->query%" ?? '%')
+                                    // ->where('abstract','LIKE', "%$this->query%" ?? '%') gabisa pake abstract orwwhere
                                     ->when($this->type, function($query, $type){
-                                        return $query->where('type_id','LIKE',$type);
+                                        return $query->where('type_id',$type);
                                     })
                                     ->when($this->author, function($query){
                                         return $query->WhereHas('authors', function($query){
-                                            $query->where('author_id','LIKE',$this->author ?? 0);
+                                            $query->where('author_id','LIKE',$this->author);
                                         });
                                     })
                                     ->when($this->language, function($query, $language){
